@@ -14,6 +14,7 @@
     background-color: config.$light-color;
     font-family: config.$font-stack;
     line-height: 1.6;
+    width: 100%;
   }
   
   img {
@@ -22,6 +23,98 @@
   
   a {
     text-decoration: none;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  nav {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 60px;
+    background-color: config.$menubg;
+    text-transform: uppercase;
+    color: config.$menucolor;
+    font-size: .75em;
+    font-weight: 400;
+    line-height: 20px;
+    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.175);
+
+    #logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-basis: 150px;
+      max-width:150px;
+      flex-shrink: 0;
+      cursor: pointer;
+    
+      img{
+        padding:20px 10px;
+      }
+    }
+
+    > ul {
+      align-self: stretch;
+      display: inline-flex;
+      flex-wrap: wrap;
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: .3s all ease-out;
+    
+    }
+    
+    a {
+      color:inherit;
+      height: 100%;
+      width: 100%;
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+  
+    }
+
+    li:hover {
+      background-color: config.$menubghover;
+    }
+
+    .dropdown {
+      position: relative;
+      flex-direction: column;
+    }
+
+    .dropdown a::after {
+      content: "\02C7";
+      font-size: 1.5em;
+      padding-left:5px;
+      padding-top:12px;
+      text-align: right;
+      float:right;
+      
+    }
+
+
+   
+  }
+
+  .submenu {
+    display: none;
+    position:absolute;
+    bottom:-40px;
+    
+    flex-direction: column;
+
   }
   
   .showcase {

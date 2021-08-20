@@ -9,7 +9,7 @@
 
 import './styles/app.scss';
 
-import './styles/fonts-v1.css';
+// import './styles/fonts-v1.css';
 import '/assets/js/main-v1.js';
 
 
