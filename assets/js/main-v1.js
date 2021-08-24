@@ -47,14 +47,14 @@ menuItems.forEach(function(f){
 
 
 
-hamburger.addEventListener('click', function(){
-    navbarUl = document.querySelector('#navbar-ul');
-    if(navbarUl.style.display == "none"){
-        navbarUl.style.display = "flex";
-    }else{
-        navbarUl.style.display = "none"
-    }
-})
+// hamburger.addEventListener('click', function(){
+//     navbarUl = document.querySelector('#navbar-ul');
+//     if(navbarUl.style.display == "none"){
+//         navbarUl.style.display = "flex";
+//     }else{
+//         navbarUl.style.display = "none"
+//     }
+// })
 
 // let main = document.querySelector('#main');
 // // let mainMatrix = document.querySelector('#main-matrix');
