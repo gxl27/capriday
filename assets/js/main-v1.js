@@ -1,19 +1,60 @@
-let menuitems = document.querySelectorAll('.dropdown');
+let hamburger =  document.querySelector('#navbar-mobile-btn');
+let menuItems = document.querySelectorAll('.dropdown');
+let submenuItems = document.querySelectorAll('.submenu');
+let clickCheckMenu = null;
 
+document.addEventListener('click', function(e){
+    // if (!document.getElementById('l2').contains(e.target) && (!document.getElementById('logo-menu').contains(e.target))){
+    //     alert("Clicked outside l2 and logo-menu");
+    //      document.getElementById('l2').style.height="0px"; //the same code you've used to hide the menu
+    //   } 
+   
+    let parentNode = e.target.parentNode;
+    if(parentNode.classList){
+   
+        if(parentNode.classList.contains('dropdown') ){
+            if(!clickCheckMenu){
+                clickCheckMenu = e.target;
+                return;
+            }else{
+                if(!clickCheckMenu == e.target){
+                    console.log(clickCheckMenu)
+                    clickCheckMenu = null;
+                    
+                }
+            }
+           
+            
+        }
+    }
+    submenuItems.forEach(function(s){
+        s.style.display = 'none';
+    })
+    clickCheckMenu = null;
+})
 
-menuitems.forEach(function(f){
-    
+//expand menu items
+menuItems.forEach(function(f){
     f.addEventListener('click', function(e){
         e.preventDefault();
-        console.log(f);
-        qsubmenu = f.querySelector('.submenu');
-        qsubmenu.style.display = "flex";
+        submenuItems.forEach(function(s){
+            s.style.display = 'none';
+        })
+        qSubmenu = f.querySelector('.submenu');
+        qSubmenu.style.display = "flex";
     })
 })
 
 
 
-
+hamburger.addEventListener('click', function(){
+    navbarUl = document.querySelector('#navbar-ul');
+    if(navbarUl.style.display == "none"){
+        navbarUl.style.display = "flex";
+    }else{
+        navbarUl.style.display = "none"
+    }
+})
 
 // let main = document.querySelector('#main');
 // // let mainMatrix = document.querySelector('#main-matrix');

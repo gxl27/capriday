@@ -1,48 +1,43 @@
 {% block _navbar %}
 <header>
     <nav>
-        <div id="logo">
-            <img src="/img/logo.png" alt="Caprirom">
+        <div id="navbar">
+            <div id="logo">
+                <div>
+                    <img src="/img/logo.png" alt="Caprirom">
+                </div>
+                
+                <div id="navbar-mobile-btn" title="Expand menu">
+                    <img src="/img/menu.svg" alt='expand'>
+                </div>
+            </div>
+            
+            <ul id='navbar-ul'>
+                <li class='dropdown'><a href="#">despre noi</a>
+                    <ul class='submenu'>
+                    <li> <a href="#">Istoric/prezentare</a></li>
+                    <li> <a href="#">statutul asociatiei</a></li>
+                    <li> <a href="#">filiale/colaboratori</a></li>
+                    <li> <a href="#">rezultate</a></li>
+                    <li> <a href="#">galerie foto</a></li>
+                    </ul>
+                </li>
+                <li class='dropdown'><a href="#">anunturi</a>
+                    <ul class='submenu'>
+                    <li> <a href="#">Caprirom</a></li>
+                    <li> <a href="#">crescatori</a></li>
+                    <li> <a href="#">stiri si noutati</a></li>
+                    </ul>
+                </li>
+                <li class='dropdown'><a href="#">inscriere</a>
+                    <ul class='submenu'>
+                        <li><a href="#">conditii de inscriere</a></li>
+                        <li><a href="#">formular solicitare</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">contact</a></li>
+            </ul>
         </div>
-        <ul>
-            <li class='dropdown'><a href="#">despre noi</a>
-                <ul class='submenu'>
-                   <li> <a href="#">Istoric/prezentare</a></li>
-                   <li> <a href="#">statutul asociatiei</a></li>
-                   <li> <a href="#">filiale/colaboratori</a></li>
-                   <li> <a href="#">rezultate</a></li>
-                   <li> <a href="#">galerie foto</a></li>
-                </ul>
-            </li>
-            <li class='dropdown'><a href="#">anunturi</a>
-                <ul class='submenu'>
-                   <li> <a href="#">Caprirom</a></li>
-                   <li> <a href="#">crescatori</a></li>
-                   <li> <a href="#">stiri si noutati</a></li>
-                </ul>
-            </li>
-            <li class='dropdown'><a href="#">inscriere</a>
-                <ul class='submenu'>
-                    <li><a href="#">conditii de inscriere</a></li>
-                    <li><a href="#">formular solicitare</a></li>
-                </ul>
-            </li>
-            <li><a href="#">regulamente</a></li>
-            <li class='dropdown'><a href="#">implementari proiecte</a>
-                <ul class='submenu'>
-                    <li><a href="#">Proiect ID 133256</a></li>
-                </ul>
-            </li>
-            <li class='dropdown'><a href="#">informatii tehnice</a>
-                <ul class='submenu'>
-                    <li><a href="#">controlul oficial al productiei</a></li>
-                    <li><a href="#">registru genealogic</a></li>
-                    <li><a href="#">conservare genofond</a></li>
-                    <li><a href="#">proiecte de cercetare</a></li>
-                </ul>
-            </li>
-            <li><a href="#">contact</a></li>
-        </ul>
     </nav>
 </header>
 {% endblock %}

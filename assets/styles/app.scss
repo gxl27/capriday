@@ -1,68 +1,82 @@
 @use "config";
 @use "tools";
 @use "buttons";
-@use "media";
 
 
-* {
+
+*, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
-  
-  body {
-    background-color: config.$light-color;
-    font-family: config.$font-stack;
-    line-height: 1.6;
-    width: 100%;
-  }
-  
-  img {
-    width: 100%;
-  }
-  
-  a {
-    text-decoration: none;
-  }
 
-  ul {
-    list-style: none;
-  }
+body {
+  background-color: config.$light-color;
+  font-family: config.$font-stack;
+  font-size: 1.125em;
+  line-height: 1.6;
+  width: 100%;
+}
 
-  nav {
-    width: 100%;
-    margin: 0 auto;
+h1 {
+  font-size: clamp(1.8rem, 1rem + 10vw , 5rem);
+}
+h2 {
+  font-size: clamp(1.2rem, 1rem + 5vw , 3rem);
+}
+
+p {
+  font-size: clamp(1rem, 1.25vw , 1.5rem);
+}
+
+
+img {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+nav {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  background-color: config.$menu-bg;
+  text-transform: uppercase;
+  color: config.$menu-color;
+  font-size: .75em;
+  font-weight: 400;
+  line-height: 20px;
+  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.175);
+
+  #navbar {
+    width: min(1100px, 100%);
+    padding: 1em 0;
+   
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
-    min-height: 60px;
-    background-color: config.$menubg;
-    text-transform: uppercase;
-    color: config.$menucolor;
-    font-size: .75em;
-    font-weight: 400;
-    line-height: 20px;
-    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.175);
-
-    #logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-basis: 150px;
-      max-width:150px;
-      flex-shrink: 0;
-      cursor: pointer;
-    
-      img{
-        padding:20px 10px;
-      }
-    }
+    min-height: config.$navbar-height;
+    text-align: center;
 
     > ul {
       align-self: stretch;
-      display: inline-flex;
+      justify-content: flex-end;
+      display: flex;
+      flex-direction: column;
+      flex:1;
       flex-wrap: wrap;
+      min-height: config.$navbar-height;
+      
     }
 
     li {
@@ -76,46 +90,112 @@
     a {
       color:inherit;
       height: 100%;
-      width: 100%;
-      padding: 10px 15px;
+      min-width: 100%;
+      padding: 1rem 2.15rem;
       display: flex;
       align-items: center;
       justify-content: center;
+      text-align: center;
       cursor: pointer;
   
     }
 
     li:hover {
-      background-color: config.$menubghover;
+      background-color: config.$menu-bg-hover;
     }
-
-    .dropdown {
-      position: relative;
-      flex-direction: column;
-    }
-
-    .dropdown a::after {
-      content: "\02C7";
-      font-size: 1.5em;
-      padding-left:5px;
-      padding-top:12px;
-      text-align: right;
-      float:right;
-      
-    }
-
-
-   
   }
+}
 
-  .submenu {
-    display: none;
-    position:absolute;
-    bottom:-40px;
-    
-    flex-direction: column;
+#logo {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  flex:1;
+  width: 100%;
+  flex-shrink: 0;
+  cursor: pointer;
 
+
+  img{
+    max-width: none;
+    max-height:40px;
+    padding:0px 10px;
   }
+}
+
+#navbar-mobile-btn {
+  position: absolute;
+  right:0;
+  background-color: rgb(56, 56, 223);
+  padding:.75rem .75rem;
+  margin-right: 1rem;
+  border-radius: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom:.2rem;
+  
+
+  img {
+    max-width:1.5rem;
+    padding:0;
+  }
+}   
+
+.dropdown {
+  position: relative;
+  flex-direction: column;
+  
+}
+
+.dropdown > a::after {
+  content: "\02C7";
+  font-size: 1.5em;
+  padding-left:.5em;
+  padding-top:.5em;
+  text-align: right;
+  float:right;
+  
+}
+
+
+.submenu {
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  z-index:10;
+  background-color: config.$menu-bg;
+  text-align: left;
+  
+  a {
+    justify-content: flex-start !important;
+    padding-left:calc(50% - 1rem) !important;
+  }
+}
+
+
+.submenu > li {
+  background-color: config.$menu-bg-hover;
+  text-align: right;
+  text-transform: capitalize;
+ 
+}
+.submenu > li:hover {
+  color: darken(config.$menu-color, 40%);
+
+}
+
+.submenu > li a::after {
+  content: "\203A";
+  font-size: 1.5em;
+  padding-left:.5em;
+  padding-bottom: .2em;
+  text-align: right;
+
+}
   
   .showcase {
     @include config.set-background(config.$primary-color);
@@ -395,4 +475,4 @@
     
 // }
 
-
+@import "media";
