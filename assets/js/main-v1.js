@@ -36,7 +36,7 @@ document.addEventListener('click', function(e){
 //expand menu items
 menuItems.forEach(function(f){
     f.addEventListener('click', function(e){
-        e.preventDefault();
+        // e.preventDefault();
         submenuItems.forEach(function(s){
             s.style.display = 'none';
         })
@@ -47,14 +47,18 @@ menuItems.forEach(function(f){
 
 
 
-// hamburger.addEventListener('click', function(){
-//     navbarUl = document.querySelector('#navbar-ul');
-//     if(navbarUl.style.display == "none"){
-//         navbarUl.style.display = "flex";
-//     }else{
-//         navbarUl.style.display = "none"
-//     }
-// })
+hamburger.addEventListener('click', function(){
+    navbarUl = document.querySelector('#navbar-ul');
+    socialmedia = document.querySelector('#socialmedia');
+    console.log(navbarUl.style.display)
+    if(navbarUl.style.display == "none" || navbarUl.style.display == ""){
+        navbarUl.style.display = "flex";
+        socialmedia.style.display = "flex";
+    }else{
+        navbarUl.style.display = "none"
+        socialmedia.style.display = "none";
+    }
+})
 
 // let main = document.querySelector('#main');
 // // let mainMatrix = document.querySelector('#main-matrix');

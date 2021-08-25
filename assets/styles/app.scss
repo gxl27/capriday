@@ -42,6 +42,8 @@ ul {
   list-style: none;
 }
 
+// END OF GENERAL CSS
+//  START OF NAVBAR
 nav {
   width: 100%;
   margin: 0 auto;
@@ -71,7 +73,7 @@ nav {
     > ul {
       align-self: stretch;
       justify-content: flex-end;
-      display: flex;
+      display: none;
       flex-direction: column;
       flex:1;
       flex-wrap: wrap;
@@ -116,13 +118,14 @@ nav {
   flex:1;
   width: 100%;
   flex-shrink: 0;
-  cursor: pointer;
+  
 
 
   img{
     max-width: none;
     max-height:40px;
     padding:0px 10px;
+    cursor: pointer;
   }
 }
 
@@ -196,7 +199,89 @@ nav {
   text-align: right;
 
 }
-  
+
+#navbar #socialmedia {
+  display: none;
+  flex-direction: row;
+  flex:0;
+  justify-content: center;
+  align-items: center;
+
+  a {
+    padding: .4rem .6rem !important;
+    max-width: 60px;
+  }
+
+  span {
+    display: none;
+  }
+}
+
+// END OF NAVBAR
+//  START OF SECTIONS 
+
+#banner {
+  position: relative;
+  width: 100vw;
+  height: config.$banner-height;
+
+
+}
+
+.banner-slide {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex:1;
+
+}
+
+.banner-content {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex:1;
+
+  > div {
+    flex:1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.banner-img {
+  flex:.5;
+
+
+  img {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+
+  }
+}
+
+.banner-slide:nth-of-type(3){
+  display: flex;
+}
+
+.download-btn {
+
+  span::before {
+    content:"\2B07";
+    color:white;
+  }
+}
+
+
   .showcase {
     @include config.set-background(config.$primary-color);
     height: 600px;
