@@ -1,0 +1,54 @@
+@use "config";
+
+//navbar height
+$navbar-height:70px;
+
+//banner
+$banner-height: min(calc(100vh - 70px), 600px);
+
+// container
+$c-padding-h: 1em;
+$c-padding-w: 3em;
+
+.container {
+  
+    max-width: 1100px;
+    padding: $c-padding-h $c-padding-w;
+    margin: 0 auto;
+    overflow: auto;
+
+  }
+
+
+// buttons
+%btn {
+  display: inline-block;
+  border-radius: 5px;
+  padding: 8px 20px;
+  margin: 3px;
+
+  &:hover {
+    transform: scale(.98);
+  }
+}
+
+// padding and margin generator
+$spaceamounts: (1,2,3,4,5);
+@each $space in $spaceamounts {
+  .m-#{$space} {
+    margin: #{$space}rem;
+  }
+  .my-#{$space} {
+    margin: #{$space}rem 0;
+  }
+
+  .p-#{$space} {
+    padding: #{$space}rem;
+  }
+  .py-#{$space} {
+    padding: #{$space}rem 0;
+  }
+}
+
+
+

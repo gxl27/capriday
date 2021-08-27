@@ -1,15 +1,6 @@
 @use 'config';
-%btn {
-    display: inline-block;
-    border-radius: 5px;
-    padding: 8px 20px;
-    margin: 3px;
-  
-    &:hover {
-      transform: scale(.98);
-    }
-  }
-  
+@use 'sizing';
+
   .btn-primary {
     @extend %btn;
     @include config.set-background(lighten(config.$primary-color, 10%));

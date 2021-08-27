@@ -1,8 +1,10 @@
 @use "config";
-@use "tools";
+@use "sizing";
 @use "buttons";
 
-
+html {
+  font-size: 14px;
+}
 
 *, *::before, *::after {
     box-sizing: border-box;
@@ -11,23 +13,16 @@
   }
 
 body {
-  background-color: config.$light-color;
+  background-color: config.$body-color;
   font-family: config.$font-stack;
   font-size: 1.125em;
+
   line-height: 1.6;
   width: 100%;
+  color: config.$text-color;
 }
 
-h1 {
-  font-size: clamp(1.8rem, 1rem + 10vw , 5rem);
-}
-h2 {
-  font-size: clamp(1.2rem, 1rem + 5vw , 3rem);
-}
 
-p {
-  font-size: clamp(1rem, 1.25vw , 1.5rem);
-}
 
 
 img {
@@ -42,10 +37,35 @@ ul {
   list-style: none;
 }
 
+h1 {
+  font-size: clamp(1.700rem, calc( 1rem + 2.200vw ), 2.300rem);
+  }
+  
+h2 {
+font-size: clamp(1.400rem, calc( 1rem + 1.600vw ), 1.800rem);
+}
+
+h3 {
+font-size: clamp(1.140rem, calc( 1rem + 1.200vw ), 1.500rem);
+}
+
+h4 {
+font-size: clamp(1.000rem, calc( 1rem + 0.800vw ), 1.200rem);
+}
+
+p {
+font-size: clamp(0.920rem, calc( 1rem + 0.480vw ), 1.000rem);
+}
+
+span, a {
+font-size: clamp(0.800rem, calc( 1rem + 0.320vw ), 0.900rem);
+}
+
 // END OF GENERAL CSS
 //  START OF NAVBAR
 nav {
   width: 100%;
+  z-index: 100;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -61,23 +81,23 @@ nav {
 
   #navbar {
     width: min(1100px, 100%);
-    padding: 1em 0;
    
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: config.$navbar-height;
+    min-height: sizing.$navbar-height;
     text-align: center;
 
     > ul {
+      position: absolute;
       align-self: stretch;
       justify-content: flex-end;
       display: none;
       flex-direction: column;
       flex:1;
       flex-wrap: wrap;
-      min-height: config.$navbar-height;
+      min-height: sizing.$navbar-height;
       
     }
 
@@ -118,28 +138,37 @@ nav {
   flex:1;
   width: 100%;
   flex-shrink: 0;
-  
+  padding-top:15px;
+  padding-bottom: 15px;
 
 
   img{
     max-width: none;
     max-height:40px;
-    padding:0px 10px;
+    padding:0px 20px;
     cursor: pointer;
   }
 }
 
+#logo-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #navbar-mobile-btn {
+  box-sizing: content-box;
   position: absolute;
-  right:0;
+  right:20px;
   background-color: rgb(56, 56, 223);
   padding:.75rem .75rem;
-  margin-right: 1rem;
   border-radius: 15%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom:.2rem;
+  cursor: pointer;
+  // margin-bottom:.2rem;
   
 
   img {
@@ -206,6 +235,7 @@ nav {
   flex:0;
   justify-content: center;
   align-items: center;
+  position: absolute;
 
   a {
     padding: .4rem .6rem !important;
@@ -221,11 +251,21 @@ nav {
 //  START OF SECTIONS 
 
 #banner {
+  display: flex;
+  justify-content: center;
   position: relative;
-  width: 100vw;
-  height: config.$banner-height;
+  // min-height: $banner-calc;
+  min-height: sizing.$banner-height;
+  background-color: config.$banner-color;
 
+  h3 {
+    font-size: 2rem;
+    @extend %btn;
+  }
 
+  h4 {
+    font-weight: normal;
+  }
 }
 
 .banner-slide {
@@ -234,15 +274,15 @@ nav {
   position: absolute;
   display: none;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   text-align: center;
   flex:1;
-
+  overflow: hidden !important;
 }
 
 .banner-content {
-
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -250,26 +290,39 @@ nav {
   flex:1;
 
   > div {
-    flex:1;
+    padding:.5em 0;
     display: flex;
     justify-content: center;
     align-items: center;
+
+  }
+  img {
+    max-width: min(400px, 90%);
   }
 }
 
 .banner-img {
-  flex:.5;
-
+  flex:1;
+  flex-grow: .3;
+  flex-shrink: .6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  max-height: 100%;
+  height:auto;
 
   img {
     display: flex;
     justify-content: center;
     align-items:center;
-
+    flex:1;
+    width: auto;
+    max-height: 270px;
   }
 }
 
-.banner-slide:nth-of-type(3){
+.banner-slide:nth-of-type(2){
   display: flex;
 }
 
@@ -279,6 +332,11 @@ nav {
     content:"\2B07";
     color:white;
   }
+}
+// end of banner
+
+section {
+  
 }
 
 
