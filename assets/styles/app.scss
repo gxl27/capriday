@@ -16,7 +16,7 @@ body {
   background-color: config.$body-color;
   font-family: config.$font-stack;
   font-size: 1.125em;
-
+  cursor: default;
   line-height: 1.6;
   width: 100%;
   color: config.$text-color;
@@ -81,7 +81,6 @@ nav {
 
   #navbar {
     width: min(1100px, 100%);
-   
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -98,7 +97,10 @@ nav {
       flex:1;
       flex-wrap: wrap;
       min-height: sizing.$navbar-height;
-      
+      top: sizing.$navbar-height;
+      z-index: 100;
+      background-color: config.$menu-bg;
+      width: 100%;
     }
 
     li {
@@ -213,7 +215,7 @@ nav {
   background-color: config.$menu-bg-hover;
   text-align: right;
   text-transform: capitalize;
- 
+  
 }
 .submenu > li:hover {
   color: darken(config.$menu-color, 40%);
@@ -229,21 +231,29 @@ nav {
 
 }
 
+li.li-socialmedia:hover {
+  background-color: initial !important;
+}
+
 #navbar #socialmedia {
   display: none;
   flex-direction: row;
   flex:0;
   justify-content: center;
   align-items: center;
-  position: absolute;
-
+  
   a {
-    padding: .4rem .6rem !important;
-    max-width: 60px;
+      padding: .4rem .6rem !important;
+      max-width: none;
+  }
+
+  img {
+      max-width: 50px;
+      padding: .2rem .3rem !important;
   }
 
   span {
-    display: none;
+      display: none;
   }
 }
 
@@ -259,12 +269,39 @@ nav {
   background-color: config.$banner-color;
 
   h3 {
-    font-size: 2rem;
-    @extend %btn;
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+    
   }
 
+
+
+  h3:after {
+    content:"\27B2";
+    font-size: 1em;
+    padding-bottom: .1em;
+    color:config.$color-primary;
+  }
+  h3.not-after:after {
+    content:"";
+  }
+
+ 
+ 
   h4 {
     font-weight: normal;
+    text-align: start;
+    background-color: config.$color-primary;
+    padding: .4rem .6rem;
+    text-align: center;
+    border-radius: 5%;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.175);
+    color:white;
+  }
+  h4:before {
+    content: "\2714";
+    padding-right:.4em;
   }
 }
 
@@ -286,7 +323,7 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex:1;
 
   > div {
@@ -296,8 +333,33 @@ nav {
     align-items: center;
 
   }
+
+  > div:nth-of-type(1) {
+    align-self: center;
+  }
+
   img {
     max-width: min(400px, 90%);
+    max-height: 70px;
+  }
+  .banner-content-split {
+
+    display: flex;
+    flex:1;
+    width: 100%;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    align-self: center;
+    
+
+    h4 {
+      
+      justify-content: center;
+      margin:0 .5em;
+      font-size: 1em;
+      max-width: 300px;
+    }
   }
 }
 
@@ -322,7 +384,7 @@ nav {
   }
 }
 
-.banner-slide:nth-of-type(2){
+.banner-slide:nth-of-type(3){
   display: flex;
 }
 
