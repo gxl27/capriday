@@ -5,12 +5,19 @@
 // 768
 // 1190
 
+// resizing some constants for viewports
+$c-padding-h-768: sizing.$c-padding-h * 3;
+$c-padding-w-768: sizing.$c-padding-w * 3;
+$c-padding-h-1190: sizing.$c-padding-h * 5;
+$c-padding-w-1190: sizing.$c-padding-w * 5;
+
 @media screen and (min-width: 768px) {
-    // .submenu {
-    //     a {
-    //       padding-left:25% !important;
-    //     }
-    //   }
+
+.container {
+
+    padding: $c-padding-h-768 $c-padding-w-768;
+}
+
 #logo {
     justify-content: center;
 }
@@ -42,6 +49,19 @@
     img {
         max-width: 100%;
         max-height: 100%;
+    }
+}
+
+#s-results {
+    
+    > div {
+        display: flex;
+      
+       
+        flex-wrap: wrap;
+        > div {
+
+        }
     }
 }
 
@@ -145,6 +165,12 @@ nav {
     margin-top: sizing.$navbar-height;
 
 }
+
+.container {
+
+    padding: $c-padding-h-1190 $c-padding-w-1190;
+}
+
 }
 // end 1190px
 

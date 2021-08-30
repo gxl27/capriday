@@ -9,7 +9,6 @@
 
 import './styles/admin.scss';
 
-import './styles/fonts-v1.css';
 import '/assets/js/main-v1.js';
 
 

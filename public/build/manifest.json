@@ -22,5 +22,10 @@
   "build/fonts/Poppins.ttf": "/build/fonts/Poppins.8081832f.ttf",
   "build/fonts/Poppins-Medium.ttf": "/build/fonts/Poppins-Medium.9e1bb626.ttf",
   "build/fonts/Poppins-SemiBold.ttf": "/build/fonts/Poppins-SemiBold.cce5625b.ttf",
-  "build/fonts/Poppins-Bold.ttf": "/build/fonts/Poppins-Bold.404e299b.ttf"
+  "build/fonts/Poppins-Bold.ttf": "/build/fonts/Poppins-Bold.404e299b.ttf",
+  "build/fonts/Lora-SemiBold.ttf": "/build/fonts/Lora-SemiBold.dfac657f.ttf",
+  "build/fonts/Lora-Medium.ttf": "/build/fonts/Lora-Medium.2d39b3fb.ttf",
+  "build/fonts/Lora.ttf": "/build/fonts/Lora.6b74b8d6.ttf",
+  "build/fonts/Lora-Bold.ttf": "/build/fonts/Lora-Bold.6925b3e1.ttf",
+  "build/images/subBaner.jpg": "/build/images/subBaner.4869006a.jpg"
 }
