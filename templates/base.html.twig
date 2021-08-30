@@ -25,6 +25,13 @@
             {% include "_navbar/_navbar.html.twig" %}
         {% endblock %}
 
+        {% block upscreen %}
+        {# include upscreen (can be removed if needed, overwriting the block) #}
+            <div id='up-screen'>
+                <img src="/img/chev-up.svg" alt="up-arr"/>
+            </div>
+        {% endblock %}
+       
         {# extend body #}
         {% block body %}{% endblock %}
     </body>

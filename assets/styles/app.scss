@@ -170,7 +170,7 @@ nav {
   box-sizing: content-box;
   position: absolute;
   right:20px;
-  background-color: rgb(56, 56, 223);
+  background-color: config.$bullet-active;
   padding:.75rem .75rem;
   border-radius: 15%;
   display: flex;
@@ -265,11 +265,16 @@ li.li-socialmedia:hover {
 }
 
 // END OF NAVBAR
+
+
+
 //  START OF SECTIONS 
 
 #banner {
   display: flex;
   justify-content: center;
+  align-items: center;
+
   position: relative;
   // min-height: $banner-calc;
   min-height: sizing.$banner-height;
@@ -303,10 +308,11 @@ li.li-socialmedia:hover {
     text-align: start;
     background-color: config.$color-primary;
     padding: .4rem .6rem;
-    text-align: center;
+    text-align: flex-start;
     border-radius: 5%;
     box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.175);
     color:white;
+ 
   }
   h4:before {
     content: "\2714";
@@ -321,6 +327,7 @@ li.li-socialmedia:hover {
   justify-content: center;
   align-items: flex-start;
   flex:1;
+  background-color: config.$banner-color;
 
   > div {
     padding:.5em 0;
