@@ -35,6 +35,26 @@ $c-padding-w-1190: sizing.$c-padding-w * 5;
     }
 }
 
+
+.carousel-items:hover {
+    
+     .carousel-arrow-left, .carousel-arrow-right {
+        display: initial;
+        opacity: 1;
+        
+    }
+}
+
+.carousel-arrow-left, .carousel-arrow-right {
+    display: initial;
+
+    transition: all .3s ease-in-out;
+}
+
+.carousel-bullets {
+    display: initial;
+}
+
 .banner-slide {
     flex-direction: row;
     

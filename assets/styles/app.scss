@@ -314,19 +314,6 @@ li.li-socialmedia:hover {
   }
 }
 
-.banner-slide {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  display: none;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  text-align: center;
-  flex:1;
-  overflow: hidden !important;
-}
-
 .banner-content {
   width: 100%;
   display: flex;
@@ -393,15 +380,13 @@ li.li-socialmedia:hover {
   }
 }
 
-.banner-slide:nth-of-type(3){
-  display: flex;
-}
 
 .download-btn {
 
   span::before {
     content:"\2B07";
-    color:white;
+    padding-right:.4em;
+    
   }
 }
 // end of banner
@@ -469,6 +454,11 @@ section {
   max-width: 100%;
   background-color: config.$banner-color;
 
+}
+
+.download-btn span{
+  background-color: config.$primary-color;
+  color:config.$body-color;
 }
   .showcase {
     @include config.set-background(config.$primary-color);
