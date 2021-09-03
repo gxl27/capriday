@@ -9,7 +9,7 @@
 
 import './styles/admin.scss';
 
-import '/assets/js/main-v1.js';
+// import '/assets/js/main-v1.js';
 
 
 // start the Stimulus application

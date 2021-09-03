@@ -2,6 +2,48 @@ let hamburger =  document.querySelector('#navbar-mobile-btn');
 let menuItems = document.querySelectorAll('.dropdown');
 let submenuItems = document.querySelectorAll('.submenu');
 let clickCheckMenu = null;
+// set link to the logo for the homepage
+let logoContainer = document.querySelector('#logo-container');
+// get submenu links
+let menuLi = document.querySelectorAll('.submenu a')
+//get the height of the navbar for the scrolling effect
+window.heightnavbar = document.querySelector('nav').style.height;
+//loginbar minimize
+let loginbar = document.querySelector('#loginbar')
+let minimize = document.querySelector('.minimize')
+
+
+// check match media to prevent elements 
+if (matchMedia) {
+    const mq = window.matchMedia("(max-width: 1189px)");
+    
+    mq.addListener(WidthChange);
+    WidthChange(mq);
+  }
+ 
+  // media query change
+  function WidthChange(mq) {
+    if (mq.matches) {
+        //phone
+
+    } else {
+        initialpc();
+      // pc
+    // 
+    }
+
+}
+function initialpc(){
+    // this function prevents the "display:none" if the viewport change
+    document.querySelector('#navbar-ul').style.display = "flex"
+    document.querySelector('#socialmedia').style.display = "flex"
+}
+
+
+logoContainer.addEventListener('click', function(e){
+    window.location.pathname = "/home";
+})
+
 
 document.addEventListener('click', function(e){
     let parentNode = e.target.parentNode;
@@ -73,13 +115,81 @@ upScreen.addEventListener("click", function(){
         })
 })
 
+// menu items scroll on click
+menuLi.forEach(function(e){
+    e.style.backgroundColor = 'red';
+    e.addEventListener('click', function(){
+        if(e.dataset.scroll){
+            
+            link = e.dataset.scroll;
+            element =  document.querySelector(link)
+            // document.querySelector(link).scrollIntoView();
+            if(window.location.pathname == e.dataset.route){
+                console.log('xxx');
+                scrollToTargetAdjusted(element);
+            }else{
+                // console.log(e.dataset.route)
+                // console.log(e.dataset.scroll)
+                // console.log()
+                let route = e.dataset.route + e.dataset.scroll
+                window.location = route
+            }
+            
+        }
+       
+    })
+
+})
+
+function scrollToTargetAdjusted(scrolledelement){
+    console.log(scrolledelement)
+    let body = document.body.getBoundingClientRect().top
+    let headerOffset = window.heightnavbar;
+    let elementPosition = scrolledelement.getBoundingClientRect().top;
+    let offsetPosition = elementPosition - headerOffset - body;
+    if(headerOffset == 0 && scrolledelement.id == "s-acasa"){
+        offsetPosition = 0;
+    }
+
+
+    window.scrollTo({
+         top: offsetPosition,
+         behavior: "smooth"
+    });
+}
+
+minimize.addEventListener('click', function(e){
+    let elem = minimize.querySelectorAll('div')[0]
+        if(elem.style.display !== 'none') {
+            loginbar.querySelectorAll('div')[0].style.display = 'none';
+            loginbar.querySelector('div .btn').style.display = 'none';
+            minimize.querySelectorAll('div')[0].style.display = 'none';
+            minimize.querySelectorAll('div')[1].style.display = 'initial';
+        }else{
+            loginbar.querySelectorAll('div')[0].style.display = 'initial';
+            loginbar.querySelector('div .btn').style.display = 'initial';
+            minimize.querySelectorAll('div')[0].style.display = 'initial';
+            minimize.querySelectorAll('div')[1].style.display = 'none';
+        }
+    })
+
+logoContainer.addEventListener('click', function(e){
+    window.location.pathname = "/home";
+})
+
+//
 // initialize homeinitial (where all the functions are running) after the page loads
 document.addEventListener("DOMContentLoaded", homeinitial);
+
 
 
 function homeinitial(){
     // home carousel
     let banner = document.querySelector("#banner")
+    if(!banner){
+        return;
+    }
+    
     let homecarouselindex = 0;
     let homeleftarrow = banner.querySelector('.carousel-arrow-left');
     let homerightarrow= banner.querySelector('.carousel-arrow-right');

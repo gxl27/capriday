@@ -6,24 +6,23 @@
                 <div id='logo-container'>
                     <img src="/img/logo.png" alt="Caprirom">
                 </div>
-                
                 <div id="navbar-mobile-btn" title="Expand menu">
                     <img src="/img/menu.svg" alt='expand'>
                 </div>
             </div>
             
             <ul id='navbar-ul'>
-                <li class='dropdown'><a href="#" title='Despre Caprirom'>Caprirom</a>
+                <li class='dropdown'><a title='Despre Caprirom'>Caprirom</a>
                     <ul class='submenu'>
-                    <li> <a href="#s-services" data-scroll="#s-apartamente">Servicii</a></li>
-                    <li> <a href="#s-results">Rezultate</a></li>
-                    <li> <a href="#s-history">Istoric / prezentare</a></li>
-                    <li> <a href="#s-rules">Regulamente</a></li>
-                    <li> <a href="#s-conditions">Conditii de inscriere</a></li>
+                    <li> <a data-route= "{{ path('home') }}" data-scroll="#s-services">Servicii</a></li>
+                    <li> <a data-route= "{{ path('home') }}" data-scroll="#s-results">Rezultate</a></li>
+                    <li> <a data-route= "{{ path('home') }}" data-scroll="#s-history">Istoric / prezentare</a></li>
+                    <li> <a data-route= "{{ path('home') }}" data-scroll="#s-rules">Regulamente</a></li>
+                    <li> <a data-route= "{{ path('home') }}" data-scroll="#s-conditions">Conditii de inscriere</a></li>
                     
                     </ul>
                 </li>
-                <li class='dropdown'><a href="#" title='Proiecte'>Proiecte</a>
+                <li class='dropdown'><a title='Proiectele Caprirom' title='Proiecte'>Proiecte</a>
                     <ul class='submenu'>
                     <li> <a href="#">Proiectul 1</a></li>
                     </ul>
@@ -36,19 +35,19 @@
                     
                     </ul>
                 </li> #}
-                <li class='dropdown'><a href="#" title='Anunturi'>anunturi</a>
+                <li class='dropdown'><a title='Anunturi'>anunturi</a>
                     <ul class='submenu'>
-                        <li><a href="#">Anunturi Caprirom</a></li>
-                        <li><a href="#">Stiri si noutati</a></li>
-                        <li> <a href="#">Galerie foto</a></li>
+                        <li><a data-route= "{{ path('news') }}" data-scroll="#s-capriromnews">Anunturi Caprirom</a></li>
+                        <li><a data-route= "{{ path('news') }}" data-scroll="#s-news">Stiri si noutati</a></li>
+                        <li><a data-route= "{{ path('news') }}" data-scroll="#s-photo">Galerie foto</a></li>
                     </ul>
                 </li>
-                <li><a href="#" title='Contact'>contact</a></li>
+                <li><a href="{{ path('contact') }}" title='Contact'>contact</a></li>
                 <li class='li-socialmedia'>
                  <ul id="socialmedia">
-                    <li><a href="#"><img src="/img/socialmedia/64/facebook.png" alt="fb" title='Facebook'><span>Facebook</span></a></li>
-                    <li><a href="#"><img src="/img/socialmedia/64/twitter.png" alt="twitter" title='Twitter'><span>Twitter</span></a></li>
-                    <li><a href="#"><img src="/img/socialmedia/64/utube.png" alt="utube" title='Youtube'><span>Youtube</span></a></li>
+                    <li><a href="https://www.fb.com"><img src="/img/socialmedia/64/facebook.png" alt="fb" title='Facebook'><span>Facebook</span></a></li>
+                    <li><a href="https://www.twitter.com"><img src="/img/socialmedia/64/twitter.png" alt="twitter" title='Twitter'><span>Twitter</span></a></li>
+                    <li><a href="https://www.youtube.com"><img src="/img/socialmedia/64/utube.png" alt="utube" title='Youtube'><span>Youtube</span></a></li>
                 </ul>
                 </li>
             </ul>

@@ -1,0 +1,18 @@
+{% block loginbar %}
+<div id='loginbar'>
+    <div>
+        <span>You are logged in as <b>{{ app.user.username }}</b></span><br>
+      
+    </div>
+    <div>
+        <div class='btn'>
+            <a href="{{ path('admin') }}" title='switch to administration panel'><span>Switch to admin mode</span></a>
+        </div>
+        <div class="minimize">
+            <div><img src="/img/chev-left.svg" alt="chev-left" title='minimize'></div>
+            <div><img src="/img/chev-right.svg" alt="chev-right" title='expand'></div>
+        </div>
+    </div>
+   
+</div>
+{% endblock %}
