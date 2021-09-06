@@ -1,0 +1,233 @@
+@use "config";
+@use "sizing";
+@use "buttons";
+
+// 768
+// 1190
+
+// resizing some constants for viewports
+$c-padding-h-768: sizing.$c-padding-h * 3;
+$c-padding-w-768: sizing.$c-padding-w * 3;
+$c-padding-h-1190: sizing.$c-padding-h * 5;
+$c-padding-w-1190: sizing.$c-padding-w * 5;
+
+@media screen and (min-width: 768px) {
+
+.container {
+
+    padding: $c-padding-h-768 $c-padding-w-768;
+}
+
+#logo {
+    justify-content: center;
+}
+
+#navbar {
+    > ul {
+        display: none;
+    }
+}
+
+#navbar #socialmedia {
+
+    span {
+        display: inline-block;
+    }
+}
+
+
+.carousel-items:hover {
+    
+     .carousel-arrow-left, .carousel-arrow-right {
+        display: initial;
+        opacity: 1;
+        
+    }
+}
+
+.carousel-arrow-left, .carousel-arrow-right {
+    display: initial;
+
+    transition: all .3s ease-in-out;
+}
+
+.carousel-bullets {
+    display: initial;
+}
+
+.banner-slide {
+    flex-direction: row;
+    
+}
+.banner-content {
+    flex-grow: 1;
+    padding-top:0;
+}
+
+.banner-img {
+    flex-grow: 1;
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+
+#s-results {
+    
+    > div {
+        display: flex;
+      
+       
+        flex-wrap: wrap;
+        > div {
+
+        }
+    }
+}
+
+}
+// end 768px
+
+
+@media screen and (min-width: 1190px) {
+body {
+    font-size: 1rem;
+}
+    
+nav {
+    top:0;
+    position: fixed;
+    
+    #navbar {
+        max-width: 1100px !important;
+        flex-direction: row;
+        padding:0 3rem;
+
+
+        > ul {
+            position: relative;
+            top:0;
+            flex-direction: row;
+            display: flex;
+            flex:1;
+            justify-content: center;
+            flex-wrap: wrap;
+            // min-height: config.$navbar-height;
+        }
+
+        #logo {
+            flex:0;
+        }
+    }
+    .submenu {
+        width: auto;
+        position:absolute;
+        top: sizing.$navbar-height;
+        right:0;
+        border: 1px solid #e9e9e9;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+
+        a {
+            justify-content: center !important;
+            padding: 1rem 2.15rem !important;
+            }
+
+    }
+
+    .submenu > li {
+        font-size: .9em;
+        text-transform: uppercase;
+        background-color: config.$menu-bg;
+    }
+
+    .submenu > li:hover {
+        color: inherit;
+        
+    }
+
+    .submenu > li a::after {
+        display: none;
+    }
+
+}
+#navbar-mobile-btn {
+    display: none;
+}
+
+#navbar ul#socialmedia {
+    display: flex;
+    position: relative;
+    flex-direction: row !important;
+    // flex:1!important;
+    flex-basis: auto !important;
+    flex-shrink: 0 !important;
+
+
+    span {
+        display: none;
+    }
+
+    img {
+        max-width: 40px;
+    }
+
+    a {
+        
+        padding: 1.2rem 1.1rem !important;
+       
+    }
+
+}
+
+body {
+    margin-top: sizing.$navbar-height;
+}
+
+
+.container {
+
+    padding: $c-padding-h-1190 $c-padding-w-1190;
+}
+
+.footer-main-div {
+    flex-direction: row;
+
+}
+
+.footer-links {
+    border-top: none;
+    border-bottom: none;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    min-height: 100%;
+}
+
+}
+
+
+// end 1190px
+
+
+
+
+@media (min-aspect-ratio: 8/5) {
+    #main{
+
+      }
+    }
+@media (min-aspect-ratio: 14/5) {
+    #main{
+   
+
+        }
+    .logo{
+        display: none;
+        }
+    #menulist ul{
+        height: 80%;
+    }
+    #main-left{
+        background-image: linear-gradient(90deg, rgb(14, 14, 14), rgba(14, 14, 14, 0.83), rgba(63, 63, 63, 0.664));
+    }
+  }

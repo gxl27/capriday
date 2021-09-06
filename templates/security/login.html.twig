@@ -11,76 +11,152 @@
 {% block body %}
 <style>
 #main{
-     background-image: url("/img/login.jpg");
-     filter:grayscale(75%);
-     justify-content:center;
-}
-#main-right{
-    background-color:rgba(10, 10, 10, 0.632);
-    padding:5%;
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+    justify-content:center;
+    align-items:center;
+    background-image: url("img/rg.jpg");
+    padding:0;
 
+}
+#main-content{
+    background-color:rgba(250, 250, 250, 1);
+    max-width:600px;
+    width:100%;
+    padding:5%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    transform:translateY(-3em);
+    box-shadow:0 0 15px 0 grey;
+}
+
+h3 {
+    border-top:1px solid grey;
+    padding-top:1em;
+    font-size:.7em;
+    letter-spacing:.1em;
+    text-align:center;
+    text-transform:uppercase;
+    font-weight:bold;
+}
+
+form {
+    display:flex;
+    flex-direction:column;
+    flex:1;
+    flex-basis:90%;
+    padding:5%;
+    font-size: clamp(1.140rem, calc( 1rem + 1.200vw ), 1.500rem);
+}
+
+input, #checkboxrememberme {
+    padding:2%;
+    font-size:1em;
+    text-align:center;
+    text-transform:uppercase;
+}
+#checkboxrememberme {
+    text-align:end;
+}
+
+#remember_me{
+     transform: scale(1.5);
+     margin-left:.5em;
+   
+}
+span, label {
+    margin-top: .75em;
+    margin-bottom: .15em;
+    font-size:.55em;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+   
+}
+
+label {
+    margin-top: .75em;
+    margin-bottom: .15em;
+    font-size:.55em;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+}
+
+button {
+    max-width: 200px;
+    border-radius: 5px;
+    padding: .2em 1.5em;
+    margin-top: 3em;
+    margin: 3px;
+    align-self:center;
+    color:white;
+    background-color:#0075FF;
+    font-size:inherit;
+    text-transform:uppercase;
+    box-shadow: 0 0 3px 0 grey;
+}
+
+img {
+    max-width: 400px;
+    width:100%;
+}
+
+@media screen and (min-width: 768px) {
+    #main-content{
+        border-radius:5%;
+        background-color:rgba(250, 250, 250, 0.85);
+    }
 }
 </style>
 
-<div id='main'>
-       <div id="main-absolute">
-        {# <img src="/assets/img/git.png">
-        <img src="/assets/img/php.png">
-        <img src="/assets/img/symfony.png">
-        <img src="/assets/img/js.png">
-        <img src="/assets/img/linux.png"> #}
-       </div>
+<div id='main' class='container'>
+    <div id="main-content">
+        <img src="/img/logo.png" alt="Caprirom">
 
+        <form method="post">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
 
-        <div id='main-right'>
-                <div id="logo">
-                <img src="/img/lucianturlea.svg">
-            </div>
-           <form method="post">
-                {% if error %}
-                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                {% endif %}
-
-                {% if app.user %}
-                    <div class="mb-3">
-                        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-                    </div>
-                {% endif %}
-
-                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-                <label for="inputUsername">Username</label>
-                <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
-                <label for="inputPassword">Password</label>
-                <input type="password" name="password" id="inputPassword" class="form-control" required>
-                <div id='checkboxrememberme' class='row'>
-                    <span>Ramai logat</span>
-                    <input type="checkbox" id="remember_me" name="_remember_me"/ checked="checked">
+            {% if app.user %}
+                <div class="mb-3">
+                    Esti logat ca {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
                 </div>
-                <input type="hidden" name="_csrf_token"
-                    value="{{ csrf_token('authenticate') }}"
-                >
+            {% endif %}
 
-                {#
-                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                    See https://symfony.com/doc/current/security/remember_me.html
+            <h3>Intra in cont</h1>
+            <label for="inputUsername">Utilizator</label>
+            <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
+            <label for="inputPassword">Parola</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" required>
+            <div id='checkboxrememberme' class='row'>
+                <span>Ramai logat</span>
+                <input type="checkbox" id="remember_me" name="_remember_me"/ checked="checked">
+            </div>
+            <input type="hidden" name="_csrf_token"
+                value="{{ csrf_token('authenticate') }}"
+            >
 
-                    <div class="checkbox mb-3">
-                        <label>
-                            <input type="checkbox" name="_remember_me"> Remember me
-                        </label>
-                    </div>
-                #}
-
-                <button class="btn btn-lg btn-primary" type="submit">
-                    Sign in
-                </button>
-            </form>
-        </div>
+            <button type="submit">
+                Ok
+            </button>
+        </form>
     </div>
+</div>
 
 
 {% endblock %}
+{# remove navbar , footer and loginbar #}
+{% block navbar %}
+{% endblock %}
+{% block loginbar %}
+{% endblock %}
+{% block footer %}
+{% endblock %}
+
+{# disable main javascript #}
  {% block mainjavascript %}
-        {# <script src="/js/main-v1.js"></script> #}
-           {{ encore_entry_script_tags('admin') }}
-    {% endblock %}   
+           {# {{ encore_entry_script_tags('admin') }} #}
+{% endblock %}   

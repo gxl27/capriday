@@ -1,0 +1,13 @@
+@use 'config';
+@use 'sizing';
+
+  .btn-primary {
+    @extend %btn;
+    @include config.set-background(lighten(config.$primary-color, 10%));
+  }
+  
+  .btn-secondary {
+    @extend %btn;
+    @include config.set-background(config.$secondary-color);
+  }
+  

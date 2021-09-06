@@ -113,12 +113,7 @@ window.addEventListener('scroll', function(e) {
         upScreen.style.display = 'none'
     }
 })
-upScreen.addEventListener("click", function(){
-    document.querySelector('html').scrollTo({
-        top: 0,
-        behavior: "smooth"
-        })
-})
+
 
 // menu items scroll on click
 menuLi.forEach(function(e){
@@ -163,23 +158,9 @@ function scrollToTargetAdjusted(scrolledelement){
     });
 }
 
-minimize.addEventListener('click', function(e){
-    let elem = minimize.querySelectorAll('div')[0]
-        if(elem.style.display !== 'none') {
-            loginbar.querySelectorAll('div')[0].style.display = 'none';
-            loginbar.querySelector('div .btn').style.display = 'none';
-            minimize.querySelectorAll('div')[0].style.display = 'none';
-            minimize.querySelectorAll('div')[1].style.display = 'initial';
-        }else{
-            loginbar.querySelectorAll('div')[0].style.display = 'initial';
-            loginbar.querySelector('div .btn').style.display = 'initial';
-            minimize.querySelectorAll('div')[0].style.display = 'initial';
-            minimize.querySelectorAll('div')[1].style.display = 'none';
-        }
-    })
 
 logoContainer.addEventListener('click', function(e){
-    window.location.pathname = "/home";
+    window.location.pathname = "/admin";
 })
 
 //

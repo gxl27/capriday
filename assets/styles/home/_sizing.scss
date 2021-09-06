@@ -1,0 +1,151 @@
+@use "config";
+
+//navbar height
+$navbar-height:70px;
+
+//banner
+$banner-height: min(calc(100vh - 70px), 600px);
+
+// container
+$c-padding-h: .2rem;
+$c-padding-w: .6rem;
+
+.container {
+  
+    max-width: 1100px;
+    padding: $c-padding-h $c-padding-w;
+    margin: 0 auto;
+    overflow: auto;
+
+  }
+
+
+// buttons
+%btn {
+  display: inline-block;
+  border-radius: 5px;
+  padding: 8px 20px;
+  margin: 3px;
+
+  // &:hover {
+  //   transform: scale(.98);
+  // }
+}
+
+// padding and margin generator
+$spaceamounts: (1,2,3,4,5);
+@each $space in $spaceamounts {
+  .m-#{$space} {
+    margin: #{$space}rem;
+  }
+  .my-#{$space} {
+    margin: #{$space}rem 0;
+  }
+
+  .p-#{$space} {
+    padding: #{$space}rem;
+  }
+  .py-#{$space} {
+    padding: #{$space}rem 0;
+  }
+}
+
+// UPSCREEN
+#up-screen {
+  z-index: 100;
+  display: none;
+  position: fixed;
+  bottom: 2em;
+  right: 2em;
+  opacity: 0.5;
+  transition: all .3s ease-out;
+
+  img {
+    background-color: gray !important; 
+  }
+}
+
+#up-screen:hover {
+  opacity: 1;
+}
+//carousel
+
+.carousel {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-items {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index:10;
+}
+.carousel-slide {
+  display: flex;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  flex:1;
+  overflow: hidden !important;
+}
+div.carousel-slide:nth-of-type(1) {
+  opacity: 1;
+}
+
+.carousel-bullets{
+  background-color: white;
+}
+.carousel-bottom > div:nth-child(1){
+  background-color: config.$bullet-active; 
+}
+.carousel-arrow-left, .carousel-arrow-right {
+  position: absolute;
+  width: auto;
+  top:50%;
+  transform: translateY(-50%);
+  display: none;
+  opacity: 0;
+
+}
+
+.carousel-arrow-left img, .carousel-arrow-right img, #up-screen img{
+  background-color: rgb(192, 192, 192);
+  padding:1rem 1.1rem;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: .2s;
+}
+.carousel-arrow-left {
+  left:1.4rem;
+}
+.carousel-arrow-right {
+  right:1.4rem;
+}
+.carousel-bottom{
+  display:flex;
+  flex-direction:row;
+  justify-content: center;
+  position: absolute;
+  bottom: 2rem;
+  left:50%;
+  transform: translateX(-50%);
+}
+.carousel-bullets{
+  display: none;
+  width:1rem;
+  height:1rem;
+  box-shadow: 0 0 5px 0 rgb(192, 192, 192);
+  border-radius:50%; 
+  margin: .3em;
+}
+
+
+
+

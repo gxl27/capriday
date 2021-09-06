@@ -1,0 +1,38 @@
+@import "fonts-v1.scss";
+
+// fonts
+$font-stack: "Inter", sans-serif;
+$font-stack-secondary: "Lora", serif;
+//body
+$text-color:#505050;
+$title-color:#0E0E0E;
+
+$color-primary:#2f8638;
+
+//navbar
+$menu-bg: #ffffff;
+$menu-color: #838383;
+$menu-bg-hover:  #ebebeb;
+
+$body-color:#ffffff;
+$banner-color: #f4f4f4;
+$primary-color: #0e6cff;
+$secondary-color: #ff8700;
+
+//bullet
+$bullet-active: #2f8638;
+
+// Set text color based on bg
+@function set-text-color($color) {
+    @if(lightness($color) > 70) {
+      @return #333;
+    } @else {
+      @return #fff;
+    }
+  }
+  
+  // Set background & text color
+  @mixin set-background($color) {
+    background-color: $color;
+    color: set-text-color($color)
+  }

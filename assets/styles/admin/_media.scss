@@ -61,6 +61,7 @@ $c-padding-w-1190: sizing.$c-padding-w * 5;
 }
 .banner-content {
     flex-grow: 1;
+    padding-top:0;
 }
 
 .banner-img {
@@ -189,7 +190,22 @@ body {
     padding: $c-padding-h-1190 $c-padding-w-1190;
 }
 
+.footer-main-div {
+    flex-direction: row;
+
 }
+
+.footer-links {
+    border-top: none;
+    border-bottom: none;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    min-height: 100%;
+}
+
+}
+
+
 // end 1190px
 
 

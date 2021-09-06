@@ -29,7 +29,10 @@
     <body>
         {# included for admin route #}
         {% if checkroute in app.request.pathInfo %}
-            
+            {% block navbaradmin %}
+            {# include navbar (can be removed if needed, overwriting the block) #}
+                {% include "/admin/_navbar/_navbar.html.twig" %}
+            {% endblock %}
         {% else %}
             {% block navbar %}
             {# include navbar (can be removed if needed, overwriting the block) #}

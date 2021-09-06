@@ -26,5 +26,6 @@
   "build/fonts/Lora-SemiBold.ttf": "/build/fonts/Lora-SemiBold.dfac657f.ttf",
   "build/fonts/Lora-Medium.ttf": "/build/fonts/Lora-Medium.2d39b3fb.ttf",
   "build/fonts/Lora.ttf": "/build/fonts/Lora.6b74b8d6.ttf",
-  "build/fonts/Lora-Bold.ttf": "/build/fonts/Lora-Bold.6925b3e1.ttf"
+  "build/fonts/Lora-Bold.ttf": "/build/fonts/Lora-Bold.6925b3e1.ttf",
+  "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-416949.js": "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_ar-416949.js"
 }

@@ -1,6 +1,6 @@
-@use "config";
-@use "sizing";
-@use "buttons";
+@use "admin/config";
+@use "admin/sizing";
+@use "admin/buttons";
 
 html {
   font-size: 15px;
@@ -21,6 +21,7 @@ body {
   width: 100%;
   color: config.$text-color;
 }
+
 
 img {
   max-width: 100%;
@@ -67,7 +68,204 @@ font-size: clamp(0.800rem, calc( 1rem + 0.320vw ), 0.900rem);
 
 // END OF GENERAL CSS
 
+// NAVBAR
+
+nav {
+  width: 100%;
+  z-index: 100;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  background-color: config.$menu-bg;
+  text-transform: uppercase;
+  color: config.$menu-color;
+  font-size: .75em;
+  font-weight: 400;
+  line-height: 20px;
+  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.175);
+
+  #navbar {
+    width: min(1100px, 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: sizing.$navbar-height;
+    text-align: center;
+
+    > ul {
+      position: absolute;
+      align-self: stretch;
+      justify-content: flex-end;
+      display: none;
+      flex-direction: column;
+      flex:1;
+      flex-wrap: wrap;
+      min-height: sizing.$navbar-height;
+      top: sizing.$navbar-height;
+      z-index: 100;
+      background-color: config.$menu-bg;
+      width: 100%;
+      left:0;
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: .3s all ease-out;
+    
+    }
+    
+    a {
+      color:inherit;
+      height: 100%;
+      min-width: 100%;
+      padding: 1rem 2.15rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+  
+    }
+
+    li:hover {
+      background-color: config.$menu-bg-hover;
+    }
+  }
+}
+
+#logo {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  flex:1;
+  width: 100%;
+  flex-shrink: 0;
+  padding-top:15px;
+  padding-bottom: 15px;
 
 
+  img{
+    max-width: none;
+    max-height:40px;
+    padding:0px 20px;
+    cursor: pointer;
+  }
+}
 
-// @import "media";
+#logo-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#navbar-mobile-btn {
+  box-sizing: content-box;
+  position: absolute;
+  right:20px;
+  background-color: config.$bullet-active;
+  padding:.75rem .75rem;
+  border-radius: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  // margin-bottom:.2rem;
+  
+
+  img {
+    max-width:1.5rem;
+    padding:0;
+  }
+}   
+
+.dropdown {
+  position: relative;
+  flex-direction: column;
+  
+}
+
+.dropdown > a::after {
+  content: "\02C7";
+  font-size: 1.5em;
+  padding-left:.5em;
+  padding-top:.5em;
+  text-align: right;
+  float:right;
+  
+}
+
+
+.submenu {
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  z-index:10;
+  background-color: config.$menu-bg;
+  text-align: left;
+  
+  a {
+    justify-content: flex-start !important;
+    padding-left:calc(50% - 1rem) !important;
+  }
+}
+
+
+.submenu > li {
+  background-color: config.$menu-bg-hover;
+  text-align: right;
+  text-transform: capitalize;
+  
+}
+.submenu > li:hover {
+  color: darken(config.$menu-color, 40%);
+
+}
+
+.submenu > li a::after {
+  content: "\203A";
+  font-size: 1.5em;
+  padding-left:.5em;
+  padding-bottom: .2em;
+  text-align: right;
+
+}
+
+li.li-socialmedia:hover {
+  background-color: initial !important;
+}
+
+#navbar #socialmedia {
+  display: none;
+  flex-direction: row;
+  flex:0;
+  justify-content: center;
+  align-items: center;
+  
+  a {
+      padding: .4rem .6rem !important;
+      max-width: none;
+  }
+
+  img {
+      max-width: 50px;
+      padding: .2rem .3rem !important;
+  }
+
+  span {
+      display: none;
+  }
+}
+
+// END OF NAVBAR
+
+
+@import "admin/media";
