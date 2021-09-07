@@ -1,0 +1,34 @@
+{% block flash %}
+    
+    {% for message in app.flashes('success') %}
+        <div class='div-flash bg-light br-success success'>
+                <div>Felicitari</div>
+                <div>{{ message }}</div>
+                <div class="close-btn-flash">
+                    x
+                 </div>
+                <div class='btn-success accept-btn'>OK</div>
+        </div>
+    {% endfor %}
+    
+    {% for message in app.flashes('alert') %}
+    <div class='div-flash bg-light br-danger danger'>
+        <div>ALERTA</div>
+        <div>{{ message }}</div>
+        <div class="close-btn-flash">
+            x
+        </div>
+        <div class='btn-danger accept-btn'>Inchide</div>
+    </div>
+    {% endfor %}
+    {% for message in app.flashes('info') %}
+        <div class='div-flash bg-light br-info info'>
+            <div>Info</div>
+            <div>{{ message }}</div>
+            <div class="close-btn-flash">
+                x
+                </div>
+            <div class='btn-info accept-btn'>Inchide</div>
+        </div>
+    {% endfor %}
+{% endblock %}

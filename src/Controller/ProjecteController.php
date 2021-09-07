@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ProjecteController extends AbstractController
+class ProjecteController extends HomeController
 {
     /**
      * @Route("/project", name="projecte")
@@ -14,7 +14,7 @@ class ProjecteController extends AbstractController
     public function index(): Response
     {
         return $this->render('project/index.html.twig', [
-           
+            'projects' => $this->projects
         ]);
     }
 }

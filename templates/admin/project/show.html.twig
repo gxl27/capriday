@@ -21,19 +21,19 @@
             </tr>
             <tr>
                 <th>DateStartAt</th>
-                <td>{{ project.dateStartAt ? project.dateStartAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ project.dateStartAt ? project.dateStartAt|datero('d M Y | H:i') : '' }}</td>
             </tr>
             <tr>
                 <th>Status</th>
-                <td>{{ project.status }}</td>
+                <td>{{ project.statusFormat }}</td>
             </tr>
             <tr>
                 <th>CreatedAt</th>
-                <td>{{ project.createdAt ? project.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ project.createdAt ? project.createdAt|datero('d M Y | H:i') : '' }}</td>
             </tr>
             <tr>
                 <th>UpdatedAt</th>
-                <td>{{ project.updatedAt ? project.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ project.updatedAt ? project.updatedAt|datero('d M Y | H:i') : '' }}</td>
             </tr>
             <tr>
                 <th>CreatedBy</th>
@@ -41,10 +41,19 @@
             </tr>
         </tbody>
     </table>
+    {% if project.status != 0 %}
+    <div class='axios-id-link btn-primary' data-link="{{ path('api_project_active', {'id': project.id}) }}" data-id="{{ project.id }}">Activeaza</div>
+    {% endif %}
+    {% if project.status != 1 %}
+    <div class='axios-id-link btn-primary' data-link="{{ path('api_project_inactive', {'id': project.id}) }}" data-id="{{ project.id }}">Inactiveaza</div>
+    {% endif %}
+    {% if project.status != 2 %}
+    <div class='axios-id-link btn-secondary' data-link="{{ path('api_project_finish', {'id': project.id}) }}" data-id="{{ project.id }}">Finalizeaza</div>
+    {% endif %}
 
-    <a href="{{ path('admin_project_index') }}">back to list</a>
+    <a href="{{ path('project_index') }}">back to list</a>
 
-    <a href="{{ path('admin_project_edit', {'id': project.id}) }}">edit</a>
+    <a href="{{ path('project_edit', {'id': project.id}) }}">edit</a>
 
     {{ include('admin/project/_delete_form.html.twig') }}
 {% endblock %}

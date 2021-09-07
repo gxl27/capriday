@@ -3,8 +3,12 @@
 {% block title %}Project{% endblock %}
 
 {% block body %}
-<section id='s-'class='container'>
-    
-
-</section>
+{% for project in projects.active %}
+    <section id="s-{{ loop.index }}" class='container'>
+        <div>{{ loop.index }}</div>
+        <div>Nume proiect: {{ project.name }}</div>
+        <div>Descriere proiect{{ project.description }}</div>
+        <div>Data inceperii proiect: {{ project.dateStartAt|datero('d M Y') }}</div>
+    </section>
+{% endfor %}
 {% endblock %}

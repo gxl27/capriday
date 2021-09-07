@@ -1,22 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Project index{% endblock %}
+{% block title %}Lista proiecte{% endblock %}
 
 {% block body %}
-    <h1>Project index</h1>
+    <h1>Proiecte lista</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>DateStartAt</th>
+                <th>Numele proiectului</th>
+                <th>Descriere</th>
+                <th>Data de inceput</th>
                 <th>Status</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>CreatedBy</th>
-                <th>actions</th>
+                <th>Creat la</th>
+                <th>Modificat la</th>
+                <th>Creat de</th>
+                <th>Actiuni</th>
             </tr>
         </thead>
         <tbody>
@@ -25,14 +25,10 @@
                 <td>{{ project.id }}</td>
                 <td>{{ project.name }}</td>
                 <td>{{ project.description }}</td>
-                <td>{{ project.dateStartAt ? project.dateStartAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ project.status }}</td>
-                <td>{{ project.createdAt ? project.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ project.updatedAt ? project.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ project.createdBy }}</td>
+                <td>{{ project.dateStartAt ? project.dateStartAt|datero('d-M-Y') : '' }}</td>
+                <td>{{ project.statusFormat }}</td>
                 <td>
-                    <a href="{{ path('admin_project_show', {'id': project.id}) }}">show</a>
-                    <a href="{{ path('admin_project_edit', {'id': project.id}) }}">edit</a>
+                    <a href="{{ path('project_show', {'id': project.id}) }}">Detalii</a>
                 </td>
             </tr>
         {% else %}
@@ -43,5 +39,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('admin_project_new') }}">Create new</a>
+    <a href="{{ path('project_new') }}">Create new</a>
 {% endblock %}

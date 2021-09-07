@@ -12,6 +12,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Project
 {
+    const STATUS = [
+        0 => 'Activ',
+        1 => 'Inactiv',
+        2 => 'Finalizat',
+    ];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -61,6 +67,9 @@ class Project
 
     public function __construct()
     {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+        $this->status = 0;
         $this->postfiles = new ArrayCollection();
     }
 
@@ -108,6 +117,10 @@ class Project
     public function getStatus(): ?int
     {
         return $this->status;
+    }
+
+    public function getStatusFormat(){
+        return SELF::STATUS[$this->getStatus()];
     }
 
     public function setStatus(int $status): self

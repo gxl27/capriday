@@ -18,6 +18,12 @@ class Projectfiles
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=255,  nullable=true)
+     * @var string
+     */
+    private $document;
+
+    /**
      * @ORM\ManyToOne(targetEntity=Project::class, inversedBy="projectfiles")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -31,6 +37,18 @@ class Projectfiles
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getDocument(): ?string
+    {
+        return $this->document;
+    }
+
+    public function setDocument(?string $document): self
+    {
+        $this->document = $document;
+
+        return $this;
     }
 
     public function getProject(): ?Project

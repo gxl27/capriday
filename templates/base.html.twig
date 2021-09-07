@@ -27,6 +27,9 @@
     </head>
     
     <body>
+        {% block flashes %}
+            {% include "/_flashes/_flashes.html.twig" %}
+        {% endblock %}
         {# included for admin route #}
         {% if checkroute in app.request.pathInfo %}
             {% block navbaradmin %}
@@ -75,6 +78,10 @@
         {# include js file #}
         {# not included for admin route #}
         {% if checkroute in app.request.pathInfo %}
+            {# adding js library for datetime picker #}
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.6/flatpickr.min.js" integrity="sha512-Nc36QpQAS2BOjt0g/CqfIi54O6+UWTI3fmqJsnXoU6rNYRq8vIQQkZmkrRnnk4xKgMC3ESWp69ilLpDm6Zu8wQ==" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.6/l10n/ro.min.js" integrity="sha512-TUeuMefsiJXsoCSnaftAgb+df2dkq8ljkFw4JLAtDb3gfxalGo72jUVOz0vz0KxvrvqDsJnclfrv4WLrXwGrkQ==" crossorigin="anonymous"></script>
+
             {{ encore_entry_script_tags('admin') }}
         {% else %}
             {{ encore_entry_script_tags('app') }}

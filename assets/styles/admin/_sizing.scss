@@ -26,7 +26,7 @@ $c-padding-w: .6rem;
   border-radius: 5px;
   padding: 8px 20px;
   margin: 3px;
-
+  cursor: pointer;
   // &:hover {
   //   transform: scale(.98);
   // }
@@ -48,6 +48,24 @@ $spaceamounts: (1,2,3,4,5);
   .py-#{$space} {
     padding: #{$space}rem 0;
   }
+}
+
+//flash msg
+.div-flash{
+  height: 60vh;
+  max-height: 300px;
+  width: 60vw;
+  max-width: 450px;
+  position: fixed;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 // UPSCREEN

@@ -12,19 +12,11 @@
             </div>
             
             <ul id='navbar-ul'>
-                <li class='dropdown'><a title='Despre Caprirom'>Caprirom</a>
-                    <ul class='submenu'>
-                    <li> <a data-route= "{{ path('home') }}" data-scroll="#s-services">Servicii</a></li>
-                    <li> <a data-route= "{{ path('home') }}" data-scroll="#s-results">Rezultate</a></li>
-                    <li> <a data-route= "{{ path('home') }}" data-scroll="#s-history">Istoric / prezentare</a></li>
-                    <li> <a data-route= "{{ path('home') }}" data-scroll="#s-rules">Regulamente</a></li>
-                    <li> <a data-route= "{{ path('home') }}" data-scroll="#s-conditions">Conditii de inscriere</a></li>
-                    
-                    </ul>
-                </li>
+                
                 <li class='dropdown'><a title='Proiectele Caprirom' title='Proiecte'>Proiecte</a>
                     <ul class='submenu'>
-                    <li> <a href="#">Proiectul 1</a></li>
+                    <li> <a href="{{ path('project_index') }}">Lista proiecte</a></li>
+                    <li> <a href="{{ path('project_new') }}">Adauga proiect</a></li>
                     </ul>
                 </li>
                 {# <li class='dropdown'><a href="#">informatii tehnice</a>

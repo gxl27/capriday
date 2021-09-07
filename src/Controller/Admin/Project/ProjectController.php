@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProjectController extends AbstractController
 {
     /**
-     * @Route("/", name="admin_project_index", methods={"GET"})
+     * @Route("/", name="project_index", methods={"GET"})
      */
     public function index(ProjectRepository $projectRepository): Response
     {
@@ -26,20 +26,25 @@ class ProjectController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="admin_project_new", methods={"GET","POST"})
+     * @Route("/new", name="project_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
         $project = new Project();
+        $project->setCreatedBy($this->getUser()->getUsername());
         $form = $this->createForm(ProjectType::class, $project);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($project);
+            
+            $message = "Proiect adaugat cu succes";
+            $this->addFlash('success', $message);
+         
             $entityManager->flush();
 
-            return $this->redirectToRoute('admin_project_index');
+            return $this->redirectToRoute('project_index');
         }
 
         return $this->render('admin/project/new.html.twig', [
@@ -49,7 +54,7 @@ class ProjectController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="admin_project_show", methods={"GET"})
+     * @Route("/{id}", name="project_show", methods={"GET"})
      */
     public function show(Project $project): Response
     {
@@ -59,7 +64,7 @@ class ProjectController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="admin_project_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="project_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Project $project): Response
     {
@@ -79,7 +84,7 @@ class ProjectController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="admin_project_delete", methods={"POST"})
+     * @Route("/{id}", name="project_delete", methods={"POST"})
      */
     public function delete(Request $request, Project $project): Response
     {

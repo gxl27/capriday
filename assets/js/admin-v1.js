@@ -11,7 +11,10 @@ window.heightnavbar = document.querySelector('nav').style.height;
 //loginbar minimize
 let loginbar = document.querySelector('#loginbar')
 let minimize = document.querySelector('.minimize')
-
+// close flash msg
+const closebtnflash = document.querySelectorAll('.close-btn-flash');
+// get all the axios requests with link and id parameters
+let axiosIdLink = document.querySelectorAll('.axios-id-link');
 
 // check match media to prevent elements 
 if (matchMedia) {
@@ -102,17 +105,7 @@ hamburger.addEventListener('click', function(){
     }
 })
 
-//upscreen
-const upScreen = document.querySelector('#up-screen')
-window.addEventListener('scroll', function(e) {
-    y = window.scrollY;
-    if(y > 150){
-        upScreen.style.display = 'initial';
 
-    }else{
-        upScreen.style.display = 'none'
-    }
-})
 
 
 // menu items scroll on click
@@ -274,6 +267,49 @@ function homeinitial(){
         }
     }
 }
+
+//close flash msg
+closebtnflash.forEach(function(e){
+    e.addEventListener('click', function(){
+        e.parentElement.style.display = 'none';
+        e.parentElement.style.opacity = '0';
+
+    })
+})
+
+//
+
+if(axiosIdLink){
+   
+    axiosIdLink.forEach(function(f){
+        f.addEventListener('click', function(e){
+            id = f.dataset.id
+            link = f.dataset.link
+            axios.post(link,{
+                id:id})
+                .then(res =>{
+                    location.reload();
+                })
+                .catch(err =>console.log(err));          
+        })
+    })
+}
+
+
+/// DATEPICKER
+const myInput = document.querySelectorAll(".dateinput");
+// Create new Date instance
+// let date = new Date()
+// date.setDate(date.getDate() + 364)
+const fp = flatpickr(myInput, {
+    altInput: true,
+    altFormat: "d F Y",
+    dateFormat: "Y-m-d",
+    "locale": "ro",
+    // minDate: "today",
+    // maxDate:new Date().fp_incr(364),
+    // inline: true,
+});  // flatpickr
 
 //  checkboxes.forEach(function(e){
 //    e.addEventListener('click', function(){
