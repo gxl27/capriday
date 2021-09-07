@@ -15,3 +15,10 @@ monolog:
             type: console
             process_psr_3_messages: false
             channels: ["!event", "!doctrine"]
+        request:
+            # log all messages (since debug is the lowest level)
+            level:    critical
+            type:  rotating_file
+            max_files: 30
+            path:     '%kernel.logs_dir%/request/request.log'
+            channels: ["request"]
