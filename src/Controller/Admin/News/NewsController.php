@@ -116,16 +116,16 @@ class NewsController extends MainController
         if($news->getType() == 0){
             // concatanate link with "/" to prevent home routes to give strpos null
             $link = $news->getLink();
-            dump($link);
+            
             if(!strpos($link, "http")){
                 $news->setLink("https://$link");
             }
-            dump($link);
+            
             $link = $news->getLink()."/";
             $sublink = substr_replace($link, "", 0, 8);
-            dump($sublink);
+         
             $link = substr($sublink, 0, strpos($sublink, "/"));
-            dump($link);
+            
             $ext = [".ro", ".com"];
             $flag = 0;
             for($i=0; $i < sizeof($ext); $i++) {
@@ -136,7 +136,7 @@ class NewsController extends MainController
             if(!$flag){ 
                 $news->setLink(NULL);
             }
-            dump($news->getLink());
+            
             
         }
         return $news;
