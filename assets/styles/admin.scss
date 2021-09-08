@@ -66,6 +66,25 @@ span, a {
 font-size: clamp(0.800rem, calc( 1rem + 0.320vw ), 0.900rem);
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: rgb(206, 206, 206);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #858585;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #757575;
+}
+
 // END OF GENERAL CSS
 
 // NAVBAR
@@ -109,6 +128,19 @@ nav {
       background-color: config.$menu-bg;
       width: 100%;
       left:0;
+
+      a {
+        color:inherit;
+        height: 100%;
+        min-width: 100%;
+        padding: 1rem 2.15rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        cursor: pointer;
+    
+      }
     }
 
     li {
@@ -119,18 +151,7 @@ nav {
     
     }
     
-    a {
-      color:inherit;
-      height: 100%;
-      min-width: 100%;
-      padding: 1rem 2.15rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      cursor: pointer;
-  
-    }
+    
 
     li:hover {
       background-color: config.$menu-bg-hover;
@@ -157,6 +178,10 @@ nav {
     max-height:40px;
     padding:0px 20px;
     cursor: pointer;
+  }
+
+  a {
+    height: 100%;
   }
 }
 
@@ -243,27 +268,49 @@ li.li-socialmedia:hover {
   background-color: initial !important;
 }
 
-#navbar #socialmedia {
-  display: none;
+#navbar {
+
   flex-direction: row;
-  flex:0;
-  justify-content: center;
-  align-items: center;
-  
-  a {
-      padding: .4rem .6rem !important;
-      max-width: none;
-  }
+  #socialmedia {
 
-  img {
-      max-width: 50px;
-      padding: .2rem .3rem !important;
-  }
+    display: none;
+    flex-direction: column;
+    flex:0;
+    justify-content: center;
+    align-items: center;
+    
+    a {
 
-  span {
-      display: none;
+        max-width: none;
+        height: 100%;
+    }
+
+
+    img {
+        max-width: 50px;
+        padding: .5rem .3rem !important;
+    }
+
+    span {
+        // display: none;
+        color:brown;
+        
+    }
+
+    .spanhide {
+      color:#E74141;
+    }
+    
+
+    .logout {
+      color:#E74141;
+      font-weight:bold;
+      font-size: .7em;
+    }
+
   }
 }
+
 
 // END OF NAVBAR
 

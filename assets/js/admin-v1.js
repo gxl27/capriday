@@ -1,3 +1,4 @@
+let content = document.querySelector('#content')
 let hamburger =  document.querySelector('#navbar-mobile-btn');
 let menuItems = document.querySelectorAll('.dropdown');
 let submenuItems = document.querySelectorAll('.submenu');
@@ -48,11 +49,6 @@ function initialphone(){
     document.querySelector('#navbar-ul').style.display = "none"
 }
 
-logoContainer.addEventListener('click', function(e){
-    window.location.pathname = "/home";
-})
-
-
 document.addEventListener('click', function(e){
     let parentNode = e.target.parentNode;
     if(parentNode.classList){
@@ -77,6 +73,15 @@ document.addEventListener('click', function(e){
     })
     clickCheckMenu = null;
 })
+
+
+logoContainer.addEventListener('click', function(e){
+    window.location.hash = "";
+    window.location.pathname = "/admin";
+    
+})
+
+
 
 //expand menu items
 menuItems.forEach(function(f){
@@ -157,12 +162,19 @@ logoContainer.addEventListener('click', function(e){
 })
 
 //
-// initialize homeinitial (where all the functions are running) after the page loads
-document.addEventListener("DOMContentLoaded", homeinitial);
+// initialize admininitial (where all the functions are running) after the page loads
+document.addEventListener("DOMContentLoaded", admininitial);
 
 
 
-function homeinitial(){
+function admininitial(){
+    //create a fade loading page for the body
+    window.addEventListener('load', function(f){
+        //display initial panel
+        tl = gsap.timeline({ defaults:{duration: .5}})
+        tl.to(content, { ease: "expo", opacity: 1});
+    })
+
     // home carousel
     let banner = document.querySelector("#banner")
     if(!banner){

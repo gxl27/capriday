@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Post
 {
+    const STATUS = [
+        0 => 'normal',
+        1 => 'important',
+    ];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -25,7 +30,7 @@ class Post
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+      * @ORM\Column(type="text")
      */
     private $description;
 
@@ -51,6 +56,8 @@ class Post
 
     public function __construct()
     {
+        $this->createdAt = new \DateTime();
+        $this->status = 0;
         $this->postfiles = new ArrayCollection();
     }
 
@@ -98,6 +105,10 @@ class Post
     public function getStatus(): ?int
     {
         return $this->status;
+    }
+
+    public function getStatusFormat(){
+        return SELF::STATUS[$this->getStatus()];
     }
 
     public function setStatus(int $status): self

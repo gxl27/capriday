@@ -1,13 +1,21 @@
-{% extends 'base.html.twig' %}
+{% extends 'container.html.twig' %}
 
-{% block title %}Edit Project{% endblock %}
+{% block title %}Proiecte{% endblock %}
 
-{% block body %}
-    <h1>Edit Project</h1>
+{% block container %}
+    <h1>Proiecte editare</h1>
 
     {{ include('admin/project/_form.html.twig', {'button_label': 'Update'}) }}
 
+    {# <div>
+        {{ form_start(formProjectfiles) }}
+            {{ form_widget(formProjectfiles) }}
+            <button>save</button>
+        {{ form_end(formProjectfiles) }}
+        {% dump(project.projectfiles) %}
+    </div> #}
     <a href="{{ path('project_index') }}">back to list</a>
 
     {{ include('admin/project/_delete_form.html.twig') }}
+    
 {% endblock %}

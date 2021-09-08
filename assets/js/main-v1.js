@@ -1,3 +1,4 @@
+let content = document.querySelector('#content')
 let hamburger =  document.querySelector('#navbar-mobile-btn');
 let menuItems = document.querySelectorAll('.dropdown');
 let submenuItems = document.querySelectorAll('.submenu');
@@ -45,11 +46,6 @@ function initialphone(){
     document.querySelector('#navbar-ul').style.display = "none"
 }
 
-logoContainer.addEventListener('click', function(e){
-    window.location.pathname = "/home";
-})
-
-
 document.addEventListener('click', function(e){
     let parentNode = e.target.parentNode;
     if(parentNode.classList){
@@ -74,6 +70,15 @@ document.addEventListener('click', function(e){
     })
     clickCheckMenu = null;
 })
+
+logoContainer.addEventListener('click', function(e){
+    window.location.hash = "#";
+    window.location.pathname = "/home";
+    
+})
+
+
+
 
 //expand menu items
 menuItems.forEach(function(f){
@@ -127,16 +132,20 @@ menuLi.forEach(function(e){
         if(e.dataset.scroll){
             
             link = e.dataset.scroll;
-            element =  document.querySelector(link)
+            
             // document.querySelector(link).scrollIntoView();
-            if(window.location.pathname == e.dataset.route){
-                console.log('xxx');
+            if(window.location.pathname == e.dataset.route && link != "#"){
+                element =  document.querySelector(link)
                 scrollToTargetAdjusted(element);
             }else{
                 // console.log(e.dataset.route)
                 // console.log(e.dataset.scroll)
                 // console.log()
-                let route = e.dataset.route + e.dataset.scroll
+                let route = e.dataset.route
+                if(e.dataset.scroll != "#"){
+                   route = route +  e.dataset.scroll
+                }
+                
                 window.location = route
             }
             
@@ -147,7 +156,7 @@ menuLi.forEach(function(e){
 })
 
 function scrollToTargetAdjusted(scrolledelement){
-    console.log(scrolledelement)
+    
     let body = document.body.getBoundingClientRect().top
     let headerOffset = window.heightnavbar;
     let elementPosition = scrolledelement.getBoundingClientRect().top;
@@ -189,6 +198,13 @@ document.addEventListener("DOMContentLoaded", homeinitial);
 
 
 function homeinitial(){
+    //create a fade loading page for the body
+    window.addEventListener('load', function(f){
+    //display initial homepage
+    tl = gsap.timeline({ defaults:{duration: .5}})
+    tl.to(content, { ease: "expo", opacity: 1});
+    })
+
     // home carousel
     let banner = document.querySelector("#banner")
     if(!banner){

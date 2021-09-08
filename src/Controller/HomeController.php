@@ -19,8 +19,6 @@ class HomeController extends AbstractController
             $activeProjectsNumber = sizeof($activeProjects);
             $this->projects = ["active" => $activeProjects, "activeNumber" =>$activeProjectsNumber];
         }
-        
-
     }
     /**
      * @Route("/", name="index")

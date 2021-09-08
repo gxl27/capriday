@@ -1,10 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'container.html.twig' %}
 
-{% block title %}Project{% endblock %}
+{% block title %}Proiecte{% endblock %}
 
-{% block body %}
+{% block container %}
 {% for project in projects.active %}
-    <section id="s-{{ loop.index }}" class='container'>
+    <section id="s-{{ loop.index }}">
         <div>{{ loop.index }}</div>
         <div>Nume proiect: {{ project.name }}</div>
         <div>Descriere proiect{{ project.description }}</div>

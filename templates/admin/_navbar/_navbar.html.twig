@@ -4,7 +4,7 @@
         <div id="navbar">
             <div id="logo">
                 <div id='logo-container'>
-                    <img src="/img/logo.png" alt="Caprirom">
+                    <img src="/img/logoadmin.svg" alt="Caprirom">
                 </div>
                 <div id="navbar-mobile-btn" title="Expand menu">
                     <img src="/img/menu.svg" alt='expand'>
@@ -29,17 +29,30 @@
                 </li> #}
                 <li class='dropdown'><a title='Anunturi'>anunturi</a>
                     <ul class='submenu'>
-                        <li><a data-route= "{{ path('news') }}" data-scroll="#s-capriromnews">Anunturi Caprirom</a></li>
-                        <li><a data-route= "{{ path('news') }}" data-scroll="#s-news">Stiri si noutati</a></li>
-                        <li><a data-route= "{{ path('news') }}" data-scroll="#s-photo">Galerie foto</a></li>
+                        <li> <a href="{{ path('post_index') }}">Lista anunturi Caprirom</a></li>
+                        <li> <a href="{{ path('post_new') }}">Adauga anunt Caprirom</a></li>
+
                     </ul>
                 </li>
-                <li><a href="{{ path('contact') }}" title='Contact'>contact</a></li>
+                <li class='dropdown'><a title='Stiri si noutati'>Stiri</a>
+                    <ul class='submenu'>
+                        <li> <a href="{{ path('news_index') }}">Lista stiri si noutati</a></li>
+                        <li> <a href="{{ path('news_new') }}">Adauga stire si noutate</a></li>
+
+                    </ul>
+                </li>
+                <li class='dropdown'><a title='Albume foto'>Albume</a>
+                    <ul class='submenu'>
+                        <li> <a href="{{ path('gallery_index') }}">Lista albume</a></li>
+                        <li> <a href="{{ path('gallery_new') }}">Adauga albume</a></li>
+
+                    </ul>
+                </li>
+
                 <li class='li-socialmedia'>
                  <ul id="socialmedia">
-                    <li><a href="https://www.fb.com"><img src="/img/socialmedia/64/facebook.png" alt="fb" title='Facebook'><span>Facebook</span></a></li>
-                    <li><a href="https://www.twitter.com"><img src="/img/socialmedia/64/twitter.png" alt="twitter" title='Twitter'><span>Twitter</span></a></li>
-                    <li><a href="https://www.youtube.com"><img src="/img/socialmedia/64/utube.png" alt="utube" title='Youtube'><span>Youtube</span></a></li>
+                    <li><a href="{{ path('settings') }}"><img src="/img/settings.svg" alt="settings" title='Setari'><span>{{ app.user.username }}</span></a></li>
+                    <li><a href="{{ path('app_logout') }}"><img src="/img/logout.svg" alt="logout" title='Logout'><span class='spanhide'>Logout</span></a></li>
                 </ul>
                 </li>
             </ul>

@@ -20,6 +20,7 @@ body {
   line-height: 1.6;
   width: 100%;
   color: config.$text-color;
+ 
 
 }
 
@@ -66,6 +67,25 @@ span, a {
 font-size: clamp(0.800rem, calc( 1rem + 0.320vw ), 0.900rem);
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: rgb(206, 206, 206);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #858585;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #757575;
+}
+
 // END OF GENERAL CSS
 //  START OF NAVBAR
 nav {
@@ -107,6 +127,19 @@ nav {
       background-color: config.$menu-bg;
       width: 100%;
       left:0;
+
+      a {
+        color:inherit;
+        height: 100%;
+        min-width: 100%;
+        padding: 1rem 2.15rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        cursor: pointer;
+    
+      }
     }
 
     li {
@@ -117,18 +150,7 @@ nav {
     
     }
     
-    a {
-      color:inherit;
-      height: 100%;
-      min-width: 100%;
-      padding: 1rem 2.15rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      cursor: pointer;
-  
-    }
+    
 
     li:hover {
       background-color: config.$menu-bg-hover;
@@ -155,6 +177,10 @@ nav {
     max-height:40px;
     padding:0px 20px;
     cursor: pointer;
+  }
+
+  a {
+    height: 100%;
   }
 }
 
@@ -549,6 +575,7 @@ section {
   > div:nth-of-type(2) {
     display: flex;
     flex-direction: row;
+    align-items: center;
   }
   .minimize {
     display: flex;
@@ -566,6 +593,10 @@ section {
 
     > div:nth-of-type(2) {
       display: none;
+    }
+    .abtn {
+      display: flex;
+      align-self: center;
     }
   }
 }

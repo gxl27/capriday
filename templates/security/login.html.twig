@@ -10,6 +10,9 @@
 {% endblock %}
 {% block body %}
 <style>
+#content {
+    opacity:1;
+}
 #main{
     display:flex;
     flex-direction:column;
@@ -17,6 +20,8 @@
     justify-content:center;
     align-items:center;
     background-image: url("img/rg.jpg");
+    background-repeat:none;
+    background-size:cover;
     padding:0;
 
 }
@@ -104,9 +109,17 @@ img {
 }
 
 @media screen and (min-width: 768px) {
+    #main {
+        max-width:100vw;
+    }
     #main-content{
         border-radius:5%;
         background-color:rgba(250, 250, 250, 0.85);
+        
+    }
+    body {
+        margin:0;
+        max-width:100vw;
     }
 }
 </style>

@@ -1,0 +1,49 @@
+{% extends 'container.html.twig' %}
+
+{% block title %}Stiri si noutati{% endblock %}
+
+{% block container %}
+    <h1>Stiri si noutati lista</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Link</th>
+                <th>Type</th>
+                <th>CreatedAt</th>
+                <th>CreatedBy</th>
+                <th>Status</th>
+                <th>Position</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for news in news %}
+            <tr>
+                <td>{{ news.id }}</td>
+                <td>{{ news.name }}</td>
+                <td>{{ news.description }}</td>
+                <td>{{ news.link }}</td>
+                <td>{{ news.type }}</td>
+                <td>{{ news.createdAt ? news.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ news.createdBy }}</td>
+                <td>{{ news.status }}</td>
+                <td>{{ news.position }}</td>
+                <td>
+                    <a href="{{ path('news_show', {'id': news.id}) }}">show</a>
+                    <a href="{{ path('news_edit', {'id': news.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('news_new') }}">Create new</a>
+{% endblock %}

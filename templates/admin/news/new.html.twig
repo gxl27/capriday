@@ -1,0 +1,11 @@
+{% extends 'container.html.twig' %}
+
+{% block title %}Stiri si noutati{% endblock %}
+
+{% block container %}
+    <h1>Stiri si noutati adauga</h1>
+
+    {{ include('admin/news/_form.html.twig') }}
+
+    <a href="{{ path('news_index') }}">back to list</a>
+{% endblock %}

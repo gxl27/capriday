@@ -156,6 +156,7 @@ nav {
 }
 
 #navbar ul#socialmedia {
+    border-left: 1px solid rgba(128, 128, 128, 0.26);
     display: flex;
     position: relative;
     flex-direction: row !important;
@@ -165,7 +166,8 @@ nav {
 
 
     span {
-        display: none;
+        // display: none;
+        font-size: .9em;
     }
 
     img {
@@ -173,10 +175,17 @@ nav {
     }
 
     a {
-        
+      
+        display: flex;
+
+        justify-content: space-between;
         padding: 1.2rem 1.1rem !important;
        
     }
+
+    .spanhide {
+        display:none;
+      }
 
 }
 

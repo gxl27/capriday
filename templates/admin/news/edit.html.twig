@@ -1,0 +1,13 @@
+{% extends 'container.html.twig' %}
+
+{% block title %}Stiri si noutati{% endblock %}
+
+{% block container %}
+    <h1>Edit News</h1>
+
+    {{ include('admin/news/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('news_index') }}">back to list</a>
+
+    {{ include('admin/news/_delete_form.html.twig') }}
+{% endblock %}

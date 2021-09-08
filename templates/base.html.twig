@@ -51,7 +51,20 @@
         {% endif %}
        
         {# extend body #}
+        {% block contentbg %}
+        <div id="content-bg">
+            <div class="container">
+            </div>
+        </div>
+        {% endblock %}
+        
+        <div id="content">
+            
         {% block body %}{% endblock %}
+        </div>
+        
+
+        
 
         {# not included for admin route #}
         {% if checkroute in app.request.pathInfo %}

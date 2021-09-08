@@ -10,6 +10,17 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class News
 {
+    const STATUS = [
+        0 => 'normal',
+        1 => 'important',
+    ];
+
+    const TYPE = [
+        0 => 'link',
+        1 => 'youtube',
+        2 => 'image',
+    ];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -28,7 +39,7 @@ class News
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $link;
 
@@ -56,6 +67,12 @@ class News
      * @ORM\Column(type="integer", nullable=true)
      */
     private $position;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+        $this->status = 0;
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +120,10 @@ class News
         return $this->type;
     }
 
+    public function getTypeFormat(){
+        return SELF::TYPE[$this->getType()];
+    }
+
     public function setType(int $type): self
     {
         $this->type = $type;
@@ -137,6 +158,10 @@ class News
     public function getStatus(): ?int
     {
         return $this->status;
+    }
+
+    public function getStatusFormat(){
+        return SELF::STATUS[$this->getStatus()];
     }
 
     public function setStatus(int $status): self

@@ -1,0 +1,19 @@
+{% extends 'container.html.twig' %}
+
+{% block title %}Anunturi{% endblock %}
+
+{% block container %}
+    <div class="imporant">
+    {% for post in postsI %}
+        <div>{{ post.name }}</div>
+        <div>{{ post.description }}</div>
+    {% endfor %}
+    <hr>
+    </div>
+    <div class="normal">
+    {% for post in posts %}
+        <div>{{ post.name }}</div>
+        <div>{{ post.description }}</div>
+    {% endfor %}
+    </div>
+{% endblock %}

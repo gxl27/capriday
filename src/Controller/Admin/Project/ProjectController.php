@@ -2,10 +2,13 @@
 
 namespace App\Controller\Admin\Project;
 
+
 use App\Entity\Project;
+use App\Entity\Projectfiles;
 use App\Form\ProjectType;
+use App\Form\ProjectfileType;
 use App\Repository\ProjectRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Controller\Admin\MainController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/project")
  */
-class ProjectController extends AbstractController
+class ProjectController extends MainController
 {
     /**
      * @Route("/", name="project_index", methods={"GET"})
@@ -68,18 +71,30 @@ class ProjectController extends AbstractController
      */
     public function edit(Request $request, Project $project): Response
     {
+        $projectfile = new Projectfiles();
+        $projectfile->setProject($project);
+
+        $formProjectfiles =  $this->createForm(ProjectfileType::class, $projectfile);
+        $formProjectfiles->handleRequest($request);
+
+        if ($formProjectfiles->isSubmitted() && $formProjectfiles->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+        }
+        
         $form = $this->createForm(ProjectType::class, $project);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_project_index');
+            return $this->redirectToRoute('project_index');
         }
 
         return $this->render('admin/project/edit.html.twig', [
             'project' => $project,
             'form' => $form->createView(),
+            'formProjectfiles' => $formProjectfiles->createView(),
         ]);
     }
 
