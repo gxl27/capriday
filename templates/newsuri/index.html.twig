@@ -30,7 +30,6 @@
     </div>
     <div class="normal">
     {% for new in news %}
-        {% dump(new) %}
         <div>{{ new.name }}</div>
         <div>{{ new.description }}</div>
         {% if new.type == 0 %}
