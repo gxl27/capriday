@@ -45,10 +45,12 @@ ul {
 
 h1 {
   font-size: clamp(1.700rem, calc( 1rem + 2.200vw ), 2.300rem);
+  overflow: hidden;
   }
   
 h2 {
 font-size: clamp(1.400rem, calc( 1rem + 1.600vw ), 1.800rem);
+
 }
 
 h3 {
@@ -323,7 +325,7 @@ li.li-socialmedia:hover {
     font-size: 1.5em;
     padding-bottom: .1em;
     padding-left: .3em;
-    color:config.$color-primary;
+
   }
   h3.not-after:after {
     content:"";
@@ -334,17 +336,20 @@ li.li-socialmedia:hover {
   h4 {
     font-weight: lighter;
     text-align: start;
-    background-color: config.$color-primary;
+    // background-color: rgb(201, 248, 201);
+    background-color: #f5deb3;
+    // border: 1px solid config.$color-primary;
     padding: .3rem .6rem;
     text-align: flex-end;
     border-radius: 5%;
-    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.175);
-    color:white;
+    box-shadow: 0 0 4px 0 #f1ce8b;;
+  
  
   }
   h4:before {
     content: "\2714";
     padding-right:.4em;
+
   }
 }
 
@@ -359,10 +364,11 @@ li.li-socialmedia:hover {
   background-color: config.$banner-color;
 
   > div {
-    padding:.5em 0;
+    padding:.2em 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    
 
   }
 
@@ -456,7 +462,7 @@ section {
   }
   h2 {
     text-transform: lowercase;
-    font-family: config.$font-stack-secondary;
+
     font-weight: lighter;
     // font-weight: lighter;
     
@@ -478,6 +484,9 @@ section {
   border-radius: 7px;
   align-self: center;
   box-shadow: 0 0 12px 0 rgba(221, 221, 221, 0.781);
+}
+#s-services {
+  padding-bottom:0 !important;
 }
 #s-services, #s-results {
   ::first-letter {
@@ -601,6 +610,37 @@ section {
   }
 }
 
+.contact-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > div {
+    padding:1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  a {
+    color: config.$text-color;
+  }
+
+}
+.contact-details {
+  justify-content: center;
+  span {
+    display: flex;
+    align-items: center;
+    padding: .5em;
+  }
+  img {
+    padding-right: .5em;
+  }
+  h5 {
+    text-align: center;
+  }
+}
+
 footer {
   min-height: 180px;
   background-color: rgb(104, 104, 104);
@@ -618,14 +658,14 @@ footer {
 
 
   > div {
-    padding: 1em 3em;
+    padding: .5em .5em;
     width: 100%;
     
     
   }
   h5 {
     text-align: center;
-    padding-bottom: 1em;
+    padding-bottom: .5em;
     font-size: 1.1em;
   }
 

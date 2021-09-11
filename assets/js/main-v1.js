@@ -286,7 +286,7 @@ function homeinitial(){
         homebullet.forEach(function(h){
             h.style.backgroundColor = "white";
         })
-        bullet.style.backgroundColor = "#2f8638";
+        bullet.style.backgroundColor = "#f5deb3";
 
         function clearcarouselindexes(){
             homeslider.forEach(function(e){

@@ -2,20 +2,52 @@
 
 {% block title %}Contact{% endblock %}
 
-{% block body %}
-<section class='container'>
-    <div>
-        nume 
-    </div>
-     <div>
-        prenume 
-    </div>
-     <div>
-        email 
-    </div>
-    <div>
-        mesaj 
-    </div>
+{% block stylesheets %}
+{# get the parent stylesheet block #}
+{{ parent() }}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+{% endblock %}
 
+{% block body %}
+<section style='padding-top:0 !important; padding-bottom:0 !important;'>
+    <div id='map'></div>
 </section>
+
+<section class='container'>
+<h1>Contacteaza-ne</h1>
+    <div class="contact-content">
+        <div class='contact-details'>
+            <h5>ANCC - "CAPRIROM"</h5>
+            <div>
+                <span><img src="/img/location-gray.svg" alt='location'>Constanta, str. I.C. Bratianu nr. 248</span>
+            </div>
+            <div>
+                <span><img src="/img/phone-gray.svg" alt='phone'>Mobil: <a href='tel:0727869984'>0727869984</a></span>
+            </div>
+            <div>
+                <span><img src="/img/fax-gray.svg" alt='fax'>Tel./Fax.: <a href='tel:0372873135'>0372873135</a></span>
+            </div>
+            <div>
+                <span><img src="/img/email-gray.svg" alt='email'>Email:caprirom@yahoo.com</span>
+            </div>
+        </div>
+        <div class='contact-form'>
+            {{ form_start(formContactmsg) }}
+            {{ form_widget(formContactmsg) }}
+            <button class='btn-primary'>submit</button>
+            {{ form_end(formContactmsg) }}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+{% block mainjavascript %}
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>  
+<script src="/unlinkedJs/map.js">
+{# get the parent mainjavascript block #}
+{{ parent() }}
 {% endblock %}

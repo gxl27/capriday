@@ -19,6 +19,17 @@ class GlobalsettingsRepository extends ServiceEntityRepository
         parent::__construct($registry, Globalsettings::class);
     }
 
+    public function getActiveGs()
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.status = 1')
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Globalsettings[] Returns an array of Globalsettings objects
     //  */

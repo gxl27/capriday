@@ -190,6 +190,31 @@ body {
     padding: $c-padding-h-1190 $c-padding-w-1190;
 }
 
+.section-columns {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-around;
+    flex-basis: 25%;
+
+    h2 {
+        line-height: 1.1em !important;
+        padding-bottom: .3em;
+
+       
+    }
+
+    > div {
+        flex:1;
+        padding: 1.4em;
+        text-align: left;
+    }
+}
+
+.contact-content {
+    flex-direction: row;
+}
+
 .footer-main-div {
     flex-direction: row;
 
