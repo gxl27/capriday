@@ -16,7 +16,8 @@ use Symfony\Component\Mime\Email as PHPEmail;
 
 class ContactController extends HomeController
 {
-
+    private $mailer;
+    private $gs;
 
     /**
      * @Route("/contact", name="contact")
@@ -24,8 +25,8 @@ class ContactController extends HomeController
     public function contact(Request $request, MailerInterface $mailer, GlobalsettingsRepository $gsRep): Response
     {
         //get global settings for the website email adress
-        $gs = $this->gsRep->getActiveGs();
-
+        $this->gs = $gsRep->getActiveGs();
+        $this->mailer = $mailer;
         $contactmsg = new Contactmsg();
         $formContactmsg = $this->createForm(ContactmsgType::class, $contactmsg, 
         ['antispam_time'=> true,
@@ -40,15 +41,11 @@ class ContactController extends HomeController
 
         if ($formContactmsg->isSubmitted() && $formContactmsg->isValid()) 
         {   
-            $this->initializeEmail($contactmsg, $gs);
+            $this->initializeEmail($contactmsg);
 
             $message = "Mesajul a fost trimis!";
             $this->addFlash('success', $message);
 
-            dump($contactmsg);
-        }else{
-            $message = "Mesajul nu poate fi trimis!";
-            $this->addFlash('alert', $message);
         }
 
         return $this->render('contact/index.html.twig', [
@@ -57,8 +54,8 @@ class ContactController extends HomeController
         ]);
     }
 
-    private function initializeEmail($contactmsg, $gs){
-        $to = $gs->getEmail();
+    private function initializeEmail($contactmsg){
+        $to = $this->gs->getEmail();
         $name = $contactmsg->getName();
         $subject = "Mesaj contact: $name";
         $content =  $contactmsg->getSubject();

@@ -24,9 +24,8 @@ class GlobalsettingsRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->andWhere('p.status = 1')
             ->orderBy('p.id', 'ASC')
-            ->setMaxResults(1)
             ->getQuery()
-            ->getResult()
+            ->getOneOrNullResult()
         ;
     }
 

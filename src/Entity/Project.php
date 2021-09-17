@@ -65,6 +65,11 @@ class Project
      */
     private $projectfiles;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $position;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
@@ -192,6 +197,18 @@ class Project
                 $projectfile->setProject(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPosition(): ?int
+    {
+        return $this->position;
+    }
+
+    public function setPosition(?int $position): self
+    {
+        $this->position = $position;
 
         return $this;
     }

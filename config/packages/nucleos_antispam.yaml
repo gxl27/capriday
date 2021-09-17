@@ -10,8 +10,8 @@ nucleos_antispam:
 
     # Time protection
     time:
-        global: true
+        global: false
 
     # Honeypot protection
     honeypot:
-        global: true
+        global: false

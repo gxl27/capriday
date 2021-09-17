@@ -213,6 +213,16 @@ body {
 
 .contact-content {
     flex-direction: row;
+    align-items: flex-start;
+}
+.contact-details {
+    flex:.5;
+}
+.f-col {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
 }
 
 .footer-main-div {

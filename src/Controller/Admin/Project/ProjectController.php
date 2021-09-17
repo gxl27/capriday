@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 /**
  * @Route("/admin/project")
  */
@@ -21,10 +22,16 @@ class ProjectController extends MainController
     /**
      * @Route("/", name="project_index", methods={"GET"})
      */
-    public function index(ProjectRepository $projectRepository): Response
+    public function index(ProjectRepository $projectRepository, Request $request): Response
     {
+
+        $projects = $this->paginator->paginate(
+            $projectRepository->findAllQuery(),
+            $request->query->getInt('page', 1),
+                7);
+
         return $this->render('admin/project/index.html.twig', [
-            'projects' => $projectRepository->findAll(),
+            'projects' => $projects
         ]);
     }
 

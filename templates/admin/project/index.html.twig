@@ -4,11 +4,13 @@
 
 {% block container %}
     <h1>Proiecte lista</h1>
-
+    <div class="pagination-bar">
+        {{ knp_pagination_render(projects, '@KnpPaginator/Pagination/custom_pagination.html.twig') }}
+    </div>
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Crt</th>
                 <th>Numele proiectului</th>
                 <th>Descriere</th>
                 <th>Data de inceput</th>
@@ -22,7 +24,7 @@
         <tbody>
         {% for project in projects %}
             <tr>
-                <td>{{ project.id }}</td>
+                <td>{{(projects.currentPageNumber - 1) * projects.getItemNumberPerPage + loop.index }}</td>
                 <td>{{ project.name }}</td>
                 <td>{{ project.description }}</td>
                 <td>{{ project.dateStartAt ? project.dateStartAt|datero('d-M-Y') : '' }}</td>

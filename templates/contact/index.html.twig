@@ -34,9 +34,26 @@
             </div>
         </div>
         <div class='contact-form'>
-            {{ form_start(formContactmsg) }}
-            {{ form_widget(formContactmsg) }}
-            <button class='btn-primary'>submit</button>
+            <h5> Trimite un mesaj</h5>
+              {{ form_start(formContactmsg) }}
+            <div class='w-100'>
+                {{ form_row(formContactmsg.name) }}
+            </div>
+         
+            <div class='f-col'>
+                {{ form_row(formContactmsg.telephone) }}
+                {{ form_row(formContactmsg.email) }}
+            </div>
+            <div class='w-100'>
+                {{ form_row(formContactmsg.title) }}
+            </div>
+       
+            {{ form_row(formContactmsg.subject) }}
+                  <button class='btn-primary'>Trimite</button>
+           
+            
+            {# {{ form_widget(formContactmsg) }} #}
+      
             {{ form_end(formContactmsg) }}
         </div>
     </div>
