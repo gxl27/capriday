@@ -3,7 +3,9 @@
 namespace App\Controller\Admin\Gallery;
 
 use App\Entity\Gallery;
+use App\Entity\Photo;
 use App\Form\GalleryType;
+use App\Form\PhotoType;
 use App\Repository\GalleryRepository;
 use App\Controller\Admin\MainController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,10 +20,15 @@ class GalleryController extends MainController
     /**
      * @Route("/", name="gallery_index", methods={"GET"})
      */
-    public function index(GalleryRepository $galleryRepository): Response
+    public function index(GalleryRepository $galleryRepository, Request $request): Response
     {
+        $galleryKnp = $this->paginator->paginate(
+            $galleryRepository->findAllStatusQuery(),
+            $request->query->getInt('page', 1),
+                7);
+
         return $this->render('admin/gallery/index.html.twig', [
-            'galleries' => $galleryRepository->findAll(),
+            'galleryKnp' => $galleryKnp,
         ]);
     }
 
@@ -39,6 +46,9 @@ class GalleryController extends MainController
             $entityManager->persist($gallery);
             $entityManager->flush();
 
+            $message = "Proiect adaugat cu succes";
+            $this->addFlash('success', $message);
+
             return $this->redirectToRoute('gallery_index');
         }
 
@@ -49,12 +59,48 @@ class GalleryController extends MainController
     }
 
     /**
-     * @Route("/{id}", name="gallery_show", methods={"GET"})
+     * @Route("/{id}", name="gallery_show", methods={"GET", "POST"})
      */
-    public function show(Gallery $gallery): Response
+    public function show(Gallery $gallery, Request $request): Response
     {
+        $photo = new Photo();
+        $photo->setGallery($gallery);
+        $photoForm = $this->createForm(PhotoType::class, $photo);
+        $photoForm->handleRequest($request);
+        
+        if ($photoForm->isSubmitted() && $photoForm->isValid()) {
+            //get file from the form
+            $file = $photoForm->get('photo')->getData();
+            $originalName = $file->getClientOriginalName();
+            //check extension validation
+            $ext = $photo->checkValidExtension($originalName);
+            if($ext){
+                $filename = md5(uniqid()). '.' . $ext;
+                $uploads_directory = $this->getParameter('uploads_directory') . "photos/";
+                $file->move(
+                    $uploads_directory,
+                    $filename
+                );
+              
+                $photo->setDocument($filename);
+                $photo->setName($originalName);
+                $gallery->addPhoto($photo);
+    
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($gallery);
+                $entityManager->flush();
+               
+            }
+          
+            else {
+                $message = "Tipul fisierului nu este acceptat!";
+                $this->addFlash('alert', $message);
+            }
+        }
+
         return $this->render('admin/gallery/show.html.twig', [
             'gallery' => $gallery,
+            'photoForm' => $photoForm->createView()
         ]);
     }
 
@@ -79,7 +125,7 @@ class GalleryController extends MainController
     }
 
     /**
-     * @Route("/{id}", name="gallery_delete", methods={"POST"})
+     * @Route("/{id}/delete", name="gallery_delete", methods={"POST"})
      */
     public function delete(Request $request, Gallery $gallery): Response
     {

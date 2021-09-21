@@ -1,0 +1,12 @@
+# easy_admin:
+#     entities:
+#         Projectfiles:
+#             # ...
+#             list:
+#                 fields:
+#                     # ...
+#                     - { property: 'projectfilesFiles', type: 'vich_file' }
+#     design:
+#     form_theme:
+#         - '@EasyAdmin/form/bootstrap_4.html.twig'
+#         - '@VichUploader/Form/fields.html.twig'

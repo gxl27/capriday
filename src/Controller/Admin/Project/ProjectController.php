@@ -12,6 +12,7 @@ use App\Controller\Admin\MainController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\FileBag;
 
 
 /**
@@ -25,13 +26,13 @@ class ProjectController extends MainController
     public function index(ProjectRepository $projectRepository, Request $request): Response
     {
 
-        $projects = $this->paginator->paginate(
+        $projectsKnp = $this->paginator->paginate(
             $projectRepository->findAllQuery(),
             $request->query->getInt('page', 1),
                 7);
 
         return $this->render('admin/project/index.html.twig', [
-            'projects' => $projects
+            'projectsKnp' => $projectsKnp
         ]);
     }
 
@@ -64,12 +65,56 @@ class ProjectController extends MainController
     }
 
     /**
-     * @Route("/{id}", name="project_show", methods={"GET"})
+     * @Route("/{id}", name="project_show", methods={"GET","POST"})
      */
-    public function show(Project $project): Response
+    public function show(Project $project, Request $request): Response
     {
+        $projectfile = new Projectfiles();
+        $projectfile->setProject($project);
+        $pfForm = $this->createForm(ProjectfileType::class, $projectfile);
+        $pfForm->handleRequest($request);
+        
+        if ($pfForm->isSubmitted() && $pfForm->isValid()) {
+            //get file from the form
+            $file = $pfForm->get('projectfilesFiles')->getData();
+            $originalName = $file->getClientOriginalName();
+            //check extension validation
+            $ext = $projectfile->checkValidExtension($originalName);
+            if($ext){
+                $filename = md5(uniqid()). '.' . $ext;
+                $uploads_directory = $this->getParameter('uploads_directory') . "projectfiles/";
+                $file->move(
+                    $uploads_directory,
+                    $filename
+                );
+              
+                $projectfile->setDocument($filename);
+                $projectfile->setName($originalName);
+                $project->addProjectfile($projectfile);
+    
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($project);
+                $entityManager->flush();
+
+                $message = "Fisier adaugat cu success";
+                $this->addFlash('success', $message);
+                ///////////////////////////////////////////////
+                // de rezolvat si api delete pt posts si gallery
+                // $projectfile = new Projectfiles();
+                // $projectfile->setProject($project);
+                // $pfForm = $this->createForm(ProjectfileType::class, $projectfile);
+       
+            }
+          
+            else {
+                $message = "Tipul fisierului nu este acceptat!";
+                $this->addFlash('alert', $message);
+            }
+        }
+        
         return $this->render('admin/project/show.html.twig', [
             'project' => $project,
+            'pfForm' => $pfForm->createView()
         ]);
     }
 
@@ -94,8 +139,8 @@ class ProjectController extends MainController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('project_index');
+            dump($project);
+            // return $this->redirectToRoute('project_index');
         }
 
         return $this->render('admin/project/edit.html.twig', [
@@ -106,16 +151,18 @@ class ProjectController extends MainController
     }
 
     /**
-     * @Route("/{id}", name="project_delete", methods={"POST"})
+     * @Route("/{id}/delete", name="project_delete", methods={"POST"})
      */
     public function delete(Request $request, Project $project): Response
     {
+        
         if ($this->isCsrfTokenValid('delete'.$project->getId(), $request->request->get('_token'))) {
+            
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($project);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('admin_project_index');
+        return $this->redirectToRoute('project_index');
     }
 }

@@ -77,12 +77,24 @@ font-size: clamp(0.800rem, calc( 1rem + 0.320vw ), 0.900rem);
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #858585;
+  border-radius: 15px;
+  transition: ease-out .3s all;
+  background: #868686;
+  cursor: pointer;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #757575;
+  background: #6d6d6d;
+}
+
+nav, img{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 // END OF GENERAL CSS

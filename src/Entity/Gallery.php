@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Gallery
 {
+    const STATUS = [
+        0 => 'Public',
+        2 => 'Privat'
+    ];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -27,7 +32,7 @@ class Gallery
     /**
      * @ORM\Column(type="datetime")
      */
-    private $CreatedAt;
+    private $createdAt;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -37,15 +42,23 @@ class Gallery
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $position;
+    private $status;
 
     /**
-     * @ORM\OneToMany(targetEntity=Photo::class, mappedBy="gallery")
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $level;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Photo::class, mappedBy="gallery", orphanRemoval=true, cascade={"persist", "remove"}))
      */
     private $photos;
 
+
     public function __construct()
     {
+        $this->status = 0;
+        $this->createdAt = new \DateTime();
         $this->photos = new ArrayCollection();
     }
 
@@ -68,12 +81,12 @@ class Gallery
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->CreatedAt;
+        return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $CreatedAt): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->CreatedAt = $CreatedAt;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
@@ -90,14 +103,30 @@ class Gallery
         return $this;
     }
 
-    public function getPosition(): ?int
+    public function getStatus(): ?int
     {
-        return $this->position;
+        return $this->status;
     }
 
-    public function setPosition(?int $position): self
+    public function getStatusFormat(){
+        return SELF::STATUS[$this->getStatus()];
+    }
+
+    public function setStatus(?int $status): self
     {
-        $this->position = $position;
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getLevel(): ?int
+    {
+        return $this->level;
+    }
+
+    public function setLevel(?int $level): self
+    {
+        $this->level = $level;
 
         return $this;
     }
@@ -131,4 +160,5 @@ class Gallery
 
         return $this;
     }
+
 }

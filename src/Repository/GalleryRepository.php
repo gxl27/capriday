@@ -19,6 +19,40 @@ class GalleryRepository extends ServiceEntityRepository
         parent::__construct($registry, Gallery::class);
     }
 
+    public function findAllStatus($status = NULL)
+    {
+        
+        return $this->findAllStatusQuery($status)
+            ->getResult()
+        ;
+    }
+
+    public function findAllStatusQuery($status = NULL)
+    {
+        $qb = $this->getAll();
+
+        if($status !== NULL){
+            if(is_array($status)){
+                $qb = $qb->andWhere('r.status IN (:status)')
+                ->setParameter('status', $status);
+            }else {
+                $qb = $qb->andWhere('p.status = :status')
+                ->setParameter('status', $status);
+            }
+            
+        }
+        $qb = $qb->getQuery();
+
+        return $qb;
+            
+        
+    }
+
+    public function getAll() {
+        return $this->createQueryBuilder('p')
+        ->orderBy('p.id', 'DESC');
+    }
+
     // /**
     //  * @return Gallery[] Returns an array of Gallery objects
     //  */

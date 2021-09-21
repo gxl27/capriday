@@ -6,19 +6,19 @@ use App\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 
 class HomeController extends AbstractController
 {
     public $projects;
 
-    public function __construct(ProjectRepository $proRep)
+    public function __construct(ProjectRepository $proRep, PaginatorInterface $paginator)
     {
-        $activeProjects = $proRep->findAllActive();
-        if($activeProjects){
-            $activeProjectsNumber = sizeof($activeProjects);
-            $this->projects = ["active" => $activeProjects, "activeNumber" =>$activeProjectsNumber];
-        }
+        // get all projects for navbar
+        $this->projects = $proRep->findAllActive();
+
+        $this->paginator = $paginator;
     }
     /**
      * @Route("/", name="index")

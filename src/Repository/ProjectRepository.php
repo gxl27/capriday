@@ -20,16 +20,27 @@ class ProjectRepository extends ServiceEntityRepository
     }
 
     public function findAllQuery() {
-        return $this->createQueryBuilder('p')
-        ->addOrderBy('p.position', 'ASC')
-        ->addOrderBy('p.name', 'ASC')
+        return $this->getAll()
+        ->getQuery();
+    }
+
+    public function findAllActiveQuery() {
+        return $this->getAll()
+        ->andWhere('p.status = 0')
         ->getQuery();
     }
 
     public function findAllActive() {
-        return $this->createQueryBuilder('p')
-        ->andWhere('p.status = 0')->getQuery()
+        return $this->getAll()
+        ->andWhere('p.status = 0')
+        ->getQuery()
         ->getResult();
+    }
+
+    public function getAll() {
+        return $this->createQueryBuilder('p')
+        ->addOrderBy('p.level', 'DESC')
+        ->addOrderBy('p.name', 'ASC');
     }
 
     // /**

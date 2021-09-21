@@ -24,8 +24,9 @@ class ProjectType extends AbstractType
             ->add('description', TextareaType::class, [
                 'label' => 'Descriere'
             ])
-            ->add('position', IntegerType::class, [
-                'label' => 'Pozitia',
+            ->add('level', IntegerType::class, [
+                'label' => 'Nivel',
+                'required' => false,
                 'constraints' => [new PositiveOrZero()],
             ])
             ->add('dateStartAt', DateType::class, [
@@ -36,9 +37,20 @@ class ProjectType extends AbstractType
                             'name' => "event_date",
                             'autocomplete' => "off",
                             ],
-                'required' => true,
+                'required' => false,
                 'html5' => false,
                 ])
+                ->add('dateEndAt', DateType::class, [
+                    'widget' => 'single_text',
+                    'label' => "Data de sfarsit a proiectului",
+                    'attr' => [ 
+                                'class' => 'form-control dateinput',
+                                'name' => "event_date",
+                                'autocomplete' => "off",
+                                ],
+                    'required' => false,
+                    'html5' => false,
+                    ])
 
         ;
     }

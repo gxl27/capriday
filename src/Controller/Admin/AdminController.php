@@ -12,7 +12,7 @@ class AdminController extends MainController
      */
     public function index(): Response
     {
-        dump($this->projects);
+
         return $this->render('admin/index.html.twig', [
             
         ]);

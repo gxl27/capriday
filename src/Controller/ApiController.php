@@ -21,7 +21,7 @@ class ApiController extends AbstractController
 
     public function projectFinish(Project $project): Response
     {
-        $project->setStatus(2);
+        $project->setStatus(1);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($project);
         $this->getDoctrine()->getManager()->flush();   
@@ -33,7 +33,7 @@ class ApiController extends AbstractController
      */
     public function projectInactive(Project $project): Response
     {
-        $project->setStatus(1);
+        $project->setStatus(2);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($project);
         $this->getDoctrine()->getManager()->flush();   

@@ -13,8 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
 class Post
 {
     const STATUS = [
-        0 => 'normal',
-        1 => 'important',
+        0 => 'Normal',
+        1 => 'Important',
+        2 => 'Inactiv'
     ];
 
     /**
@@ -50,9 +51,10 @@ class Post
     private $createdBy;
 
     /**
-     * @ORM\OneToMany(targetEntity=Postfiles::class, mappedBy="post")
+     * @ORM\OneToMany(targetEntity=Postfiles::class, mappedBy="post", orphanRemoval=true, cascade={"persist", "remove"}))
      */
     private $postfiles;
+
 
     public function __construct()
     {
@@ -159,4 +161,5 @@ class Post
 
         return $this;
     }
+
 }

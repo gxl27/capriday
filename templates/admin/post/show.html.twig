@@ -25,14 +25,42 @@
             </tr>
             <tr>
                 <th>Status</th>
-                <td>{{ post.status }}</td>
+                <td>{{ post.statusFormat }}</td>
             </tr>
             <tr>
                 <th>CreatedBy</th>
                 <td>{{ post.createdBy }}</td>
             </tr>
+            <tr>
+                <th>Fisiere</th>
+                <td>
+
+                {% if post.postfiles.values %}
+                    {% for pf in post.postfiles %}
+                         <a href="{{ path('uploads_entities', {'entity':'postfiles', 'doc': pf.document}) }}">
+                        {# {% dump(pf.extension) %} #}
+                        <span>{{ pf.name }}</span></a>
+                        <form method="post" action="{{ path('delete_entities', {'entity': 'postfiles', 'doc': pf.document}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ pf.document) }}">
+                            <button class="btn">Delete</button>
+                        </form>
+                    {% endfor %}
+              
+                {% else %}
+                <span>Fara fisiere atasate</span>
+                {% endif %}
+                </td>
+            </tr>
         </tbody>
     </table>
+
+    <div>
+        Adauga fisier
+        {{ form_start(pfForm) }}
+        {{ form_widget(pfForm) }}
+                <button>Adauga fisier</button>
+        {{ form_end(pfForm) }}
+    </div>
 
     <a href="{{ path('post_index') }}">back to list</a>
 

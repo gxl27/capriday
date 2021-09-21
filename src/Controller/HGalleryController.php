@@ -5,14 +5,14 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class GaleriiController extends HomeController
+class HGalleryController extends HomeController
 {
     /**
-     * @Route("/galerii", name="galerii")
+     * @Route("/gallery", name="hgallery")
      */
-    public function galerii(): Response
+    public function gallery(): Response
     {
-        return $this->render('galerii/index.html.twig', [
+        return $this->render('hgallery/index.html.twig', [
             'projects' => $this->projects,
         ]);
     }

@@ -3,10 +3,13 @@
 {% block title %}Proiecte{% endblock %}
 
 {% block container %}
-    <h1>Proiecte lista</h1>
-    <div class="pagination-bar">
-        {{ knp_pagination_render(projects, '@KnpPaginator/Pagination/custom_pagination.html.twig') }}
+    <div class="flex-end">
+        <div class="pagination-bar">
+            {{ knp_pagination_render(projectsKnp,  '/_pagination/custom_pagination_pages.html.twig') }}
+        </div>
     </div>
+    <h1>Proiecte lista</h1>
+
     <table class="table">
         <thead>
             <tr>
@@ -14,7 +17,9 @@
                 <th>Numele proiectului</th>
                 <th>Descriere</th>
                 <th>Data de inceput</th>
+                <th>Data de sfarsit</th>
                 <th>Status</th>
+              
                 <th>Creat la</th>
                 <th>Modificat la</th>
                 <th>Creat de</th>
@@ -22,13 +27,33 @@
             </tr>
         </thead>
         <tbody>
-        {% for project in projects %}
+        {% for project in projectsKnp %}
+            {% if project.status == 1 %}
+            <tr class='finalizat'>
+            {% elseif project.status == 2 %}
+            <tr class='inactiv'>
+            {% else %}
             <tr>
-                <td>{{(projects.currentPageNumber - 1) * projects.getItemNumberPerPage + loop.index }}</td>
+            {% endif %}
+                <td>{{(projectsKnp.currentPageNumber - 1) * projectsKnp.getItemNumberPerPage + loop.index }}</td>
                 <td>{{ project.name }}</td>
                 <td>{{ project.description }}</td>
                 <td>{{ project.dateStartAt ? project.dateStartAt|datero('d-M-Y') : '' }}</td>
+                <td>{{ project.dateEndAt ? project.dateEndAt|datero('d-M-Y') : '' }}</td>
                 <td>{{ project.statusFormat }}</td>
+               
+                <td>
+                {% if project.projectfiles.values %}
+                    {% for pf in project.projectfiles %}
+                         <a href="{{ path('uploads_entities', {'entity':'projectfiles', 'doc': pf.document}) }}">
+                        {# {% dump(pf.extension) %} #}
+                        <span>{{ pf.name }}</span></a>
+                    {% endfor %}
+              
+                {% else %}
+               
+                {% endif %}
+                </td>
                 <td>
                     <a href="{{ path('project_show', {'id': project.id}) }}">Detalii</a>
                 </td>
@@ -40,6 +65,10 @@
         {% endfor %}
         </tbody>
     </table>
-
+    <div class="flex-center">
+        <div class="pagination-bar">
+            {{ knp_pagination_render(projectsKnp,  '/_pagination/custom_pagination_pages.html.twig') }}
+        </div>
+    </div>
     <a href="{{ path('project_new') }}">Create new</a>
 {% endblock %}

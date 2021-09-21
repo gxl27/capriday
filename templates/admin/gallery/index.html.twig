@@ -3,6 +3,11 @@
 {% block title %}Albume{% endblock %}
 
 {% block container %}
+    <div class="flex-end">
+        <div class="pagination-bar">
+            {{ knp_pagination_render(galleryKnp,  '/_pagination/custom_pagination_pages.html.twig') }}
+        </div>
+    </div>
     <h1>Albume lista</h1>
 
     <table class="table">
@@ -12,18 +17,38 @@
                 <th>Name</th>
                 <th>CreatedAt</th>
                 <th>Description</th>
-                <th>Position</th>
+                <th>Nivel</th>
+                <th>Status</th>
+                <th>Fotografii</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for gallery in galleries %}
+        {% for gallery in galleryKnp %}
+            {% if gallery.status == 2 %}
+            <tr class='inactiv'>
+            {% else %}
             <tr>
-                <td>{{ gallery.id }}</td>
+            {% endif %}
+                <td>{{(galleryKnp.currentPageNumber - 1) * galleryKnp.getItemNumberPerPage + loop.index }}</td>
                 <td>{{ gallery.name }}</td>
                 <td>{{ gallery.CreatedAt ? gallery.CreatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ gallery.description }}</td>
-                <td>{{ gallery.position }}</td>
+                <td>{{ gallery.level }}</td>
+                <td>{{ gallery.statusFormat }}</td>
+                <td>
+                {% if gallery.photos.values %}
+                    {% for gp in gallery.photos %}
+                         <a href="{{ path('uploads_entities', {'entity':'gallery', 'doc': gp.document}) }}">
+                        {# {% dump(pf.extension) %} #}
+                        <span>{{ gp.name }}</span></a>
+                    {% endfor %}
+              
+                {% else %}
+               
+                {% endif %}
+                </td>
+
                 <td>
                     <a href="{{ path('gallery_show', {'id': gallery.id}) }}">show</a>
                     <a href="{{ path('gallery_edit', {'id': gallery.id}) }}">edit</a>
@@ -36,6 +61,10 @@
         {% endfor %}
         </tbody>
     </table>
-
+    <div class="flex-center">
+        <div class="pagination-bar">
+            {{ knp_pagination_render(galleryKnp,  '/_pagination/custom_pagination_pages.html.twig') }}
+        </div>
+    </div>
     <a href="{{ path('gallery_new') }}">Create new</a>
 {% endblock %}

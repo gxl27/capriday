@@ -14,8 +14,8 @@ class Project
 {
     const STATUS = [
         0 => 'Activ',
-        1 => 'Inactiv',
-        2 => 'Finalizat',
+        1 => 'Finalizat',
+        2 => 'Inactiv',
     ];
 
     /**
@@ -51,29 +51,28 @@ class Project
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $updatedAt;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $createdBy;
 
     /**
-     * @ORM\OneToMany(targetEntity=Projectfiles::class, mappedBy="project")
+     * @ORM\OneToMany(targetEntity=Projectfiles::class, mappedBy="project", orphanRemoval=true, cascade={"persist", "remove"}))
      */
     private $projectfiles;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $position;
+    private $level;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateEndAt;
 
     public function __construct()
     {
         $this->createdAt = new \DateTime();
-        $this->updatedAt = new \DateTime();
         $this->status = 0;
         $this->postfiles = new ArrayCollection();
     }
@@ -147,18 +146,6 @@ class Project
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
     public function getCreatedBy(): ?string
     {
         return $this->createdBy;
@@ -201,14 +188,26 @@ class Project
         return $this;
     }
 
-    public function getPosition(): ?int
+    public function getLevel(): ?int
     {
-        return $this->position;
+        return $this->level;
     }
 
-    public function setPosition(?int $position): self
+    public function setLevel(?int $level): self
     {
-        $this->position = $position;
+        $this->level = $level;
+
+        return $this;
+    }
+
+    public function getDateEndAt(): ?\DateTimeInterface
+    {
+        return $this->dateEndAt;
+    }
+
+    public function setDateEndAt(?\DateTimeInterface $dateEndAt): self
+    {
+        $this->dateEndAt = $dateEndAt;
 
         return $this;
     }

@@ -1,0 +1,49 @@
+{% extends 'container.html.twig' %}
+
+{% block title %}Proiecte{% endblock %}
+
+{% block container %}
+<div class="flex-end">
+    <div class="pagination-bar">
+        {{ knp_pagination_render(projectsKnp, '/_pagination/custom_pagination_pages.html.twig') }}
+    </div>
+</div>
+
+{% for project in projectsKnp %}
+    <section id="s-{{ loop.index }}" class='section-item'>
+        <div>{{(projectsKnp.currentPageNumber - 1) * projectsKnp.getItemNumberPerPage + loop.index }}</div>
+        <div>Nume proiect: {{ project.name }}</div>
+        <div>Descriere proiect{{ project.description }}</div>
+        {% if project.dateStartAt %}
+            <div>Data inceperii proiect: {{ project.dateStartAt|datero('d M Y') }}</div>
+        {% endif %}
+        {% if project.dateEndAt %}
+            <div>Data terminarii proiect: {{ project.dateEndAt|datero('d M Y') }}</div>
+        {% endif %}
+        
+       
+        <div>
+            <div>
+            {% if project.projectfiles.values %}
+                <h5>Fisiere atasate</h5>
+                {% for pf in project.projectfiles %}
+                        <a href="{{ path('uploads_entities', {'entity':'projectfiles', 'doc': pf.document}) }}">
+                    {# {% dump(pf.extension) %} #}
+                    <span>{{ pf.name }}</span></a>
+                {% endfor %}
+                
+                {% else %}
+                <span>Fara fisiere atasate</span>
+            {% endif %}
+            </div>
+       
+        </div>
+    </section>
+
+{% endfor %}
+<div class='flex-center'>
+    <div class="pagination-bar">
+        {{ knp_pagination_render(projectsKnp, '/_pagination/custom_pagination_pages.html.twig') }}
+    </div>
+</div>
+{% endblock %}

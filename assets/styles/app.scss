@@ -72,6 +72,7 @@ font-size: clamp(0.800rem, calc( 1rem + 0.320vw ), 0.900rem);
 }
 
 ::-webkit-scrollbar {
+
   width: 10px;
 }
 
@@ -82,12 +83,14 @@ font-size: clamp(0.800rem, calc( 1rem + 0.320vw ), 0.900rem);
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #858585;
+  border-radius: 15px;
+  transition: ease-out .3s all;
+  background: #868686;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #757575;
+  background: #6d6d6d;
 }
 
 // disable tracking mouse
@@ -490,7 +493,27 @@ section {
     flex-direction: column;
     padding: sizing.$c-padding-h 0;
   }
+
+ 
 }
+.section-columns {
+  gap:2%;
+  font-size: .9em;
+
+  > div {
+    margin-bottom: 1em;
+  }
+  h2 {
+    font-size: 1.2em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+}
+.section-item {
+  padding-top:2em !important;
+  padding-bottom: 2em !important;
+}
+
 .rand-img {
   margin-top: 2em;
   border-radius: 7px;
@@ -510,6 +533,13 @@ section {
   border-bottom: 1px solid rgba(128, 128, 128, 0.295);
   // background-color: config.$banner-color;
 
+}
+
+.home-card {
+  border: 1px solid rgba(211, 211, 211, 0.74);
+  border-radius: 5%;
+  padding: 2%;
+  box-shadow: 0 0 4px 0 rgba(165, 165, 165, 0.74);
 }
 
 .download-btn span{

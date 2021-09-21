@@ -3,12 +3,17 @@
 {% block title %}Stiri si noutati{% endblock %}
 
 {% block container %}
+    <div class="flex-end">
+        <div class="pagination-bar">
+            {{ knp_pagination_render(newsKnp,  '/_pagination/custom_pagination_pages.html.twig') }}
+        </div>
+    </div>
     <h1>Stiri si noutati lista</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Crt</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Link</th>
@@ -16,22 +21,26 @@
                 <th>CreatedAt</th>
                 <th>CreatedBy</th>
                 <th>Status</th>
-                <th>Position</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for news in news %}
+        {% for news in newsKnp %}
+            {% if news.status == 1 %}
+            <tr class='important'>
+            {% elseif news.status == 2 %}
+            <tr class='inactiv'>
+            {% else %}
             <tr>
-                <td>{{ news.id }}</td>
+            {% endif %}
+                <td>{{(newsKnp.currentPageNumber - 1) * newsKnp.getItemNumberPerPage + loop.index }}</td>
                 <td>{{ news.name }}</td>
                 <td>{{ news.description }}</td>
                 <td>{{ news.link }}</td>
                 <td>{{ news.type }}</td>
                 <td>{{ news.createdAt ? news.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ news.createdBy }}</td>
-                <td>{{ news.status }}</td>
-                <td>{{ news.position }}</td>
+                <td>{{ news.statusFormat }}</td>
                 <td>
                     <a href="{{ path('news_show', {'id': news.id}) }}">show</a>
                     <a href="{{ path('news_edit', {'id': news.id}) }}">edit</a>
@@ -44,6 +53,11 @@
         {% endfor %}
         </tbody>
     </table>
+    <div class="flex-center">
+        <div class="pagination-bar">
+            {{ knp_pagination_render(newsKnp,  '/_pagination/custom_pagination_pages.html.twig') }}
+        </div>
+    </div>
 
     <a href="{{ path('news_new') }}">Create new</a>
 {% endblock %}

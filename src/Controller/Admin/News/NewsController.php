@@ -18,10 +18,15 @@ class NewsController extends MainController
     /**
      * @Route("/", name="news_index", methods={"GET"})
      */
-    public function index(NewsRepository $newsRepository): Response
+    public function index(NewsRepository $newsRepository, Request $request): Response
     {
+        $newsKnp = $this->paginator->paginate(
+            $newsRepository->findAllStatusQuery(),
+            $request->query->getInt('page', 1),
+                7);
+
         return $this->render('admin/news/index.html.twig', [
-            'news' => $newsRepository->findAll(),
+            'newsKnp' => $newsKnp,
         ]);
     }
 
@@ -85,7 +90,7 @@ class NewsController extends MainController
     }
 
     /**
-     * @Route("/{id}", name="news_delete", methods={"POST"})
+     * @Route("/{id}/delete", name="news_delete", methods={"POST"})
      */
     public function delete(Request $request, News $news): Response
     {

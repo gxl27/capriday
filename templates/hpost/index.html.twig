@@ -1,0 +1,39 @@
+{% extends 'container.html.twig' %}
+
+{% block title %}Anunturi{% endblock %}
+
+{% block container %}
+
+    <div class="flex-end">
+        <div class="pagination-bar">
+            {{ knp_pagination_render(postsKnp, '/_pagination/custom_pagination_pages.html.twig') }}
+        </div>
+    </div>
+    <h1>Anunturi lista</h1>
+
+    {# Important posts #}
+    {% if postsKnp.currentPageNumber == 1 %}
+    <div class="important">
+    {% for post in postsI %}
+
+        <div>{{ post.name }}</div>
+        <div>{{ post.description }}</div>
+    {% endfor %}
+        </div>
+    {% endif %}
+
+
+    {# Normal Posts #}
+    <div class="normal">
+    {% for post in postsKnp %}
+        <div>{{(postsKnp.currentPageNumber - 1) * postsKnp.getItemNumberPerPage + loop.index }}</div>
+        <div>{{ post.name }}</div>
+        <div>{{ post.description }}</div>
+    {% endfor %}
+    </div>
+    <div class="flex-center">
+        <div class="pagination-bar">
+            {{ knp_pagination_render(postsKnp, '/_pagination/custom_pagination_pages.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

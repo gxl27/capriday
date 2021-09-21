@@ -1,0 +1,68 @@
+{% extends 'container.html.twig' %}
+
+{% block title %}Stiri si noutati{% endblock %}
+
+{% block container %}
+    <div class="flex-end">
+        <div class="pagination-bar">
+            {{ knp_pagination_render(newsKnp, '/_pagination/custom_pagination_pages.html.twig') }}
+        </div>
+    </div>
+    {# Important posts #}
+    {% if newsKnp.currentPageNumber == 1 %}
+        <div class="important">
+        {% for new in newsI %}
+            <div>{{ new.name }}</div>
+            <div>{{ new.description }}</div>
+            {% if new.type == 0 %}
+            <div>
+            <a href="{{ new.link }}">Link: {{ new.link }}</a>
+            </div>
+            {% endif %}
+
+            {% if new.type == 1 %}
+            <div>
+                {{ new.link|raw }}
+            </div>
+            {% endif %}
+
+            {% if new.type == 2 %}
+            <div>
+                <img src="{{ new.link }}">
+            </div>
+            {% endif %}
+
+        {% endfor %}
+        </div>
+    {% endif %}
+    
+    <div class="normal">
+    {% for new in newsKnp %}
+        <div>{{(newsKnp.currentPageNumber - 1) * newsKnp.getItemNumberPerPage + loop.index }}</div>
+        <div>{{ new.name }}</div>
+        <div>{{ new.description }}</div>
+        {% if new.type == 0 %}
+        <div>
+             <a href="{{ new.link }}">Link: {{ new.link }}</a>
+        </div>
+        {% endif %}
+
+        {% if new.type == 1 %}
+        <div>
+            {{ new.link|raw }}
+        </div>
+        {% endif %}
+
+         {% if new.type == 2 %}
+        <div>
+            <img src="{{ new.link }}">
+        </div>
+         {% endif %}
+    {% endfor %}
+    </div>
+    <div class="flex-center">
+        <div class="pagination-bar">
+            {{ knp_pagination_render(newsKnp, '/_pagination/custom_pagination_pages.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

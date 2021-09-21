@@ -28,7 +28,7 @@ private $em;
         $entity = $args->getEntity();
         if($entity instanceof Project)
         {
-            $entity->setUpdatedAt(new \DateTime());
+            // $entity->setUpdatedAt(new \DateTime());
         }
 
     }

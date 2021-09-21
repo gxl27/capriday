@@ -19,26 +19,38 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
-    public function findAllImportant()
+    public function findAllStatus($status = NULL)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.status = 1')
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(3)
-            ->getQuery()
+        
+        return $this->findAllStatusQuery($status)
             ->getResult()
         ;
     }
 
-    public function findAllNormal()
+    public function findAllStatusQuery($status = NULL)
     {
+        $qb = $this->getAll();
+
+        if($status !== NULL){
+            if(is_array($status)){
+                $qb = $qb->andWhere('r.status IN (:status)')
+                ->setParameter('status', $status);
+            }else {
+                $qb = $qb->andWhere('p.status = :status')
+                ->setParameter('status', $status);
+            }
+            
+        }
+        $qb = $qb->getQuery();
+
+        return $qb;
+            
+        
+    }
+
+    public function getAll() {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.status = 0')
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(3)
-            ->getQuery()
-            ->getResult()
-        ;
+        ->orderBy('p.id', 'DESC');
     }
 
     // /**

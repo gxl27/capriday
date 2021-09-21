@@ -102,8 +102,8 @@ nav {
     #navbar {
         max-width: 1100px !important;
         flex-direction: row;
-        padding:0 3rem;
-
+        padding:0 0;
+       
 
         > ul {
             position: relative;
@@ -111,9 +111,11 @@ nav {
             flex-direction: row;
             display: flex;
             flex:1;
-            justify-content: center;
+            justify-content: flex-end;
             flex-wrap: wrap;
             // min-height: config.$navbar-height;
+
+         
         }
 
         #logo {
@@ -154,6 +156,8 @@ nav {
 #navbar-mobile-btn {
     display: none;
 }
+
+
 
 #navbar ul#socialmedia {
     border-left: 1px solid rgba(128, 128, 128, 0.26);

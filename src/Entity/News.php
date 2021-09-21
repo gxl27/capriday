@@ -11,14 +11,15 @@ use Doctrine\ORM\Mapping as ORM;
 class News
 {
     const STATUS = [
-        0 => 'normal',
-        1 => 'important',
+        0 => 'Normal',
+        1 => 'Important',
+        2 => 'Inactiv'
     ];
 
     const TYPE = [
-        0 => 'link',
-        1 => 'youtube',
-        2 => 'image',
+        0 => 'Link',
+        1 => 'Youtube',
+        2 => 'Imagine (link)',
     ];
 
     /**
@@ -63,10 +64,6 @@ class News
      */
     private $status;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $position;
 
     public function __construct()
     {
@@ -171,15 +168,4 @@ class News
         return $this;
     }
 
-    public function getPosition(): ?int
-    {
-        return $this->position;
-    }
-
-    public function setPosition(?int $position): self
-    {
-        $this->position = $position;
-
-        return $this;
-    }
 }
