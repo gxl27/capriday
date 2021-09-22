@@ -1,5 +1,11 @@
 # See dos how to configure the bundle: https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html
 liip_imagine:
+    resolvers:
+            default:
+                web_path:
+                    web_root: /home/broiniac/projects/company_name/portal/app/../web
+                    cache_prefix: media/cache
+    default_image: /assets/images/empty_gallery.png
     # valid drivers options include "gd" or "gmagick" or "imagick"
     driver: "gd"
     filter_sets:

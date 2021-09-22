@@ -5,6 +5,13 @@
 # to each configured DirectoryIndex file (e.g. index.php, index.html, index.pl).
 DirectoryIndex index.php
 
+#Redirect /admin  https://example.com/newdirectory/
+
+
+#ErrorDocument 404
+
+#Redirect 301 / http://example.com/
+
 # By default, Apache does not evaluate symbolic links if you did not enable this
 # feature in your server configuration. Uncomment the following line if you
 # install assets as symlinks or if you experience problems related to symlinks
@@ -64,3 +71,6 @@ DirectoryIndex index.php
         # RedirectTemp cannot be used instead
     </IfModule>
 </IfModule>
+#<Directory "/opt/lampp/htdocs/caprirom/admin">
+#    Require all denied
+#</Directory>

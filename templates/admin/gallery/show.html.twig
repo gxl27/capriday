@@ -36,12 +36,13 @@
                 <td>
 
                 {% if gallery.photos.values %}
-                    {% for gp in gallery.photos %}
-                         <a href="{{ path('uploads_entities', {'entity':'photos', 'doc': gp.document}) }}">
+                    {% for photo in gallery.photos %}
+                        <img data-id=" {{ loop.index }}"  src=" {{ vich_uploader_asset(photo, 'galleryImages') | imagine_filter('mini') }} " class='home-profileimg'  alt="img-room{{ photo.id }}">
+                         <a href="{{ path('uploads_entities', {'entity':'photos', 'doc': photo.document}) }}">
                         {# {% dump(pf.extension) %} #}
-                        <span>{{ gp.name }}</span></a>
-                        <form method="post" action="{{ path('delete_entities', {'entity': 'photos', 'doc': gp.document}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ gp.document) }}">
+                        <span>{{ photo.name }}</span></a>
+                        <form method="post" action="{{ path('delete_entities', {'entity': 'photos', 'doc': photo.document}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ photo.document) }}">
                             <button class="btn">Delete</button>
                         </form>
                     {% endfor %}

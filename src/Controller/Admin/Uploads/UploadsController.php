@@ -2,6 +2,8 @@
 
 namespace App\Controller\Admin\Uploads;
 
+use App\Repository\PhotoRepository;
+use App\Repository\PostfilesRepository;
 use App\Repository\ProjectfilesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +22,7 @@ class UploadsController extends AbstractController
      */
     public function uploads($entity, $doc, Request $request)
     {
-        dump($request);
+
         $fileuri = "uploads/$entity/$doc";
         if(file_exists($fileuri)){
             // $response = new BinaryFileResponse($fileuri);
@@ -57,15 +59,16 @@ class UploadsController extends AbstractController
     /**
      * @Route("/{entity}/{doc}/delete", name="delete_entities")
      */
-    public function delete($entity, $doc, Request $request, ProjectfilesRepository $projectfilesRep)
+    public function delete($entity, $doc, Request $request, ProjectfilesRepository $projectfilesRep, PostfilesRepository $postfilesRep, PhotoRepository $photosRep)
     {
-       
+
         $fileuri = "uploads/$entity/$doc";
         if(file_exists($fileuri)){
             $rep = $entity."Rep";
             $id = ${$rep}->findOneBy(["document" => $doc]);
             if ($this->isCsrfTokenValid('delete'.$id->getDocument(), $request->request->get('_token'))) {
                 $entityManager = $this->getDoctrine()->getManager();
+
                 $entityManager->remove($id);
                 $entityManager->flush();
 

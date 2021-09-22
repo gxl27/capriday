@@ -9,7 +9,7 @@ parameters:
     uploads_directory: '%kernel.project_dir%/public/uploads/'
     app.path.projectfiles: /uploads/projectfiles
     app.path.postfiles: /uploads/postfiles
-    app.path.galleryimages: /uploads/galleryimages
+    app.path.galleryimages: /uploads/photos
     
 services:
     # default configuration for services in *this* file

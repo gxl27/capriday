@@ -90,6 +90,10 @@ class GalleryController extends MainController
                 $entityManager->persist($gallery);
                 $entityManager->flush();
                
+                $message = "Fotografie adaugata cu success";
+                $this->addFlash('success', $message);
+
+                return $this->redirect($request->headers->get('referer'));
             }
           
             else {

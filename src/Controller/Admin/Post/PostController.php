@@ -92,12 +92,19 @@ class PostController extends MainController
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($post);
                 $entityManager->flush();
+
+                $message = "Fisier adaugat cu success";
+                $this->addFlash('success', $message);
+
+                return $this->redirect($request->headers->get('referer'));
                
             }
           
             else {
                 $message = "Tipul fisierului nu este acceptat!";
                 $this->addFlash('alert', $message);
+                
+                return $this->redirect($request->headers->get('referer'));
             }
         }
 

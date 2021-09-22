@@ -98,17 +98,17 @@ class ProjectController extends MainController
 
                 $message = "Fisier adaugat cu success";
                 $this->addFlash('success', $message);
+
+                return $this->redirect($request->headers->get('referer'));
                 ///////////////////////////////////////////////
                 // de rezolvat si api delete pt posts si gallery
-                // $projectfile = new Projectfiles();
-                // $projectfile->setProject($project);
-                // $pfForm = $this->createForm(ProjectfileType::class, $projectfile);
        
             }
           
             else {
                 $message = "Tipul fisierului nu este acceptat!";
                 $this->addFlash('alert', $message);
+                return $this->redirect($request->headers->get('referer'));
             }
         }
         
@@ -139,7 +139,7 @@ class ProjectController extends MainController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            dump($project);
+
             // return $this->redirectToRoute('project_index');
         }
 

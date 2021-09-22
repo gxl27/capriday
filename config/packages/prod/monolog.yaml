@@ -6,37 +6,37 @@ monolog:
             level:    error
             type:  rotating_file
             max_files: 30
-            path:     '%kernel.logs_dir%/dev/security.log'
+            path:     '%kernel.logs_dir%/prod/security.log'
             channels: ["security"]
         doctrine:
             # log all messages (since debug is the lowest level)
             level:    error
             type:  rotating_file
             max_files: 30
-            path:     '%kernel.logs_dir%/dev/doctrine.log'
+            path:     '%kernel.logs_dir%/prod/doctrine.log'
             channels: ["doctrine"]
         request:
             # log all messages (since debug is the lowest level)
             level:    critical
             type:  rotating_file
             max_files: 30
-            path:     '%kernel.logs_dir%/dev/request.log'
+            path:     '%kernel.logs_dir%/prod/request.log'
             channels: ["request"]
         login:
             type:  rotating_file
             max_files: 30
-            path: "%kernel.logs_dir%/dev/login.log"
+            path: "%kernel.logs_dir%/prod/login.log"
             level: debug
             channels: ["login"]
         contact:
             type:  rotating_file
             max_files: 30
-            path: "%kernel.logs_dir%/dev/contact.log"
+            path: "%kernel.logs_dir%/prod/contact.log"
             level: debug
             channels: ["contact"]
         main:
             type:  rotating_file
             max_files: 30
-            path: '%kernel.logs_dir%/dev/main.log'
+            path: '%kernel.logs_dir%/prod/main.log'
             level: error
             channels: ['!event', '!doctrine', '!security', '!request', '!login', '!contact']
