@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class Photo
 {
     const EXTENSIONS = [
-        'jpeg', 'jpg', 'png', 'svg'
+        'jpeg', 'jpg', 'png'
     ];
 
     /**

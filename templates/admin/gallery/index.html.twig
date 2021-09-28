@@ -14,12 +14,14 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Poze de profil</th>
+                <th>Nr fotografii</th>
                 <th>Name</th>
                 <th>CreatedAt</th>
                 <th>Description</th>
                 <th>Nivel</th>
                 <th>Status</th>
-                <th>Fotografii</th>
+                
                 <th>actions</th>
             </tr>
         </thead>
@@ -31,23 +33,39 @@
             <tr>
             {% endif %}
                 <td>{{(galleryKnp.currentPageNumber - 1) * galleryKnp.getItemNumberPerPage + loop.index }}</td>
+                <td>
+                {% set profile = NULL %}
+                {% if gallery.photos.values %}
+                    
+                    {% for photo in gallery.photos %}
+                         {# <a href="{{ path('uploads_entities', {'entity':'photos', 'doc': photo.document}) }}">
+                        <span>{{ photo.name }}</span></a> #}
+                        {% if photo.profile == true %}
+                            {% set profile = 1 %}
+                             <img data-id=" {{ loop.index }}"  src=" {{ vich_uploader_asset(photo, 'galleryImages') | imagine_filter('thumb') }} " class='home-profileimg'  alt="img-room{{ photo.id }}">
+                        {% endif %}
+                    {% endfor %}
+                    {% if profile is null %}
+                         <img src="/img/no-picture-thumb.jpg">
+                    {% endif %}
+                    </td>
+                    <td>
+                   
+                    <span>{{ gallery.photos|length }}</span>
+              
+                {% else %}
+                    <img src="/img/no-picture-thumb.jpg">
+                    </td>
+                    <td>
+                     <span> - </span>
+                {% endif %}
+                </td>
                 <td>{{ gallery.name }}</td>
                 <td>{{ gallery.CreatedAt ? gallery.CreatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ gallery.description }}</td>
                 <td>{{ gallery.level }}</td>
                 <td>{{ gallery.statusFormat }}</td>
-                <td>
-                {% if gallery.photos.values %}
-                    {% for gp in gallery.photos %}
-                         <a href="{{ path('uploads_entities', {'entity':'gallery', 'doc': gp.document}) }}">
-                        {# {% dump(pf.extension) %} #}
-                        <span>{{ gp.name }}</span></a>
-                    {% endfor %}
-              
-                {% else %}
-               
-                {% endif %}
-                </td>
+                
 
                 <td>
                     <a href="{{ path('gallery_show', {'id': gallery.id}) }}">show</a>

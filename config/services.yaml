@@ -10,7 +10,8 @@ parameters:
     app.path.projectfiles: /uploads/projectfiles
     app.path.postfiles: /uploads/postfiles
     app.path.galleryimages: /uploads/photos
-    
+
+  
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -38,5 +39,8 @@ services:
 
     App\Listener\AppSubscriber:
         autowire: true
+        tags:
+        - { name: doctrine.event_subscriber }
+    App\Listener\ImageCacheSubscriber:
         tags:
         - { name: doctrine.event_subscriber }

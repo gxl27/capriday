@@ -300,7 +300,15 @@ if(axiosIdLink){
             axios.post(link,{
                 id:id})
                 .then(res =>{
-                    location.reload();
+                    console.log(f.dataset.noreset)
+                    if(!f.dataset.noreset){
+                          location.reload();
+                       
+                    }else{
+                        // if the element has data-noreset="true", the page will not be refreshed
+                      
+                    }
+                   
                 })
                 .catch(err =>console.log(err));          
         })
