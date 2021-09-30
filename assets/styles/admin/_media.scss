@@ -167,7 +167,7 @@ nav {
     // flex:1!important;
     flex-basis: auto !important;
     flex-shrink: 0 !important;
-
+    height: 100%;
 
     span {
         // display: none;
@@ -181,16 +181,22 @@ nav {
     a {
       
         display: flex;
-
+        height: 100% !important;
         justify-content: space-between;
-        padding: 1.2rem 1.1rem !important;
+        padding: 0rem 1.1rem !important;
        
+    }
+
+    li {
+        height: 100%;
     }
 
     .spanhide {
         display:none;
       }
-
+    li:hover {
+        background-color: rgb(255, 255, 255);
+    }
 }
 
 body {

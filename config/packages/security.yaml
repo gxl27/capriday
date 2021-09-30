@@ -23,7 +23,7 @@ security:
                     - App\Security\CustomAuthenticator
             logout:
                 path: app_logout
-                target: app_login
+                target: app_logout_message
             
                 # where to redirect after logout
                 # target: app_any_route
@@ -41,8 +41,25 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/home, roles: ROLE_USER }
-        - { path: ^/api/admin, roles: ROLE_USER }
-        - { path: ^/register, roles: ROLE_SUPERADMIN }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/logout_message, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        ######################################################################
+        # the homepage has an access control because it's a portofolio project
+        - { path: ^/home, roles: ROLE_USER }
+
+        ######################################################################
+        # Admin area for the roles 'user' (simple users), 'admin' (powerfull users)
+        # and 'superadmin' (database administrator) 
+        - { path: ^/admin, roles: ROLE_USER }
+        - { path: ^/api/admin, roles: ROLE_USER }
+
+        ######################################################################
+        # role 'admin' and 'superadmin' can see the list of th users and can modify 
+        # globalsettings of the application
+        - { path: ^/admin/settings, roles: [ROLE_ADMIN, ROLE_SUPERADMIN] }
+        
+        #####################################################################
+        # role 'superadmin' can create 'user' and 'admin'
+        - { path: ^/register, roles: ROLE_SUPERADMIN }
+        

@@ -1,6 +1,6 @@
 {% block flash %}
-    
     {% for message in app.flashes('success') %}
+     {% dump(message) %}
         <div class='div-flash bg-light br-success success'>
                 <div>Felicitari</div>
                 <div>{{ message }}</div>
@@ -12,6 +12,7 @@
     {% endfor %}
     
     {% for message in app.flashes('alert') %}
+    {% dump(message) %}
     <div class='div-flash bg-light br-danger danger'>
         <div>ALERTA</div>
         <div>{{ message }}</div>

@@ -3,5 +3,52 @@
 {% block title %}Setari{% endblock %}
 
 {% block container %}
+<div class="flex-end">
+    <div class="pagination-bar">
+        {{ knp_pagination_render(usersKnp,  '/_pagination/custom_pagination_pages.html.twig') }}
+    </div>
+</div>
+<h1>Proiecte lista</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Crt</th>
+            <th>Poza profil</th>
+            <th>Username</th>
+            <th>Rol</th>
+            <th>Creat la</th>
+          
+        </tr>
+    </thead>
+    <tbody>
+    {% for user in usersKnp %}
+        {% dump(user.roles) %}
+        <tr>
+            <td>{{(usersKnp.currentPageNumber - 1) * usersKnp.getItemNumberPerPage + loop.index }}</td>
+            <td>
+             {% if user.document %}
+              <img data-id=" {{ loop.index }}"  src=" {{ vich_uploader_asset(user, 'userImages') | imagine_filter('thumb') }} ">
+             {% else %}
+              <img src="/img/no-picture-thumb.jpg">
+             {% endif %}
+            </td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.rolesFormat }}</td>
+            <td>{{ user.createdAt ? user.createdAt|datero('d-M-Y') : '' }}</td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="9">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<div class="flex-center">
+    <div class="pagination-bar">
+        {{ knp_pagination_render(usersKnp,  '/_pagination/custom_pagination_pages.html.twig') }}
+    </div>
+</div>
+
 
 {% endblock %}

@@ -3,6 +3,7 @@ let hamburger =  document.querySelector('#navbar-mobile-btn');
 let menuItems = document.querySelectorAll('.dropdown');
 let submenuItems = document.querySelectorAll('.submenu');
 let clickCheckMenu = null;
+let checkboxes = document.querySelectorAll('input[type=checkbox]');
 // set link to the logo for the homepage
 let logoContainer = document.querySelector('#logo-container');
 // get submenu links
@@ -16,6 +17,7 @@ let minimize = document.querySelector('.minimize')
 const closebtnflash = document.querySelectorAll('.close-btn-flash');
 // get all the axios requests with link and id parameters
 let axiosIdLink = document.querySelectorAll('.axios-id-link');
+
 
 // check match media to prevent elements 
 if (matchMedia) {
@@ -159,6 +161,27 @@ function scrollToTargetAdjusted(scrolledelement){
 
 logoContainer.addEventListener('click', function(e){
     window.location.pathname = "/admin";
+})
+console.log(document.querySelector("[name='user_change_password'"));
+checkboxes.forEach(function(e){
+    e.addEventListener('click', function(){
+        if(e.classList.contains('checkbox-target')){
+            searchElem = "[name='" + e.dataset.target + "']"; 
+            elem = document.querySelector(searchElem)
+            console.log(elem);
+            if(elem.style.display == "flex"){
+                elem.style.display = 'none';
+            }else{
+                elem.style.display = 'flex';
+            }
+        }
+        if(e.getAttribute('checked') ==  'checked'){
+            e.setAttribute('checked', null) ;
+           console.log('xxx')
+        }else{
+            e.setAttribute('checked', 'checked') ;
+        }
+    })
 })
 
 //
@@ -314,6 +337,8 @@ if(axiosIdLink){
         })
     })
 }
+
+
 
 
 /// DATEPICKER

@@ -3,6 +3,7 @@ let hamburger =  document.querySelector('#navbar-mobile-btn');
 let menuItems = document.querySelectorAll('.dropdown');
 let submenuItems = document.querySelectorAll('.submenu');
 let clickCheckMenu = null;
+let checkboxes = document.querySelectorAll('input[type=checkbox]');
 // set link to the logo for the homepage
 let logoContainer = document.querySelector('#logo-container');
 // get submenu links
@@ -123,6 +124,18 @@ upScreen.addEventListener("click", function(){
         top: 0,
         behavior: "smooth"
         })
+})
+
+// BUTTONS
+checkboxes.forEach(function(e){
+    e.addEventListener('click', function(){
+        if(e.getAttribute('checked') ==  'checked'){
+            e.setAttribute('checked', null) ;
+           console.log('xxx')
+        }else{
+            e.setAttribute('checked', 'checked') ;
+        }
+    })
 })
 
 // menu items scroll on click

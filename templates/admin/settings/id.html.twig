@@ -1,0 +1,46 @@
+{% extends 'container.html.twig' %}
+
+{% block title %}Setari Id{% endblock %}
+
+{% block container %}
+    <div>
+        <div>
+            {% if user.document %}
+            <img src=" {{ vich_uploader_asset(user, 'userImages') | imagine_filter('thumb') }} ">
+            {% else %}
+            <img src="/img/no-picture-thumb.jpg">
+            {% endif %}
+        </div>
+        <div>Username: {{ user.username }}</div>
+        {% if user.email %}
+            <div>Email: {{ user.email }}</div>
+        {% else %}
+             <div> Email: INEXISTENT! <br>
+             <small>Va rugam sa modificati contul si sa introduceti adresa de email. 
+             <br>Acest lucru este important pentru cazul in care ati uitat parola si doriti recuperarea acesteia!</small>
+             </div>
+        {% endif %}
+       
+        <div>Rol: {{ user.rolesFormat }}</div>
+        <div>Creat la: {{ user.createdAt ? user.createdAt|datero('d-M-Y') : '' }}</div>
+        <div>Status: {{ user.getExpiresAtDays.status }}</div>
+        <div>{{ user.getExpiresAtDays.days }}</div>
+        {{ user.getCodeFormated }}
+    </div>
+    <label for="checkbox-target-user">Modificare cont</label>
+    <input id='checkbox-target-user' type='checkbox' class='checkbox-target' data-target='hide-user-form'>
+
+    {# {{ form_row(form.dateStartAt) }} #}
+    <div name='hide-user-form' class='none'>
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn">{{ button_label|default('Save') }}</button>
+        {{ form_end(form) }}
+
+        {{ form_start(formPass) }}
+            {{ form_widget(formPass) }}
+            <button class="btn">{{ button_label|default('Save') }}</button>
+        {{ form_end(formPass) }}
+    </div>
+
+{% endblock %}

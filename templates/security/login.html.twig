@@ -137,6 +137,10 @@
 {% block body %}
 
 <div id='main' class='container'>
+   
+    {% block flashes %}
+        {% include "/_flashes/_flashes.html.twig" %}
+    {% endblock %}
     <div id="main-content">
         <img src="/img/logo.svg" alt="Caprirom">
 

@@ -10,6 +10,7 @@ parameters:
     app.path.projectfiles: /uploads/projectfiles
     app.path.postfiles: /uploads/postfiles
     app.path.galleryimages: /uploads/photos
+    app.path.userimages: /uploads/users
 
   
 services:

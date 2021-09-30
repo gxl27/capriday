@@ -326,6 +326,11 @@ li.li-socialmedia:hover {
 
 // END OF NAVBAR
 
+//change password form
+form[name="user_change_password"]{
+  display: none;
+}
+
 @import 'admin/flatpickr-v1.css';
 
 @import "admin/media";

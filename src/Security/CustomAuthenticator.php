@@ -94,16 +94,32 @@ class CustomAuthenticator extends AbstractFormLoginAuthenticator implements Pass
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
     {
+
+
         // log the username login
         $cred = $this->getCredentials($request);
+        $user = $this->entityManager->getRepository(User::class)->findOneBy(['username' => $cred['username']]);
+        $code = $user->getCodeFormated();
+        $expiresAt = $user->getExpiresAt()->format('d-m-Y');
+        $session = $request->getSession();
+       
+     
+        if($code == 2){
+            $session->getFlashBag()->add('alert', "Contul a expirat la data $expiresAt");
+            return new RedirectResponse($this->urlGenerator->generate('app_logout'));
+        }
+
         $message = $cred['username']." ip:".$request->server->get('REMOTE_ADDR');
         $this->loginLogger->notice("$message");
 
+      
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
+            $session->getFlashBag()->add('success', 'Logare cu succes');
             return new RedirectResponse($targetPath);
         }
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
+        $session->getFlashBag()->add('success', 'Logare cu succes');
         return new RedirectResponse($this->urlGenerator->generate('home'));
         // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }

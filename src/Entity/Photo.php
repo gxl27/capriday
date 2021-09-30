@@ -36,6 +36,11 @@ class Photo
     private $createdAt;
 
     /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+
+    /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateAt;

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,8 +14,9 @@ class SecurityController extends AbstractController
     /**
      * @Route("/login", name="app_login")
      */
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(AuthenticationUtils $authenticationUtils, Request $request): Response
     {
+        dump($request);
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
         // }
@@ -33,5 +35,15 @@ class SecurityController extends AbstractController
     public function logout()
     {
         // throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+    }
+
+    /**
+     * @Route("/logout_message", name="app_logout_message")
+     */
+    public function logout_message(Request $request)
+    {
+        dump($request);
+        $this->addFlash('success', "You've been disconnected. Bye bye !");
+        return $this->redirectToRoute('app_login');
     }
 }
