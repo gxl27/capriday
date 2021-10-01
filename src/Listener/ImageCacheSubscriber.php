@@ -2,6 +2,7 @@
 namespace App\Listener;
 
 use App\Entity\Photo;
+use App\Entity\User;
 use Doctrine\Common\EventSubscriber;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Doctrine\ORM\Event\PreFlushEventArgs;
@@ -30,7 +31,7 @@ private $uploaderHelper;
     {
         return[
             'preRemove',
-            // 'preUpdate'
+            'preUpdate'
         ];
     }
 
@@ -42,15 +43,15 @@ private $uploaderHelper;
         $this->cacheManager->remove($this->uploaderHelper->asset($entity, 'galleryImages'));
     }
     
-    // public function preUpdate(PreUpdateEventArgs $args){
-    //     $entity = $args->getEntity();
-    //     if(!$entity instanceof Photo){
-    //      return;
-    //      }
-    //      $this->cacheManager->remove($this->uploaderHelper->asset($entity, 'galleryImages'));
-    //      if($entity->getGalleryImages() instanceof UploadedFile){
-    //          $this->cacheManager->remove($this->uploaderHelper->asset($entity, 'galleryImages'));
-    //      }
-    //  }
+    public function preUpdate(PreUpdateEventArgs $args){
+        $entity = $args->getEntity();
+        if(!$entity instanceof User){
+         return;
+         }
+         $this->cacheManager->remove($this->uploaderHelper->asset($entity, 'userImages'));
+         if($entity->getUserImages() instanceof UploadedFile){
+             $this->cacheManager->remove($this->uploaderHelper->asset($entity, 'userImages'));
+         }
+     }
 
 }

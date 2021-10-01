@@ -1,0 +1,14 @@
+.consent-popup{
+  background-color: rgb(255, 255, 255);
+  color:black;
+  box-shadow: 0 0 16px rgba(150, 150, 150, 0.863);
+  position: fixed;
+  z-index: 9999;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1em 2em;
+  text-align: center;
+}

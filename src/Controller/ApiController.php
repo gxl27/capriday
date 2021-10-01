@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Project;
 use App\Entity\Photo;
+use App\Entity\User;
 use App\Repository\GalleryRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -82,5 +84,20 @@ class ApiController extends AbstractController
         $this->getDoctrine()->getManager()->flush();   
         
         return new Response('success', $status = 200);   
+    }
+
+    /**
+     * @Route("/admin/settings/{id}/photo/delete", name="api_settings_picture_delete", methods={"POST"})
+     */
+    public function settingsPhotoDelete(User $user, Request $request): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        if($user->getDocument()){
+            $user->setDocument(NULL);
+            $entityManager->persist($user);
+            $this->getDoctrine()->getManager()->flush();   
+        }
+        
+        return $this->redirect($request->headers->get('referer')); 
     }
 }

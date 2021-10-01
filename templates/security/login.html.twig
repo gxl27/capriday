@@ -187,5 +187,16 @@
 
 {# disable main javascript #}
  {% block mainjavascript %}
-           {# {{ encore_entry_script_tags('admin') }} #}
+ <script src='/unlinkedJs/cookies.js'></script>
+ <script>
+ const closebtnflash = document.querySelectorAll('.close-btn-flash');
+ closebtnflash.forEach(function(e){
+    e.addEventListener('click', function(){
+        e.parentElement.style.display = 'none';
+        e.parentElement.style.opacity = '0';
+
+    })
+})
+ </script>
+    {# {{ encore_entry_script_tags('admin') }} #}
 {% endblock %}   

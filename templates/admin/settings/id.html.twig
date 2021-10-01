@@ -7,6 +7,9 @@
         <div>
             {% if user.document %}
             <img src=" {{ vich_uploader_asset(user, 'userImages') | imagine_filter('thumb') }} ">
+            <form method="post" action="{{ path('api_settings_picture_delete', {'id': user.id}) }}" onsubmit="return confirm('Sunteti sigur ca doriti stergerea pozei de profil?');">
+                <button class="btn">Sterge poza</button>
+            </form>
             {% else %}
             <img src="/img/no-picture-thumb.jpg">
             {% endif %}
@@ -25,7 +28,7 @@
         <div>Creat la: {{ user.createdAt ? user.createdAt|datero('d-M-Y') : '' }}</div>
         <div>Status: {{ user.getExpiresAtDays.status }}</div>
         <div>{{ user.getExpiresAtDays.days }}</div>
-        {{ user.getCodeFormated }}
+
     </div>
     <label for="checkbox-target-user">Modificare cont</label>
     <input id='checkbox-target-user' type='checkbox' class='checkbox-target' data-target='hide-user-form'>

@@ -20,6 +20,7 @@ use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticato
 use Symfony\Component\Security\Guard\PasswordAuthenticatedInterface;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpFoundation\Cookie;
 
 class CustomAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
 {
@@ -94,8 +95,6 @@ class CustomAuthenticator extends AbstractFormLoginAuthenticator implements Pass
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
     {
-
-
         // log the username login
         $cred = $this->getCredentials($request);
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['username' => $cred['username']]);
@@ -103,23 +102,37 @@ class CustomAuthenticator extends AbstractFormLoginAuthenticator implements Pass
         $expiresAt = $user->getExpiresAt()->format('d-m-Y');
         $session = $request->getSession();
        
-     
         if($code == 2){
-            $session->getFlashBag()->add('alert', "Contul a expirat la data $expiresAt");
-            return new RedirectResponse($this->urlGenerator->generate('app_logout'));
+            // redirect if the account expired
+            // set cookie to flash the message with the username and expire date
+            $resp = new RedirectResponse($this->urlGenerator->generate('app_logout'));
+            $cookie = Cookie::create('exp')
+                ->withValue($expiresAt)
+                ->withExpires(strtotime('Fri, 20-May-2100 15:25:52 GMT'))
+                ->withHttponly(false);
+            $cookieUser = Cookie::create('username')
+                ->withValue($user->getUsername())
+                ->withExpires(strtotime('Fri, 20-May-2100 15:25:52 GMT'))     
+                ->withHttponly(false);
+            $resp->headers->setcookie($cookie);
+            $resp->headers->setcookie($cookieUser);
+
+            // $session->getFlashBag()->add('alert', "Contul a expirat la data $expiresAt");
+            return $resp;
         }
+        
 
         $message = $cred['username']." ip:".$request->server->get('REMOTE_ADDR');
         $this->loginLogger->notice("$message");
 
       
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
-            $session->getFlashBag()->add('success', 'Logare cu succes');
+            // $session->getFlashBag()->add('success', 'Logare cu succes');
             return new RedirectResponse($targetPath);
         }
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        $session->getFlashBag()->add('success', 'Logare cu succes');
+        // $session->getFlashBag()->add('success', 'Logare cu succes');
         return new RedirectResponse($this->urlGenerator->generate('home'));
         // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }

@@ -16,7 +16,7 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils, Request $request): Response
     {
-        dump($request);
+      
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
         // }
@@ -34,6 +34,9 @@ class SecurityController extends AbstractController
      */
     public function logout()
     {
+        // the logout route it's set to redirrect to the logout_message
+        // to display the flash message if the account expired via cookies
+
         // throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
@@ -42,8 +45,21 @@ class SecurityController extends AbstractController
      */
     public function logout_message(Request $request)
     {
-        dump($request);
-        $this->addFlash('success', "You've been disconnected. Bye bye !");
-        return $this->redirectToRoute('app_login');
+        // logout route to display the info about the expired accounts.
+        // it redirrects to login route
+
+        $resp = $this->redirectToRoute('app_login');
+
+        // if there are any cookies with messages, display the flash message
+        //  and destroy the cookies
+        if($request->cookies->has('exp')){
+            $exp = $request->cookies->get('exp');
+            $username = $request->cookies->get('username');
+            $this->addFlash('alert', "Contul $username a expirat la data $exp");
+            $resp->headers->clearCookie('exp');
+            $resp->headers->clearCookie('username');
+        }
+        
+        return $resp;
     }
 }

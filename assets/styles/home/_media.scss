@@ -231,7 +231,8 @@ body {
 
 .footer-main-div {
     flex-direction: row;
-
+    justify-content: space-evenly;
+   
 }
 
 .footer-links {
@@ -239,7 +240,23 @@ body {
     border-bottom: none;
     border-left: 1px solid;
     border-right: 1px solid;
+    border-color:rgba(182, 182, 182, 0.541);
     min-height: 100%;
+
+    > div {
+        justify-content: flex-start;
+    }
+}
+.footer-submain-div {
+    flex-direction: row;
+    justify-content: center !important;
+
+    > div {
+        padding: 1.5em;
+      
+
+    }
+
 }
 
 }

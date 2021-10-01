@@ -13,6 +13,7 @@ window.heightnavbar = document.querySelector('nav').style.height;
 //loginbar minimize
 let loginbar = document.querySelector('#loginbar')
 let minimize = document.querySelector('.minimize')
+const closebtnflash = document.querySelectorAll('.close-btn-flash');
 
 
 // check match media to prevent elements 
@@ -203,6 +204,18 @@ minimize.addEventListener('click', function(e){
 logoContainer.addEventListener('click', function(e){
     window.location.pathname = "/home";
 })
+
+//close flash msg
+closebtnflash.forEach(function(e){
+    e.addEventListener('click', function(){
+        e.parentElement.style.display = 'none';
+        e.parentElement.style.opacity = '0';
+
+    })
+})
+
+//
+
 
 //
 // initialize homeinitial (where all the functions are running) after the page loads

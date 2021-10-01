@@ -48,6 +48,11 @@
                     <img src="/img/chev-up.svg" alt="up-arr"/>
                 </div>
             {% endblock %}
+
+            {% block cookies %}
+            {# include cookies (can be removed if needed, overwriting the block) #}
+                {% include "_cookies/_cookies.html.twig" %}
+            {% endblock %}
         {% endif %}
        
         {# extend body #}

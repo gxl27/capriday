@@ -46,7 +46,7 @@ security:
 
         ######################################################################
         # the homepage has an access control because it's a portofolio project
-        - { path: ^/home, roles: ROLE_USER }
+        - { path: ^/, roles: ROLE_USER }
 
         ######################################################################
         # Admin area for the roles 'user' (simple users), 'admin' (powerfull users)
