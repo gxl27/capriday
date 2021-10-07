@@ -1,0 +1,14 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'container.html.twig' %}
+{% block title %}Eroare server{% endblock %}
+{% block container %}
+    <h1>Eroare server (cod eroare 500)</h1>
+
+    <p>
+    {% if app.user.roles.0 == "ROLE_SUPERADMIN" or app.user.roles.0 == "ROLE_ADMIN" %}
+        <a href="{{ path('admin') }}"> Inapoi la panel</a>.
+    {% else %}
+       <a href="{{ path('home') }}"> Inapoi la site</a>.
+    {% endif %}
+    </p>
+{% endblock %}

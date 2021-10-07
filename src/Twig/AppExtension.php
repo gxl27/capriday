@@ -23,6 +23,7 @@ class AppExtension extends AbstractExtension
             new TwigFilter('hex2hsl10', [AppRuntime::class, 'hex2hsl10']),
             new TwigFilter('hexa', [AppRuntime::class, 'hexa']),
             new TwigFilter('datero', [AppRuntime::class, 'datero']),
+            new TwigFilter('datefr', [AppRuntime::class, 'datefr']),
             new TwigFilter('isnumber', [AppRuntime::class, 'isnumber'])
             
         ];
@@ -34,7 +35,9 @@ class AppExtension extends AbstractExtension
             new TwigFunction('area', [AppRuntime::class, 'calculateArea']),
             new TwigFunction('procent', [AppRuntime::class, 'procent']),
             new TwigFunction('die', [AppRuntime::class, 'die']),
-            new TwigFunction('nights', [AppRuntime::class, 'nights'])
+            new TwigFunction('nights', [AppRuntime::class, 'nights']),
+            new TwigFunction('superadminCheck', [AppRuntime::class, 'superadminCheck']),
+            new TwigFunction('adminCheck', [AppRuntime::class, 'adminCheck'])
             
             
         ];

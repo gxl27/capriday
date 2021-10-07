@@ -6,19 +6,43 @@ use App\Controller\Admin\MainController;
 use App\Entity\User;
 use App\Form\UserChangePasswordType;
 use App\Form\UserType;
+use App\Repository\GlobalsettingsRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class SettingsController extends MainController
 {
 
     /**
      * @Route("/admin/settings", name="settings", methods={"GET"})
+   
+     * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPERADMIN')", statusCode=403)
      */
     public function index(UserRepository $userRepository, Request $request): Response
+    {
+        //  * @IsGranted("ROLE_SUPERADMIN" or "ROLE_ADMIN", statusCode=403, message="Acces neautorizat!")
+
+        $usersKnp = $this->paginator->paginate(
+            $userRepository->findAllQuery(),
+            $request->query->getInt('page', 1),
+                7);
+
+        return $this->render('admin/settings/index.html.twig', [
+            'usersKnp' => $usersKnp
+        ]);
+    }
+
+    /**
+     * @Route("/admin/settings", name="settings_global", methods={"GET"})
+   
+     * @Security("is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPERADMIN')", statusCode=403)
+     */
+    public function global_settings(UserRepository $userRepository, Request $request): Response
     {
 
         $usersKnp = $this->paginator->paginate(
@@ -108,4 +132,6 @@ class SettingsController extends MainController
            'formPass' => $formPass->createView()
         ]);
     }
+
+    
 }

@@ -21,7 +21,6 @@ class HGalleryController extends HomeController
                 7);
 
         return $this->render('hgallery/index.html.twig', [
-            'projects' => $this->projects,
             'galleryKnp' => $galleryKnp,
         ]);
     }
@@ -33,7 +32,6 @@ class HGalleryController extends HomeController
     {
 
         return $this->render('hgallery/show.html.twig', [
-            'projects' => $this->projects,
             'gallery' => $gallery,
         ]);
     }

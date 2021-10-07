@@ -17,7 +17,6 @@ class TermsController extends HomeController
         
           
         return $this->render('terms/index.html.twig', [
-            'projects' => $this->projects,
         ]);
     }
 }

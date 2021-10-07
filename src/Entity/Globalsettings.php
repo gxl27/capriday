@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\GlobalsettingsRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,6 +27,13 @@ class Globalsettings
      * @ORM\Column(type="integer")
      */
     private $status;
+
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    
+    private $navActiveProjects;
 
     public function getId(): ?int
     {
@@ -55,4 +63,33 @@ class Globalsettings
 
         return $this;
     }
+
+    public function getNavActiveProjects(): ?int
+    {
+        return $this->navActiveProjects;
+    }
+
+    public function setNavActiveProjects(int $navActiveProjects): self
+    {
+        $this->navActiveProjects = $navActiveProjects;
+
+        return $this;
+    }
+
+    public function getHomeSettings(){
+
+        $arr = ['email' => $this->getEmail(), 'navActiveProjects' => $this->getNavActiveProjects()];
+
+        return $arr;
+    }
+
+    public function getAdminSettings(){
+        
+        $arr = ['mail' => $this->getEmail()];
+
+        return $arr;
+    }
+
+
+   
 }

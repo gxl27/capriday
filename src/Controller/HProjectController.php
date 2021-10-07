@@ -20,7 +20,6 @@ class HProjectController extends HomeController
                 6);
         
         return $this->render('hproject/index.html.twig', [
-            'projects' => $this->projects,
             'projectsKnp' => $projectsKnp
    
         ]);

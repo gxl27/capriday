@@ -7,16 +7,17 @@ const cookieStorage = {
             .reduce((acc, [key, value]) => ({ ...acc, [key.trim()]: value }), {});
         return cookies[item];
     },
-    setItem: (item, value) => {
-        document.cookie = `${item}=${value};`
+    setItem: (item, value, expire) => {
+        MaxAge = "max-age="+ expire
+        document.cookie = `${item}=${value};`+MaxAge;
     }
 }
 
 const storageType = cookieStorage;
 const consentPropertyName = 'cookies_consent';
 const shouldShowPopup = () => !storageType.getItem(consentPropertyName);
-const saveToStorage = () => storageType.setItem(consentPropertyName, true);
-
+const saveToStorage = () => storageType.setItem(consentPropertyName, true, 31536000);
+// 1 year
 window.onload = () => {
 
     const acceptFn = event => {

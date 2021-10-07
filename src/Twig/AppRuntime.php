@@ -183,7 +183,7 @@ class AppRuntime implements RuntimeExtensionInterface
         
         $const = ["Jan" => "Ian", "Feb" => "Feb", "Mar" => "Mar", "Apr" => "Apr", "May" => "Mai","Jun" => "Iun",
         "Jul" => "Iul", "Aug" => "Aug", "Sep" => "Sep", "Oct" => "Oct", "Nov" => "Nov", "Dec" => "Dec", "January" => "Ianuarie", "February" => "Februarie", "March" => "Martie", "April" => "Aprilie", "May" => "Mai","June" => "Iunie",
-        "July" => "Iulie", "August" => "August", "September" => "Septemrie", "October" => "Octombrie", "November" => "Noembrie", "December" => "Decembrie", "Mon" => "Lun", "Tue" => "Mar", "Wed" => "Mie", "Thu" => "Joi", "Fri" => "Vin","Sat" => "Sam",
+        "July" => "Iulie", "August" => "August", "September" => "Septembrie", "October" => "Octombrie", "November" => "Noiembrie", "December" => "Decembrie", "Mon" => "Lun", "Tue" => "Mar", "Wed" => "Mie", "Thu" => "Joi", "Fri" => "Vin","Sat" => "Sam",
         "Sun" => "Dum", "Monday" => "Luni", "Tuesday" => "Marti", "Wednesday" => "Miercuri", "Thursday" => "Joi", "Friday" => "Vineri","Saturday" => "Sambata",
         "Sunday" => "Duminica"];
 
@@ -216,6 +216,36 @@ class AppRuntime implements RuntimeExtensionInterface
         // if($result == ""){
         //     $result = 'zero';
         // }
+
+    }
+
+    public function datefr($date, $param)
+    {
+
+        $text="";
+        $result = str_split($param);
+        
+        $const = ["Jan" => "Janv", "Feb" => "Fevr", "Mar" => "Mars", "Apr" => "Avr", "May" => "Mai","Jun" => "Juin",
+        "Jul" => "Juil", "Aug" => "Aout", "Sep" => "Sept", "Oct" => "Oct", "Nov" => "Nov", "Dec" => "Dec", "January" => "Janvier", "February" => "Février", "March" => "Mars", "April" => "Avril", "May" => "Mai","June" => "Juin",
+        "July" => "Juillet", "August" => "Août", "September" => "Septembre", "October" => "Octobre", "November" => "Novembre", "December" => "Décembre", "Mon" => "Lun", "Tue" => "Mar", "Wed" => "Mer", "Thu" => "Jeu", "Fri" => "Ven","Sat" => "Sam",
+        "Sun" => "Dim", "Monday" => "Lundi", "Tuesday" => "Mardi", "Wednesday" => "Mercredi", "Thursday" => "Jeudi", "Friday" => "Vendredi","Saturday" => "Samedi",
+        "Sunday" => "Dimanche"];
+
+        for($i=0; $i<sizeof($result); $i++){
+            if (!preg_match("/^[a-zA-Z]$/", $result[$i])) {
+                $text = $text.$result[$i];
+                continue;
+            }
+            $singledate = $date->format("$result[$i]");
+            
+            if($result[$i] == 'M' || $result[$i] == 'F' || $result[$i] == 'D' || $result[$i] == 'l'){
+                $inter = $date->format("$result[$i]");
+                $singledate = $const["$inter"];
+            }
+
+            $text = $text.$singledate;
+        }
+        return $text;
 
     }
 
@@ -253,6 +283,26 @@ class AppRuntime implements RuntimeExtensionInterface
     {
         $result = is_numeric($number);
         return $result;
+    }
+
+    public function superadminCheck($user){
+        $roles = $user->getRoles();
+        if($roles){
+            if($roles[0] == 'ROLE_SUPERADMIN'){
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+    public function adminCheck($user){
+        $roles = $user->getRoles();
+        if($roles){
+            if($roles[0] == 'ROLE_ADMIN'){
+                return 1;
+            }
+        }
+        return 0;
     }
 
 }

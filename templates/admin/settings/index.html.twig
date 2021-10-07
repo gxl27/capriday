@@ -3,6 +3,7 @@
 {% block title %}Setari{% endblock %}
 
 {% block container %}
+
 <div class="flex-end">
     <div class="pagination-bar">
         {{ knp_pagination_render(usersKnp,  '/_pagination/custom_pagination_pages.html.twig') }}
@@ -23,7 +24,7 @@
     </thead>
     <tbody>
     {% for user in usersKnp %}
-        {% dump(user.roles) %}
+     
         <tr>
             <td>{{(usersKnp.currentPageNumber - 1) * usersKnp.getItemNumberPerPage + loop.index }}</td>
             <td>
@@ -36,6 +37,13 @@
             <td>{{ user.username }}</td>
             <td>{{ user.rolesFormat }}</td>
             <td>{{ user.createdAt ? user.createdAt|datero('d-M-Y') : '' }}</td>
+            {% if superadminCheck(app.user) %}
+                <td>
+                    <form method="post" action="{{ path('api_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Sunteti sigur ca doriti stergerea pozei de profil?');">
+                    <button class="btn">Sterge cont</button>
+                    </form>
+                </td>
+            {% endif %}
         </tr>
     {% else %}
         <tr>

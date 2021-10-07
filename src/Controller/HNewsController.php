@@ -21,7 +21,6 @@ class HNewsController extends HomeController
                 2);
 
         return $this->render('hnews/index.html.twig', [
-            'projects' => $this->projects,
             'newsI' => $newsI,
             'newsKnp' => $newsKnp,
         ]);

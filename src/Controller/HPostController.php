@@ -22,7 +22,6 @@ class HPostController extends HomeController
                 2);
           
         return $this->render('hpost/index.html.twig', [
-            'projects' => $this->projects,
             'postsI' => $postsI,
             'postsKnp' => $postsKnp,
         ]);

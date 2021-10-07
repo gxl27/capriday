@@ -22,12 +22,17 @@
                     
                     </ul>
                 </li>
-                {% if projects %}
-                    {# if there are more than 8 items, the menubar will not contain the elements #}
-                    {% if projects|length < 7 %}
+           
+                {# check if there is any project #}
+                {% if pa.pa %}
+
+                    {# if there are more than the globalsettings item limit, the menubar will not contain the elements #}
+                   
+                    {% if pa.checkPa %}
+                    
                     <li class='dropdown'><a title='Proiectele Caprirom' title='Proiecte'>Proiecte</a>
                         <ul class='submenu'>
-                        {% for project in projects %}
+                        {% for project in pa.pa %}
                             <li> <a data-route= "{{ path('hproject') }}" data-scroll="#s-{{ loop.index }} "> {{ project.name }}</a></li>
                         {% endfor %}
                         </ul>

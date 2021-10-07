@@ -37,20 +37,23 @@ private $uploaderHelper;
 
     public function preRemove(LifecycleEventArgs $args){
         $entity = $args->getEntity();
-        if(!$entity instanceof Photo){
-            return;
+
+        if($entity instanceof Photo){
+            $this->cacheManager->remove($this->uploaderHelper->asset($entity, 'galleryImages'));
         }
-        $this->cacheManager->remove($this->uploaderHelper->asset($entity, 'galleryImages'));
+        if($entity instanceof User){
+            $this->cacheManager->remove($this->uploaderHelper->asset($entity, 'userImages'));
+        }
     }
     
     public function preUpdate(PreUpdateEventArgs $args){
         $entity = $args->getEntity();
-        if(!$entity instanceof User){
-         return;
-         }
-         $this->cacheManager->remove($this->uploaderHelper->asset($entity, 'userImages'));
-         if($entity->getUserImages() instanceof UploadedFile){
-             $this->cacheManager->remove($this->uploaderHelper->asset($entity, 'userImages'));
+       // not working properly
+        if($entity instanceof User){
+            //  $this->cacheManager->remove($this->uploaderHelper->asset($entity, 'userImages'));
+            // if($entity->getUserImages() instanceof UploadedFile){
+                $this->cacheManager->remove($this->uploaderHelper->asset($entity, 'userImages'));
+            // }
          }
      }
 

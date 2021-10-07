@@ -25,7 +25,7 @@
         {% endif %}
        
         <div>Rol: {{ user.rolesFormat }}</div>
-        <div>Creat la: {{ user.createdAt ? user.createdAt|datero('d-M-Y') : '' }}</div>
+        <div>Creat la: {{ user.createdAt ? user.createdAt|datero('d F Y | h:i') : '' }}</div>
         <div>Status: {{ user.getExpiresAtDays.status }}</div>
         <div>{{ user.getExpiresAtDays.days }}</div>
 
@@ -45,5 +45,7 @@
             <button class="btn">{{ button_label|default('Save') }}</button>
         {{ form_end(formPass) }}
     </div>
-
+    {% if superadminCheck(app.user) or adminCheck(app.user) %}
+           <a href="{{ path('settings') }}">Lista utilizatori</a>
+    {% endif %}
 {% endblock %}

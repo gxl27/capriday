@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * @Route("/api")
@@ -87,6 +88,32 @@ class ApiController extends AbstractController
     }
 
     /**
+     * @Route("/admin/settings/{id}/delete", name="api_user_delete", methods={"POST"})
+     * @Security("is_granted('ROLE_SUPERADMIN')", statusCode=403)
+     */
+    public function userDelete(User $id, Request $request)
+    {
+
+        if($this->getUser()->getRolesFormat() == "ROLE_USER"){
+            $message = "Access neautorizat";
+            $this->addFlash('alert', $message);
+            return $this->redirect($request->headers->get('referer'));
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+       
+
+        $entityManager->remove($id);
+        $entityManager->flush();
+
+        $message = "Cont sters cu success";
+        $this->addFlash('success', $message);
+
+        return $this->redirect($request->headers->get('referer'));
+    
+    }
+
+    /**
      * @Route("/admin/settings/{id}/photo/delete", name="api_settings_picture_delete", methods={"POST"})
      */
     public function settingsPhotoDelete(User $user, Request $request): Response
@@ -100,4 +127,6 @@ class ApiController extends AbstractController
         
         return $this->redirect($request->headers->get('referer')); 
     }
+
+    
 }

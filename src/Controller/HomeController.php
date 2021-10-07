@@ -2,7 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Globalsettings;
 use App\Repository\ProjectRepository;
+use App\Service\Globalsettings as Gs;
+use App\Service\Globalsettings as ServiceGlobalsettings;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,12 +17,17 @@ class HomeController extends AbstractController
 {
     public $projects;
 
-    public function __construct(ProjectRepository $proRep, PaginatorInterface $paginator)
+    public function __construct(PaginatorInterface $paginator, ServiceGlobalsettings $gs)
     {
         // get all projects for navbar
-        $this->projects = $proRep->findAllActive();
+        
 
         $this->paginator = $paginator;
+
+        // $this->gs = $gs;
+        $this->as = $gs->getAs();
+        $this->hs = $gs->getHs();
+     
     }
     /**
      * @Route("/", name="index")
@@ -34,7 +43,7 @@ class HomeController extends AbstractController
     public function home(): Response
     {
         return $this->render('home/index.html.twig', [
-            'projects' => $this->projects
+
         ]);
     }
 }

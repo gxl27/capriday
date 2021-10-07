@@ -24,6 +24,7 @@ class ContactController extends HomeController
      */
     public function contact(Request $request, MailerInterface $mailer, GlobalsettingsRepository $gsRep): Response
     {
+        dump($this->hs);
         //get global settings for the website email adress
         $this->gs = $gsRep->getActiveGs();
         $this->mailer = $mailer;
@@ -49,7 +50,6 @@ class ContactController extends HomeController
         }
 
         return $this->render('contact/index.html.twig', [
-            'projects' => $this->projects,
             'formContactmsg' => $formContactmsg->createView()
         ]);
     }
