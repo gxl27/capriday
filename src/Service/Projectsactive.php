@@ -16,14 +16,13 @@ class Projectsactive
     }
 
     public function getPa(){
-
+        // get active projects
         return $this->pa;
     }
 
     public function checkPa(){
-
         $items = sizeof($this->pa);
-        $max = $this->gs->hs['navActiveProjects'];
+        $max = $this->gs->getHomeSettings()['navActiveProjects'];
         if($items > $max){
             return 0;
         }

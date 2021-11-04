@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HPostController extends HomeController
+class HPostController extends BaseHomeController
 {
     /**
      * @Route("/post", name="hpost")

@@ -22,17 +22,16 @@
                     
                     </ul>
                 </li>
-           
                 {# check if there is any project #}
-                {% if pa.pa %}
+                {% if twig_pa.pa %}
 
                     {# if there are more than the globalsettings item limit, the menubar will not contain the elements #}
                    
-                    {% if pa.checkPa %}
+                    {% if twig_pa.checkPa %}
                     
                     <li class='dropdown'><a title='Proiectele Caprirom' title='Proiecte'>Proiecte</a>
                         <ul class='submenu'>
-                        {% for project in pa.pa %}
+                        {% for project in twig_pa.pa %}
                             <li> <a data-route= "{{ path('hproject') }}" data-scroll="#s-{{ loop.index }} "> {{ project.name }}</a></li>
                         {% endfor %}
                         </ul>

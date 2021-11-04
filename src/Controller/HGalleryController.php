@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HGalleryController extends HomeController
+class HGalleryController extends BaseHomeController
 {
     /**
      * @Route("/gallery", name="hgallery")

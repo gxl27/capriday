@@ -1,5 +1,5 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
     globals:
-        gs: '@App\Service\Globalsettings'
-        pa: '@App\Service\Projectsactive'
+        twig_gs: '@App\Service\Globalsettings'
+        twig_pa: '@App\Service\Projectsactive'

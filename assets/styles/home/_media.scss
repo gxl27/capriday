@@ -14,7 +14,7 @@ $c-padding-w-1190: sizing.$c-padding-w * 5;
 @media screen and (min-width: 768px) {
 
 .container {
-
+    max-width: 960px;
     padding: $c-padding-h-768 $c-padding-w-768;
 }
 
@@ -85,6 +85,17 @@ $c-padding-w-1190: sizing.$c-padding-w * 5;
         }
     }
 }
+
+.card-project {
+    padding: 55px !important;
+
+    .card-project-topleft {
+        left:55px;
+    }
+
+}
+
+
 
 }
 // end 768px
@@ -190,7 +201,7 @@ body {
 
 
 .container {
-
+    max-width: 1100px;
     padding: $c-padding-h-1190 $c-padding-w-1190;
 }
 
@@ -258,6 +269,56 @@ body {
     }
 
 }
+
+.card-holder {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+  
+}
+
+  .card-project {
+    border: 1px solid rgba(185, 177, 177, 0.521);
+    border-left: 1px solid #f5dbaac2;
+    border-radius: 3px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-top:25px;
+    margin-bottom:25px;
+
+    .card-project-bottom {
+        position: absolute;
+        bottom: 15px;
+        display: flex;
+        left:50%;
+        transform: translateX(-50%);
+        justify-content: center;
+    
+        span {
+          font-size: .8em;
+          font-family: config.$font-stack-secondary;
+        }
+    }
+    
+      .card-project-lines-top {
+          display: flex;
+        position: absolute;
+        top: 37px;
+        right: 7px;
+      }
+
+  }
+  .card-project:nth-of-type(1) {
+    border-top:1px solid #f5dbaac2;;
+  }
+  
+  .card-project:nth-last-of-type(1) {
+      border-bottom:1px solid #f5dbaac2;;
+  }
+  
+  
 
 }
 

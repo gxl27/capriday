@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HNewsController extends HomeController
+class HNewsController extends BaseHomeController
 {
     /**
      * @Route("/news", name="hnews")

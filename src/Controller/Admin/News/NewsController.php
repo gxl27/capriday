@@ -5,7 +5,7 @@ namespace App\Controller\Admin\News;
 use App\Entity\News;
 use App\Form\NewsType;
 use App\Repository\NewsRepository;
-use App\Controller\Admin\MainController;
+use App\Controller\BaseAdminController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/news")
  */
-class NewsController extends MainController
+class NewsController extends BaseAdminController
 {
     /**
      * @Route("/", name="news_index", methods={"GET"})

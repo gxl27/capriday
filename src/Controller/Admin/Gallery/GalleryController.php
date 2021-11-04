@@ -7,7 +7,7 @@ use App\Entity\Photo;
 use App\Form\GalleryType;
 use App\Form\PhotoType;
 use App\Repository\GalleryRepository;
-use App\Controller\Admin\MainController;
+use App\Controller\BaseAdminController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/gallery")
  */
-class GalleryController extends MainController
+class GalleryController extends BaseAdminController
 {
     /**
      * @Route("/", name="gallery_index", methods={"GET"})

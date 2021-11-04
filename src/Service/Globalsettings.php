@@ -9,26 +9,33 @@ class Globalsettings
 {
 
     private $gs;
+    private $hs;
+    private $as;
 
     public function __construct(GlobalsettingsRepository $gs) {
 
+        // get active global settings from database
         $this->gs = $gs->getActiveGs();
 
-        $this->as = $this->getGs()->getAdminSettings();
-        $this->hs = $this->getGs()->getHomeSettings();
+        // set homesettings and adminsettings (functions in globalsettings object)
+        $this->hs = $this->gs->getHomeSettings();
+        $this->as = $this->gs->getAdminSettings();
     }
 
-    public function getGs(){
+    public function getGlobalSettings(){
+        // get global settings
 
         return $this->gs;
     }
 
-    public function getHs(){
+    public function getHomeSettings(){
+        // get global home settings (/home)
 
         return $this->hs;
     }
 
-    public function getAs(){
+    public function getAdminSettings(){
+        // get global admin settings (/admin)
 
         return $this->as;
     }

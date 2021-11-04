@@ -8,7 +8,7 @@ use App\Entity\Projectfiles;
 use App\Form\ProjectType;
 use App\Form\ProjectfileType;
 use App\Repository\ProjectRepository;
-use App\Controller\Admin\MainController;
+use App\Controller\BaseAdminController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\FileBag;
 /**
  * @Route("/admin/project")
  */
-class ProjectController extends MainController
+class ProjectController extends BaseAdminController
 {
     /**
      * @Route("/", name="project_index", methods={"GET"})

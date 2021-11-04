@@ -7,7 +7,7 @@ use App\Entity\PostFiles;
 use App\Form\PostType;
 use App\Form\PostfileType;
 use App\Repository\PostRepository;
-use App\Controller\Admin\MainController;
+use App\Controller\BaseAdminController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/post")
  */
-class PostController extends MainController
+class PostController extends BaseAdminController
 {
     /**
      * @Route("/", name="post_index", methods={"GET"})

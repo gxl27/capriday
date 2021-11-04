@@ -15,6 +15,10 @@ let loginbar = document.querySelector('#loginbar')
 let minimize = document.querySelector('.minimize')
 const closebtnflash = document.querySelectorAll('.close-btn-flash');
 
+//expand text
+let textExpand = document.querySelectorAll('.text-expand')
+let textExpandButton = document.querySelectorAll('.text-expand-button')
+
 
 // check match media to prevent elements 
 if (matchMedia) {
@@ -40,38 +44,40 @@ if (matchMedia) {
 function initialpc(){
     // this function prevents the "display:none" if the viewport change
     document.querySelector('#navbar-ul').style.display = "flex"
+    document.querySelector('#navbar-ul').style.opacity = 1
     document.querySelector('#socialmedia').style.display = "flex"
 }
 
 function initialphone(){
     // this function prevents the "display:flex" if the viewport change
     document.querySelector('#navbar-ul').style.display = "none"
+    document.querySelector('#navbar-ul').style.opacity = 0
 }
 
-document.addEventListener('click', function(e){
-    let parentNode = e.target.parentNode;
-    if(parentNode.classList){
+// document.addEventListener('click', function(e){
+//     let parentNode = e.target.parentNode;
+//     if(parentNode.classList){
    
-        if(parentNode.classList.contains('dropdown') ){
-            if(!clickCheckMenu){
-                clickCheckMenu = e.target;
-                return;
-            }else{
-                if(!clickCheckMenu == e.target){
-                    console.log(clickCheckMenu)
-                    clickCheckMenu = null;
+//         if(parentNode.classList.contains('dropdown') ){
+//             if(!clickCheckMenu){
+//                 clickCheckMenu = e.target;
+//                 return;
+//             }else{
+//                 if(!clickCheckMenu == e.target){
+//                     console.log(clickCheckMenu)
+//                     clickCheckMenu = null;
                     
-                }
-            }
+//                 }
+//             }
            
             
-        }
-    }
-    submenuItems.forEach(function(s){
-        s.style.display = 'none';
-    })
-    clickCheckMenu = null;
-})
+//         }
+//     }
+//     submenuItems.forEach(function(s){
+//         s.style.display = 'none';
+//     })
+//     clickCheckMenu = null;
+// })
 
 logoContainer.addEventListener('click', function(e){
     window.location.hash = "#";
@@ -81,32 +87,27 @@ logoContainer.addEventListener('click', function(e){
 
 
 
-
-//expand menu items
-menuItems.forEach(function(f){
-    f.addEventListener('click', function(e){
-        // e.preventDefault();
-        submenuItems.forEach(function(s){
-            s.style.display = 'none';
-        })
-        qSubmenu = f.querySelector('.submenu');
-        qSubmenu.style.display = "flex";
-    })
-})
-
-
 // mobile btn
 hamburger.addEventListener('click', function(){
     navbarUl = document.querySelector('#navbar-ul');
     socialmedia = document.querySelector('#socialmedia');
-    console.log(navbarUl.style.display)
+    let opacityValue;
+    let tl = gsap.timeline({ defaults:{duration: .3}})
+
     if(navbarUl.style.display == "none" || navbarUl.style.display == ""){
         navbarUl.style.display = "flex";
         socialmedia.style.display = "flex";
+        opacityValue = 1;
+
     }else{
         navbarUl.style.display = "none"
         socialmedia.style.display = "none";
+        opacityValue = 0;
+
     }
+    tl.to(navbarUl, { ease: "power2", opacity: opacityValue})
+  
+   
 })
 
 //upscreen
@@ -139,27 +140,48 @@ checkboxes.forEach(function(e){
     })
 })
 
+//expand menu items
+menuItems.forEach(function(f){
+    f.addEventListener('click', function(e){
+        let selectedMenu = f.querySelector('.submenu');
+        let check = selectedMenu.style.display;
+
+        let opacityValue;
+        let tl = gsap.timeline({ defaults:{duration: .3}})
+        
+
+        submenuItems.forEach(function(s){
+            if(s.style.display == 'flex'){
+                s.style.display = 'none';
+            }
+        })
+        if(check == "flex"){
+            selectedMenu.style.display = "none";
+            opacityValue = 0;
+        }else{
+            selectedMenu.style.display = "flex";
+            opacityValue = 1;
+        }
+        tl.to(selectedMenu, { ease: "power2", opacity: opacityValue})
+            
+        
+    })
+})
+
 // menu items scroll on click
-menuLi.forEach(function(e){
-    
+menuLi.forEach(function(e){  
     e.addEventListener('click', function(){
         if(e.dataset.scroll){
-            
             link = e.dataset.scroll;
-            
             // document.querySelector(link).scrollIntoView();
             if(window.location.pathname == e.dataset.route && link != "#"){
                 element =  document.querySelector(link)
                 scrollToTargetAdjusted(element);
             }else{
-                // console.log(e.dataset.route)
-                // console.log(e.dataset.scroll)
-                // console.log()
                 let route = e.dataset.route
                 if(e.dataset.scroll != "#"){
                    route = route +  e.dataset.scroll
                 }
-                
                 window.location = route
             }
             
@@ -174,6 +196,8 @@ function scrollToTargetAdjusted(scrolledelement){
     let body = document.body.getBoundingClientRect().top
     let headerOffset = window.heightnavbar;
     let elementPosition = scrolledelement.getBoundingClientRect().top;
+
+    console.log(elementPosition)
     let offsetPosition = elementPosition - headerOffset - body;
     if(headerOffset == 0 && scrolledelement.id == "s-acasa"){
         offsetPosition = 0;
@@ -188,17 +212,21 @@ function scrollToTargetAdjusted(scrolledelement){
 
 minimize.addEventListener('click', function(e){
     let elem = minimize.querySelectorAll('div')[0]
+
         if(elem.style.display !== 'none') {
             loginbar.querySelectorAll('div')[0].style.display = 'none';
             loginbar.querySelector('div .btn').style.display = 'none';
             minimize.querySelectorAll('div')[0].style.display = 'none';
             minimize.querySelectorAll('div')[1].style.display = 'initial';
+            opacityValue = 0;
         }else{
             loginbar.querySelectorAll('div')[0].style.display = 'initial';
             loginbar.querySelector('div .btn').style.display = 'initial';
             minimize.querySelectorAll('div')[0].style.display = 'initial';
             minimize.querySelectorAll('div')[1].style.display = 'none';
+            opacityValue = 1;
         }
+ 
     })
 
 logoContainer.addEventListener('click', function(e){
@@ -212,6 +240,76 @@ closebtnflash.forEach(function(e){
         e.parentElement.style.opacity = '0';
 
     })
+})
+
+closebtnflash.forEach(function(e){
+    e.addEventListener('click', function(){
+        e.parentElement.style.display = 'none';
+        e.parentElement.style.opacity = '0';
+
+    })
+})
+
+// add transparent background for "read more" expandable text
+function createTransparentBg(expandElement){
+    let transparentBg = document.createElement('div');
+    transparentBg.classList.add('transparentBg');
+    expandElement.appendChild(transparentBg);
+}
+
+function removeTransparentBg(expandElement){
+    transparentBg = expandElement.querySelector('.transparentBg');
+    transparentBg.remove();
+}
+
+textExpand.forEach(function(f){
+
+    let children = f.querySelector('div')
+    let childrenHeight = children.clientHeight ;
+    let elementHeight = f.clientHeight ;
+    let expand = f.parentNode.querySelector('.text-expand-button');
+    if(childrenHeight > elementHeight){
+        createTransparentBg(f)
+        expand.style.display = 'flex';
+        expand.dataset.click = "0";
+        expand.innerHTML = "<b>... mai mult</b>";
+        
+    }
+
+    expand.addEventListener('click', function(e){
+        let tl = gsap.timeline({ defaults:{duration: .3}})
+        let heightMax;
+        let overflowValue;
+        let delayValue;
+       
+        if(expand.dataset.click == 0){
+          
+            removeTransparentBg(f)
+            expand.dataset.click = "1";
+            expand.innerHTML = "<b>mai putin</b>";
+            
+            overflowValue = "initial"
+            heightMax = +50+childrenHeight +"px";
+            console.log(heightMax);
+            delayValue = "0"
+            f.style.position = "relative";
+            
+        }else {
+            createTransparentBg(f)
+            expand.dataset.click = "0";
+            expand.innerHTML = "<b>... mai mult</b>";
+            
+            overflowValue = "hidden"
+            heightMax = elementHeight+"px";
+            delayValue ="-.3";
+           
+        }
+        tl.to(f, { ease: "power2", maxHeight: heightMax})
+        .to(f, {ease:"power2", overflow: overflowValue, delay:delayValue});
+    })
+    // console.log(children.clientHeight);
+   
+
 })
 
 //
@@ -244,7 +342,6 @@ function homeinitial(){
     let homebullet = banner.querySelectorAll('.carousel-bullets');
     
     const firstBulletColor = homebullet[0].style;
-    console.log(firstBulletColor)
     homeleftarrow.addEventListener('click', function(){
 
         clearInterval(chimageinterval);

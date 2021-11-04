@@ -14,19 +14,19 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email as PHPEmail;
 
-class ContactController extends HomeController
+class ContactController extends BaseHomeController
 {
-    private $mailer;
-    private $gs;
+    protected $mailer;
+    protected $gs;
 
     /**
      * @Route("/contact", name="contact")
      */
-    public function contact(Request $request, MailerInterface $mailer, GlobalsettingsRepository $gsRep): Response
+    public function contact(Request $request, MailerInterface $mailer): Response
     {
         dump($this->hs);
         //get global settings for the website email adress
-        $this->gs = $gsRep->getActiveGs();
+
         $this->mailer = $mailer;
         $contactmsg = new Contactmsg();
         $formContactmsg = $this->createForm(ContactmsgType::class, $contactmsg, 

@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin\Settings;
 
-use App\Controller\Admin\MainController;
+use App\Controller\BaseAdminController;
 use App\Entity\User;
 use App\Form\UserChangePasswordType;
 use App\Form\UserType;
@@ -15,7 +15,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
-class SettingsController extends MainController
+class SettingsController extends BaseAdminController
 {
 
     /**

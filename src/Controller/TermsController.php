@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TermsController extends HomeController
+class TermsController extends BaseHomeController
 {
     /**
      * @Route("/terms", name="terms")

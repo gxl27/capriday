@@ -8,39 +8,68 @@
         {{ knp_pagination_render(projectsKnp, '/_pagination/custom_pagination_pages.html.twig') }}
     </div>
 </div>
-
+<h1>Proiectele Caprirom</h1>
+<div class='card-holder'>
 {% for project in projectsKnp %}
-    <section id="s-{{ loop.index }}" class='section-item'>
-        <div>{{(projectsKnp.currentPageNumber - 1) * projectsKnp.getItemNumberPerPage + loop.index }}</div>
-        <div>Nume proiect: {{ project.name }}</div>
-        <div>Descriere proiect{{ project.description }}</div>
-        {% if project.dateStartAt %}
-            <div>Data inceperii proiect: {{ project.dateStartAt|datero('d M Y') }}</div>
-        {% endif %}
-        {% if project.dateEndAt %}
-            <div>Data terminarii proiect: {{ project.dateEndAt|datero('d M Y') }}</div>
-        {% endif %}
-        
-       
-        <div>
-            <div>
-            {% if project.projectfiles.values %}
-                <h5>Fisiere atasate</h5>
-                {% for pf in project.projectfiles %}
-                        <a href="{{ path('uploads_entities', {'entity':'projectfiles', 'doc': pf.document}) }}">
-                    {# {% dump(pf.extension) %} #}
-                    <span>{{ pf.name }}</span></a>
-                {% endfor %}
-                
-                {% else %}
-                <span>Fara fisiere atasate</span>
+     {# generate cards #}
+    <section id="s-{{ loop.index }}" class='section-item card-project'>
+        <div class='card-project-title'><span>{{ project.name }}</span></div>
+        <div class="card-project-item">
+            {% if project.dateStartAt %}
+            <div>Data inceperii: <span style='float:right'> <b>{{ project.dateStartAt|datero('d M Y') }}</b></span></div>
             {% endif %}
-            </div>
-       
+            {% if project.dateEndAt %}
+            <div>Data terminarii:  <span style='float:right'><b>{{ project.dateEndAt|datero('d M Y') }}</b></span></div>
+            {% endif %}
         </div>
-    </section>
+        <div class="card-project-item">
+            <div class='card-project-item-description text-expand maxH-20'>
+                <div>Descrierea proiectului: <br>{{ project.description }}</div> 
+            </div>
+            <div class="text-expand-button"><b>... mai mult</b></div>
+        </div>
+        <div class="card-project-item">
+            <div class='card-attach-container'>
+            {% if project.projectfiles.values %}
+                <div>Fisiere atasate:</div>
+                <div class='card-attach-content'>
+                    {% for pf in project.projectfiles %}
+                        
+                        <a href="{{ path('uploads_entities', {'entity':'projectfiles', 'doc': pf.document}) }}">
+                            {% dump(pf.extension) %}
+             
+                            <div class='circle'>
+                                <img src="/img/{{~ pf.extension ~}}.svg" alt="svg">
+                                    {# <img src="/img/ods.svg" alt="svg"> #}
+                            </div>
+                            <div>{{ pf.name }}</div>
+                        </a>           
+                        
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div>
+                    <span>Fara fisiere atasate</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {# svg lines #}
+        <div class='card-project-topleft'> 
+            <span>Informatii generale | <b>proiectul {{(projectsKnp.currentPageNumber - 1) * projectsKnp.getItemNumberPerPage + loop.index }}</b></span>
+        </div>
+        <div class='card-project-bottom'> 
+            <span>- {{(projectsKnp.currentPageNumber - 1) * projectsKnp.getItemNumberPerPage + loop.index }} -</span>
+        </div>
+        <div class='card-project-lines-top' > 
+            <img src="/img/lines.svg" alt="svg">
+        </div>
 
+    </section>
+    {# end cards #}
 {% endfor %}
+{# end card holder #}
+</div>
 <div class='flex-center'>
     <div class="pagination-bar">
         {{ knp_pagination_render(projectsKnp, '/_pagination/custom_pagination_pages.html.twig') }}
