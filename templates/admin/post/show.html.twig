@@ -1,9 +1,9 @@
 {% extends 'container.html.twig' %}
 
-{% block title %}Anunturi{% endblock %}
+{% block title %}Announces{% endblock %}
 
 {% block container %}
-    <h1>Anunturi</h1>
+    <h1>Announces</h1>
 
     <table class="table">
         <tbody>
@@ -38,7 +38,7 @@
                 {% if post.postfiles.values %}
                     {% for pf in post.postfiles %}
                          <a href="{{ path('uploads_entities', {'entity':'postfiles', 'doc': pf.document}) }}">
-                        {# {% dump(pf.extension) %} #}
+
                         <span>{{ pf.name }}</span></a>
                         <form method="post" action="{{ path('delete_entities', {'entity': 'postfiles', 'doc': pf.document}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ pf.document) }}">
@@ -47,7 +47,7 @@
                     {% endfor %}
               
                 {% else %}
-                <span>Fara fisiere atasate</span>
+                <span>No files</span>
                 {% endif %}
                 </td>
             </tr>
@@ -55,10 +55,10 @@
     </table>
 
     <div>
-        Adauga fisier
+        Add file
         {{ form_start(pfForm) }}
         {{ form_widget(pfForm) }}
-                <button>Adauga fisier</button>
+                <button>Add file</button>
         {{ form_end(pfForm) }}
     </div>
 

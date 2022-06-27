@@ -1,6 +1,6 @@
 {% extends 'container.html.twig' %}
 
-{% block title %}Albume{% endblock %}
+{% block title %}Albums{% endblock %}
 
 {% block container %}
     <div class="flex-end">
@@ -8,18 +8,17 @@
             {{ knp_pagination_render(galleryKnp,  '/_pagination/custom_pagination_pages.html.twig') }}
         </div>
     </div>
-    <h1>Albume lista</h1>
+    <h1>Album list</h1>
 
-    <table class="table">
+    <table class="table table-admin">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Poze de profil</th>
-                <th>Nr fotografii</th>
-                <th>Name</th>
+                <th>Profile</th>
+                <th>Photo number</th>
+                <th>Title</th>
                 <th>CreatedAt</th>
                 <th>Description</th>
-                <th>Nivel</th>
                 <th>Status</th>
                 
                 <th>actions</th>
@@ -63,7 +62,6 @@
                 <td>{{ gallery.name }}</td>
                 <td>{{ gallery.CreatedAt ? gallery.CreatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ gallery.description }}</td>
-                <td>{{ gallery.level }}</td>
                 <td>{{ gallery.statusFormat }}</td>
                 
 

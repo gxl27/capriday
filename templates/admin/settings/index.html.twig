@@ -1,6 +1,6 @@
 {% extends 'container.html.twig' %}
 
-{% block title %}Setari{% endblock %}
+{% block title %}Users{% endblock %}
 
 {% block container %}
 
@@ -9,16 +9,16 @@
         {{ knp_pagination_render(usersKnp,  '/_pagination/custom_pagination_pages.html.twig') }}
     </div>
 </div>
-<h1>Proiecte lista</h1>
+<h1>User list</h1>
 
-<table class="table">
+<table class="table table-admin">
     <thead>
         <tr>
-            <th>Crt</th>
-            <th>Poza profil</th>
+            <th>#</th>
+            <th>Profile photo</th>
             <th>Username</th>
-            <th>Rol</th>
-            <th>Creat la</th>
+            <th>Role</th>
+            <th>Created at</th>
           
         </tr>
     </thead>
@@ -36,11 +36,11 @@
             </td>
             <td>{{ user.username }}</td>
             <td>{{ user.rolesFormat }}</td>
-            <td>{{ user.createdAt ? user.createdAt|datero('d-M-Y') : '' }}</td>
+            <td>{{ user.createdAt ? user.createdAt|date('d-M-Y') : '' }}</td>
             {% if superadminCheck(app.user) %}
                 <td>
                     <form method="post" action="{{ path('api_user_delete', {'id': user.id}) }}" onsubmit="return confirm('Sunteti sigur ca doriti stergerea pozei de profil?');">
-                    <button class="btn">Sterge cont</button>
+                    <button class="btn">Delete user</button>
                     </form>
                 </td>
             {% endif %}

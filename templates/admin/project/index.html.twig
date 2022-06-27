@@ -1,29 +1,25 @@
 {% extends 'container.html.twig' %}
 
-{% block title %}Proiecte{% endblock %}
+{% block title %}Projects{% endblock %}
 
 {% block container %}
+
+    <h1>Project list</h1>
     <div class="flex-end">
         <div class="pagination-bar">
             {{ knp_pagination_render(projectsKnp,  '/_pagination/custom_pagination_pages.html.twig') }}
         </div>
     </div>
-    <h1>Proiecte lista</h1>
-
-    <table class="table">
+    <table class="table table-admin">
         <thead>
             <tr>
-                <th>Crt</th>
-                <th>Numele proiectului</th>
-                <th>Descriere</th>
-                <th>Data de inceput</th>
-                <th>Data de sfarsit</th>
+                <th>#</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Files</th>
+                <th>Valability</th>
                 <th>Status</th>
-              
-                <th>Creat la</th>
-                <th>Modificat la</th>
-                <th>Creat de</th>
-                <th>Actiuni</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -38,15 +34,11 @@
                 <td>{{(projectsKnp.currentPageNumber - 1) * projectsKnp.getItemNumberPerPage + loop.index }}</td>
                 <td>{{ project.name }}</td>
                 <td>{{ project.description }}</td>
-                <td>{{ project.dateStartAt ? project.dateStartAt|datero('d-M-Y') : '' }}</td>
-                <td>{{ project.dateEndAt ? project.dateEndAt|datero('d-M-Y') : '' }}</td>
-                <td>{{ project.statusFormat }}</td>
-               
                 <td>
                 {% if project.projectfiles.values %}
                     {% for pf in project.projectfiles %}
                          <a href="{{ path('uploads_entities', {'entity':'projectfiles', 'doc': pf.document}) }}">
-                        {# {% dump(pf.extension) %} #}
+
                         <span>{{ pf.name }}</span></a>
                     {% endfor %}
               
@@ -55,7 +47,16 @@
                 {% endif %}
                 </td>
                 <td>
-                    <a href="{{ path('project_show', {'id': project.id}) }}">Detalii</a>
+                    {% if project.dateStartAt %}
+                    Start: {{ project.dateStartAt ? project.dateStartAt|date('d-M-Y') : '' }} <br>
+                    {% endif %}
+                    {% if project.dateEndAt %}
+                    End: {{ project.dateEndAt ? project.dateEndAt|date('d-M-Y') : '' }} <br>
+                    {% endif %}
+                </td>               
+                <td>{{ project.statusFormat }}</td>
+                <td>
+                    <a href="{{ path('project_show', {'id': project.id}) }}">Details</a>
                 </td>
             </tr>
         {% else %}

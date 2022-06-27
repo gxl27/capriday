@@ -17,13 +17,13 @@ class ContactmsgType extends AbstractType
             ->add('name', TextType::class , [
             'label' => false,
               'attr' => ['class' => '',
-            'placeholder' => 'Numele complet',
+            'placeholder' => 'Full name',
             ],
             ])
             ->add('telephone', TextType::class , [
                 'label' => false,
                   'attr' => ['class' => 'form-control clearinput',
-                'placeholder' => 'Telefon',
+                'placeholder' => 'Telephone',
             ],
             ])
             ->add('email', TextType::class , [
@@ -35,13 +35,13 @@ class ContactmsgType extends AbstractType
             ->add('title', TextType::class , [
                 'label' => false,
                   'attr' => ['class' => 'form-control clearinput',
-                'placeholder' => 'Titlul',
+                'placeholder' => 'Subject',
             ],
             ])
             ->add('subject', TextareaType::class , [
                 'label' => false,
                   'attr' => ['class' => 'form-control clearinput',
-                'placeholder' => 'Scrie mesajul ...',
+                'placeholder' => 'Write the message ...',
             ],
             ])
               ;

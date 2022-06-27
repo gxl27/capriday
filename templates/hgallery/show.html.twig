@@ -1,54 +1,24 @@
 {% extends 'container.html.twig' %}
 
-{% block title %}Albume{% endblock %}
-
+{% block title %}Gallery{% endblock %}
 {% block container %}
-    <h1>Album</h1>
+    <h1>{{ gallery.name }} ({{ gallery.createdAt ? gallery.createdAt|date('d-m-Y') : '' }})</h1>
+    <div>
+        {{ gallery.description }}
+    </div>
+    <div class='gallery-hold'>
+        {% if gallery.photos.values %}
+            {% for photo in gallery.photos %}
+                <div class='gallery-card-show'>
+                    <img data-id=" {{ loop.index }}"  src=" {{ vich_uploader_asset(photo, 'galleryImages') | imagine_filter('carousel') }} " class='home-profileimg'  alt="img-room{{ photo.id }}">
+                </div>
+            {% endfor %}
+        
+        {% else %}
+        <span>No photos </span>
+        {% endif %}
+    </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ gallery.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ gallery.name }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ gallery.createdAt ? gallery.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ gallery.description }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ gallery.statusFormat }}</td>
-            </tr>
-            <tr>
-                <th>Nivel</th>
-                <td>{{ gallery.level }}</td>
-            </tr>
-            <tr>
-                <th>Fotografii</th>
-                <td>
-
-                {% if gallery.photos.values %}
-                    {% for photo in gallery.photos %}
-                        <div>
-                            <img data-id=" {{ loop.index }}"  src=" {{ vich_uploader_asset(photo, 'galleryImages') | imagine_filter('thumb') }} " class='home-profileimg'  alt="img-room{{ photo.id }}">
-                        </div>
-                    {% endfor %}
-              
-                {% else %}
-                <span>Fara fotografii </span>
-                {% endif %}
-                </td>
-            </tr>
-        </tbody>
-    </table>
     <a href="{{ path('hgallery') }}">back to list</a>
 
 {% endblock %}

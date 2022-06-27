@@ -61,7 +61,7 @@ document.addEventListener('click', function(e){
                 return;
             }else{
                 if(!clickCheckMenu == e.target){
-                    console.log(clickCheckMenu)
+
                     clickCheckMenu = null;
                     
                 }
@@ -102,7 +102,7 @@ menuItems.forEach(function(f){
 hamburger.addEventListener('click', function(){
     navbarUl = document.querySelector('#navbar-ul');
     socialmedia = document.querySelector('#socialmedia');
-    console.log(navbarUl.style.display)
+
     if(navbarUl.style.display == "none" || navbarUl.style.display == ""){
         navbarUl.style.display = "flex";
         socialmedia.style.display = "flex";
@@ -125,12 +125,10 @@ menuLi.forEach(function(e){
             element =  document.querySelector(link)
             // document.querySelector(link).scrollIntoView();
             if(window.location.pathname == e.dataset.route){
-                console.log('xxx');
+
                 scrollToTargetAdjusted(element);
             }else{
-                // console.log(e.dataset.route)
-                // console.log(e.dataset.scroll)
-                // console.log()
+
                 let route = e.dataset.route + e.dataset.scroll
                 window.location = route
             }
@@ -142,7 +140,7 @@ menuLi.forEach(function(e){
 })
 
 function scrollToTargetAdjusted(scrolledelement){
-    console.log(scrolledelement)
+
     let body = document.body.getBoundingClientRect().top
     let headerOffset = window.heightnavbar;
     let elementPosition = scrolledelement.getBoundingClientRect().top;
@@ -162,13 +160,12 @@ function scrollToTargetAdjusted(scrolledelement){
 logoContainer.addEventListener('click', function(e){
     window.location.pathname = "/admin";
 })
-console.log(document.querySelector("[name='user_change_password'"));
+
 checkboxes.forEach(function(e){
     e.addEventListener('click', function(){
         if(e.classList.contains('checkbox-target')){
             searchElem = "[name='" + e.dataset.target + "']"; 
             elem = document.querySelector(searchElem)
-            console.log(elem);
             if(elem.style.display == "flex"){
                 elem.style.display = 'none';
             }else{
@@ -177,7 +174,6 @@ checkboxes.forEach(function(e){
         }
         if(e.getAttribute('checked') ==  'checked'){
             e.setAttribute('checked', null) ;
-           console.log('xxx')
         }else{
             e.setAttribute('checked', 'checked') ;
         }
@@ -211,7 +207,7 @@ function admininitial(){
     let homebullet = banner.querySelectorAll('.carousel-bullets');
     
     const firstBulletColor = homebullet[0].style;
-    console.log(firstBulletColor)
+
     homeleftarrow.addEventListener('click', function(){
 
         clearInterval(chimageinterval);
@@ -323,7 +319,7 @@ if(axiosIdLink){
             axios.post(link,{
                 id:id})
                 .then(res =>{
-                    console.log(f.dataset.noreset)
+
                     if(!f.dataset.noreset){
                           location.reload();
                        

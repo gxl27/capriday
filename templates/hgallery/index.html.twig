@@ -1,6 +1,6 @@
 {% extends 'container.html.twig' %}
 
-{% block title %}Albume{% endblock %}
+{% block title %}Gallery{% endblock %}
 
 {% block container %}
     <div class="flex-end">
@@ -8,14 +8,11 @@
             {{ knp_pagination_render(galleryKnp,  '/_pagination/custom_pagination_pages.html.twig') }}
         </div>
     </div>
-    <h1>Albume lista</h1>
-    <div>
-        
-
-
+    <h1>Gallery</h1>
+    <div class='gallery-hold'>
         {% for gallery in galleryKnp %}
-            <div class="gallery-card">
-                <span>{{(galleryKnp.currentPageNumber - 1) * galleryKnp.getItemNumberPerPage + loop.index }}</span>
+            <div class="gallery-card" data-link="{{ path('hgallery_show', {id:gallery.id}) }}">
+                {# <span>{{(galleryKnp.currentPageNumber - 1) * galleryKnp.getItemNumberPerPage + loop.index }}</span> #}
                 <span>
                 {% set profile = NULL %}
                 {% if gallery.photos.values %}
@@ -25,38 +22,35 @@
                         <span>{{ photo.name }}</span></a> #}
                         {% if photo.profile == true %}
                             {% set profile = 1 %}
-                            <img data-id=" {{ loop.index }}"  src=" {{ vich_uploader_asset(photo, 'galleryImages') | imagine_filter('thumb') }} " class='home-profileimg'  alt="img-room{{ photo.id }}">
+                            <img data-id=" {{ loop.index }}"  src=" {{ vich_uploader_asset(photo, 'galleryImages') | imagine_filter('img') }} " class='home-profileimg'  alt="img-room{{ photo.id }}">
                         {% endif %}
                     {% endfor %}
                     {% if profile is null %}
-                        <img src="/img/no-picture-thumb.jpg">
+                        <img src="/img/no-picture-img.jpg">
                     {% endif %}
                     </span>
-                    <span>
-                
-                    <span>{{ gallery.photos|length }}</span>
-            
+                    <span class='counter'>
+                         {{ gallery.photos|length }}
+                        {% if gallery.photos|length == 1 %}
+                         photo
+                         {% else %}
+                         photos
+                        {% endif %}
+                    </span>
                 {% else %}
-                    <img src="/img/no-picture-thumb.jpg">
+                    <img src="/img/no-picture-img.jpg">
                     </span>
                     <span>
                     <span> - </span>
                 {% endif %}
                 </span>
-                <span>{{ gallery.name }}</span>
-                <span>{{ gallery.CreatedAt ? gallery.CreatedAt|date('Y-m-d H:i:s') : '' }}</span>
+                <span><b>{{ gallery.name }}</b></span>
                 <span>{{ gallery.description }}</span>
-                <span>{{ gallery.level }}</span>
-                <span>{{ gallery.statusFormat }}</span>
-                
 
-                <span>
-                    <a href="{{ path('hgallery_show', {'id': gallery.id}) }}">show</a>
-                </span>
             </div>
         {% else %}
             <div>
-                Fara albume                
+                No albums               
             </div>
         {% endfor %}
     </div>

@@ -19,19 +19,19 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Numele proiectului'
+                'label' => 'Project name'
             ])
             ->add('description', TextareaType::class, [
-                'label' => 'Descriere'
+                'label' => 'Description'
             ])
             ->add('level', IntegerType::class, [
-                'label' => 'Nivel',
+                'label' => 'Level',
                 'required' => false,
                 'constraints' => [new PositiveOrZero()],
             ])
             ->add('dateStartAt', DateType::class, [
                 'widget' => 'single_text',
-                'label' => "Data de inceput a proiectului",
+                'label' => "Start date",
                 'attr' => [ 
                             'class' => 'form-control dateinput',
                             'name' => "event_date",
@@ -42,7 +42,7 @@ class ProjectType extends AbstractType
                 ])
                 ->add('dateEndAt', DateType::class, [
                     'widget' => 'single_text',
-                    'label' => "Data de sfarsit a proiectului",
+                    'label' => "End date",
                     'attr' => [ 
                                 'class' => 'form-control dateinput',
                                 'name' => "event_date",

@@ -1,14 +1,14 @@
 {# templates/bundles/TwigBundle/Exception/error404.html.twig #}
 {% extends 'container.html.twig' %}
-{% block title %}A aparut o eroare!{% endblock %}
+{% block title %}Error!{% endblock %}
 {% block container %}
-    <h1>A aparut o eroare!</h1>
+    <h1>Error!</h1>
 
     <p>
     {% if app.user.roles.0 == "ROLE_SUPERADMIN" or app.user.roles.0 == "ROLE_ADMIN" or app.user.roles.0 == "ROLE_USER" %}
-        <a href="{{ path('admin') }}"> Inapoi la panel</a>.
+        <a href="{{ path('admin') }}"> Back to panel</a>.
     {% else %}
-       <a href="{{ path('home') }}"> Inapoi la site</a>.
+       <a href="{{ path('home') }}"> Back to site</a>.
     {% endif %}
     </p>
 {% endblock %}

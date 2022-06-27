@@ -64,7 +64,7 @@ security:
 
         ######################################################################
         # the homepage has an access control because it's a portofolio project
-        - { path: ^/, roles: ROLE_USER }
+        # - { path: ^/, roles: ROLE_USER }
         
 
         

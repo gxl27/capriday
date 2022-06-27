@@ -4,7 +4,7 @@
         <div id="navbar">
             <div id="logo">
                 <div id='logo-container'>
-                    <img src="/img/logo.svg" alt="Caprirom">
+                    <img src="/img/logo.svg" alt="Capriday">
                 </div>
                 <div id="navbar-mobile-btn" title="Expand menu">
                     <img src="/img/menu.svg" alt='expand'>
@@ -12,13 +12,13 @@
             </div>
             
             <ul id='navbar-ul'>
-                <li class='dropdown'><a title='Despre Caprirom'>Caprirom</a>
+                <li class='dropdown'><a title='About Capriday'>Capriday</a>
                     <ul class='submenu'>
-                    <li> <a data-route= "{{ path('home') }}" data-scroll="#s-services">Servicii</a></li>
-                    <li> <a data-route= "{{ path('home') }}" data-scroll="#s-results">Rezultate</a></li>
-                    <li> <a data-route= "{{ path('home') }}" data-scroll="#s-history">Istoric / prezentare</a></li>
-                    <li> <a data-route= "{{ path('home') }}" data-scroll="#s-rules">Regulamente</a></li>
-                    <li> <a data-route= "{{ path('home') }}" data-scroll="#s-conditions">Conditii de inscriere</a></li>
+                    <li> <a data-route= "{{ path('home') }}" data-scroll="#s-services">Services</a></li>
+                    <li> <a data-route= "{{ path('home') }}" data-scroll="#s-results">Results</a></li>
+                    <li> <a data-route= "{{ path('home') }}" data-scroll="#s-history">History</a></li>
+                    <li> <a data-route= "{{ path('home') }}" data-scroll="#s-rules">Regulations</a></li>
+                    <li> <a data-route= "{{ path('home') }}" data-scroll="#s-conditions">Registration conditions</a></li>
                     
                     </ul>
                 </li>
@@ -29,7 +29,7 @@
                    
                     {% if twig_pa.checkPa %}
                     
-                    <li class='dropdown'><a title='Proiectele Caprirom' title='Proiecte'>Proiecte</a>
+                    <li class='dropdown'><a title='Capriday projects' title='Proiecte'>Projects</a>
                         <ul class='submenu'>
                         {% for project in twig_pa.pa %}
                             <li> <a data-route= "{{ path('hproject') }}" data-scroll="#s-{{ loop.index }} "> {{ project.name }}</a></li>
@@ -37,7 +37,7 @@
                         </ul>
                     </li>
                     {% else %}
-                     <li><a href="{{ path('hproject') }}" title='Proiectele Caprirom' title='Proiecte'>Proiecte</a> </li>
+                     <li><a href="{{ path('hproject') }}" title='Capriday projects' title='Projects'>Projects</a> </li>
                     {% endif %}
                
                 {% endif %}
@@ -50,11 +50,11 @@
                     
                     </ul>
                 </li> #}
-                <li class='dropdown'><a title='Anunturi'>anunturi</a>
+                <li class='dropdown'><a title='Announces'>announces</a>
                     <ul class='submenu'>
-                        <li><a data-route= "{{ path('hpost') }}" data-scroll="#">Anunturi Caprirom</a></li>
-                        <li><a data-route= "{{ path('hnews') }}" data-scroll="#">Stiri si noutati</a></li>
-                        <li><a data-route= "{{ path('hgallery') }}" data-scroll="#">Galerie foto</a></li>
+                        <li><a data-route= "{{ path('hpost') }}" data-scroll="#">Capriday announces </a></li>
+                        <li><a data-route= "{{ path('hnews') }}" data-scroll="#">News</a></li>
+                        <li><a data-route= "{{ path('hgallery') }}" data-scroll="#">Gallery</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ path('contact') }}" title='Contact'>contact</a></li>

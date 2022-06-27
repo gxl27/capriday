@@ -1,7 +1,13 @@
 {% block loginbar %}
 <div id='loginbar'>
     <div>
-        <span>You are logged in as <b>{{ app.user.username }}</b></span><br>
+        <span>You are logged in as <b> 
+            {% if app.user %} 
+                {{ app.user.username }}
+            {% else %}
+                anonymous
+            {% endif %}
+        </b></span><br>
       
     </div>
     <div>

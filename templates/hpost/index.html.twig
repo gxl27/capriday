@@ -1,37 +1,39 @@
 {% extends 'container.html.twig' %}
 
-{% block title %}Anunturi{% endblock %}
+{% block title %}Announces{% endblock %}
 
 {% block container %}
-
+  <h1>Announces</h1>
     <div class="flex-end">
         <div class="pagination-bar">
             {{ knp_pagination_render(postsKnp, '/_pagination/custom_pagination_pages.html.twig') }}
         </div>
     </div>
-    <h1>Anunturi lista</h1>
+  
 
     {# Important posts #}
     {% if postsKnp.currentPageNumber == 1 %}
-    <div class="important">
-    {% for post in postsI %}
-
-        <div>{{ post.name }}</div>
-        <div>{{ post.description }}</div>
-    {% endfor %}
-        </div>
+    <div class='post-holder'>
+        {% for post in postsI %}
+            <div class="post-item post-important">
+                <div class='post-title'><div>{{ post.name }}</div><div>{{ post.createdAt|date("d M Y") }}</div></div>
+                <div class='post-description'>{{ post.description }}</div>
+            </div>
+        {% endfor %}
+    </div>
     {% endif %}
 
-
     {# Normal Posts #}
-    <div class="normal">
+    <div class='post-holder'>
     {% for post in postsKnp %}
-        <div>{{(postsKnp.currentPageNumber - 1) * postsKnp.getItemNumberPerPage + loop.index }}</div>
-        <div>{{ post.name }}</div>
-        <div>{{ post.description }}</div>
-    {% endfor %}
+        <div class="post-item post-normal">
+            <div class='post-title'><div style='font-size:1.05em'><b># {{(postsKnp.currentPageNumber - 1) * postsKnp.getItemNumberPerPage + loop.index }} {{ post.name }}</b></div><div>{{ post.createdAt|date('d M Y') }}</div></div>
+            <div class='post-description'>{{ post.description }}</div>
+        </div>
+        {% endfor %}
     </div>
-    <div class="flex-center">
+  
+    <div class="flex-center" style='margin-top:45px'>
         <div class="pagination-bar">
             {{ knp_pagination_render(postsKnp, '/_pagination/custom_pagination_pages.html.twig') }}
         </div>

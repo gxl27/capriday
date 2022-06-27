@@ -3,9 +3,11 @@
 {% block title %}Anunturi{% endblock %}
 
 {% block container %}
-    <h1>Anunturi adauga</h1>
+    <div>
+        <h1>Add announces</h1>
 
-    {{ include('admin/post/_form.html.twig') }}
+        {{ include('admin/post/_form.html.twig') }}
 
-    <a href="{{ path('post_index') }}">back to list</a>
+        <a href="{{ path('post_index') }}">back to list</a>
+    </div>
 {% endblock %}

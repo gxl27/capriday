@@ -332,6 +332,62 @@ form[name="user_change_password"]{
   display: none;
 }
 
+.admin-hold {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap:45px;
+  margin-top:65px;
+}
+.admin-card {
+  display: flex;
+  font-size: 1.4em;
+  width: 360px;
+  height: 120px;
+  background-color: rgb(23, 99, 8);
+  color:white;
+  border-radius: 15px;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.table-admin {
+  margin-top :45px;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.075);
+  border-collapse: collapse;
+
+  td {
+    padding:15px;
+    max-width: 250px;
+    overflow: hidden;
+    border:1px solid rgba(0, 0, 0, 0.068);
+    font-size: .8em;
+  }
+}
+
+.gallery-show-holder {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap:25px;
+  > div {
+    display: flex;
+    flex-direction: column;
+    max-width: 120px;
+    flex:1;
+    font-size: .8em;
+  }
+
+  button {
+    background-color: red;
+    color:white;
+    padding:15px;
+    
+  }
+}
+
 @import 'admin/flatpickr-v1.css';
 
 @import "admin/media";

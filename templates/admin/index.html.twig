@@ -4,6 +4,20 @@
 
 {% block container %}
 
+<div class="admin-hold">
+    <div class="admin-card">
+        Projects: {{ projects|length }}
+    </div>
+    <div class="admin-card">
+        Announce: {{ posts|length }}
+    </div>
+    <div class="admin-card">
+        News: {{ news|length }}
+    </div>
+    <div class="admin-card">
+        Galley: {{ galleries|length }}
+    </div>
+</div>
 
 
 {% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'container.html.twig' %}
 
-{% block title %}Albume{% endblock %}
+{% block title %}Album{% endblock %}
 
 {% block container %}
     <h1>Album</h1>
@@ -28,53 +28,59 @@
                 <td>{{ gallery.statusFormat }}</td>
             </tr>
             <tr>
-                <th>Nivel</th>
+                <th>Level</th>
                 <td>{{ gallery.level }}</td>
             </tr>
-            <tr>
-                <th>Fotografii</th>
-                <td>
-
-                {% if gallery.photos.values %}
-                    {% for photo in gallery.photos %}
-                        <div>
-                            <img data-id=" {{ loop.index }}"  src=" {{ vich_uploader_asset(photo, 'galleryImages') | imagine_filter('thumb') }} " class='home-profileimg'  alt="img-room{{ photo.id }}">
-                        </div>
-                         <a href="{{ path('uploads_entities', {'entity':'photos', 'doc': photo.document}) }}">
-                        {# {% dump(pf.extension) %} #}
-                        <span class='btn-primary'>download</span></a>
-                        
-                             <div class='axios-id-link btn-primary' data-link="{{ path('api_profile_picture', {'id': photo.id}) }}" data-id="{{ photo.id }}">
-                        {# {% dump(pf.extension) %} #}
-                        {% if photo.profile is null %}
-                            <span class='btn-primary'>Seteaza poza profil</span></div>
-                        {% else %}
-                            <span class='btn-primary'>Sterge poza profil</span></div>
-                        {% endif %}
-                        
-                        <form method="post" action="{{ path('delete_entities', {'entity': 'photos', 'doc': photo.document}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ photo.document) }}">
-                            <button class="btn">Delete</button>
-                        </form>
-                    {% endfor %}
-              
-                {% else %}
-                <span>Fara fotografii atasate</span>
-                {% endif %}
-                </td>
-            </tr>
+            
         </tbody>
     </table>
+    <div>
+        <h2>Photos</h2>
+    </div>
+    <div class='gallery-show-holder'>
+       
+        
+            {% if gallery.photos.values %}
+                {% for photo in gallery.photos %}
+                <div>
+                    <div>
+                        <img data-id=" {{ loop.index }}"  src=" {{ vich_uploader_asset(photo, 'galleryImages') | imagine_filter('thumb') }} " class='home-profileimg'  alt="img-room{{ photo.id }}">
+                    </div>
+                        
+                    
+                    <div class='axios-id-link' data-link="{{ path('api_profile_picture', {'id': photo.id}) }}" data-id="{{ photo.id }}">
 
+                    {% if photo.profile is null %}
+                        <span class='btn-primary'>Set profile picture</span></div>
+                    {% else %}
+                        <span class='btn-primary'>Delete profile picture</span></div>
+                    {% endif %}
+                    <a href="{{ path('uploads_entities', {'entity':'photos', 'doc': photo.document}) }}">
+
+                    <span class='btn-primary'>download</span></a>
+                    <form method="post" action="{{ path('delete_entities', {'entity': 'photos', 'doc': photo.document}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ photo.document) }}">
+                        <button class="btn">Delete</button>
+                    </form>
+                </div>
+                {% endfor %}
+             
+            {% else %}
+            <span>no photos</span>
+            {% endif %}
+
+       
+    
+    </div>
     <a href="{{ path('gallery_index') }}">back to list</a>
 
     <a href="{{ path('gallery_edit', {'id': gallery.id}) }}">edit</a>
 
      <div>
-        Adauga fisier
+        Add file
         {{ form_start(photoForm) }}
         {{ form_widget(photoForm) }}
-            <button>Adauga fisier</button>
+            <button style='background-color:green;color:white; padding:15px'>Add file</button>
         {{ form_end(photoForm) }}
     </div>
 

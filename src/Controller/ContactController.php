@@ -24,7 +24,7 @@ class ContactController extends BaseHomeController
      */
     public function contact(Request $request, MailerInterface $mailer): Response
     {
-        dump($this->hs);
+
         //get global settings for the website email adress
 
         $this->mailer = $mailer;

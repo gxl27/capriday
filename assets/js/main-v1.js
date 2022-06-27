@@ -19,6 +19,7 @@ const closebtnflash = document.querySelectorAll('.close-btn-flash');
 let textExpand = document.querySelectorAll('.text-expand')
 let textExpandButton = document.querySelectorAll('.text-expand-button')
 
+let galleryCard = document.querySelectorAll('.gallery-card')
 
 // check match media to prevent elements 
 if (matchMedia) {
@@ -54,6 +55,11 @@ function initialphone(){
     document.querySelector('#navbar-ul').style.opacity = 0
 }
 
+// key press function
+
+keypressdocument();
+
+
 // document.addEventListener('click', function(e){
 //     let parentNode = e.target.parentNode;
 //     if(parentNode.classList){
@@ -64,7 +70,6 @@ function initialphone(){
 //                 return;
 //             }else{
 //                 if(!clickCheckMenu == e.target){
-//                     console.log(clickCheckMenu)
 //                     clickCheckMenu = null;
                     
 //                 }
@@ -133,7 +138,6 @@ checkboxes.forEach(function(e){
     e.addEventListener('click', function(){
         if(e.getAttribute('checked') ==  'checked'){
             e.setAttribute('checked', null) ;
-           console.log('xxx')
         }else{
             e.setAttribute('checked', 'checked') ;
         }
@@ -196,8 +200,6 @@ function scrollToTargetAdjusted(scrolledelement){
     let body = document.body.getBoundingClientRect().top
     let headerOffset = window.heightnavbar;
     let elementPosition = scrolledelement.getBoundingClientRect().top;
-
-    console.log(elementPosition)
     let offsetPosition = elementPosition - headerOffset - body;
     if(headerOffset == 0 && scrolledelement.id == "s-acasa"){
         offsetPosition = 0;
@@ -272,7 +274,7 @@ textExpand.forEach(function(f){
         createTransparentBg(f)
         expand.style.display = 'flex';
         expand.dataset.click = "0";
-        expand.innerHTML = "<b>... mai mult</b>";
+        expand.innerHTML = "<b>... more</b>";
         
     }
 
@@ -286,18 +288,18 @@ textExpand.forEach(function(f){
           
             removeTransparentBg(f)
             expand.dataset.click = "1";
-            expand.innerHTML = "<b>mai putin</b>";
+            expand.innerHTML = "<b>less</b>";
             
             overflowValue = "initial"
-            heightMax = +50+childrenHeight +"px";
-            console.log(heightMax);
+            newheight = children.clientHeight
+            heightMax = +50+newheight +"px";
             delayValue = "0"
             f.style.position = "relative";
             
         }else {
             createTransparentBg(f)
             expand.dataset.click = "0";
-            expand.innerHTML = "<b>... mai mult</b>";
+            expand.innerHTML = "<b>... more</b>";
             
             overflowValue = "hidden"
             heightMax = elementHeight+"px";
@@ -307,7 +309,7 @@ textExpand.forEach(function(f){
         tl.to(f, { ease: "power2", maxHeight: heightMax})
         .to(f, {ease:"power2", overflow: overflowValue, delay:delayValue});
     })
-    // console.log(children.clientHeight);
+
    
 
 })
@@ -409,7 +411,7 @@ function homeinitial(){
         homebullet.forEach(function(h){
             h.style.backgroundColor = "white";
         })
-        bullet.style.backgroundColor = "#f5deb3";
+        bullet.style.backgroundColor = "#395531";
 
         function clearcarouselindexes(){
             homeslider.forEach(function(e){
@@ -431,6 +433,54 @@ function homeinitial(){
          
         }
     }
+}
+
+
+function keypressdocument(){
+    document.onkeydown = function(event) {
+        if (event.keyCode == 27){
+            let selectedMenu = document.querySelectorAll('.submenu');
+
+            selectedMenu.forEach(function(s){
+                if(s.style.display == 'flex'){
+                    s.style.display = 'none';
+                }
+            })
+        }
+    }
+
+
+
+        // closebtn.forEach(function(e){
+        //     e.parentElement.parentElement.parentElement.style.display = 'none'
+        //     e.parentElement.parentElement.parentElement.style.opacity = '0'
+        // })
+        // closebtnflash.forEach(function(e){
+        //     e.parentElement.style.display = 'none'
+        //     e.parentElement.style.opacity = '0';
+        // })
+        // closebtnsq.forEach(function(e){
+        //     e.parentElement.parentElement.parentElement.style.display = 'none'
+        //     e.parentElement.parentElement.parentElement.style.opacity = '0'
+        // })
+        // }
+        // if (event.keyCode == 13){
+        //     acceptbtn.forEach(function(e){
+        //         e.parentElement.style.display = 'none'
+        //         e.parentElement.style.opacity = '0';
+        //     })
+          
+        // }
+   
+}
+
+if(galleryCard){
+    galleryCard.forEach(function(f){
+        f.addEventListener('click', function(){
+            window.location = f.dataset.link
+           
+        })
+    })
 }
 
 //  checkboxes.forEach(function(e){

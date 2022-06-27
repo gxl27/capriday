@@ -19,18 +19,18 @@
             <div>Email: {{ user.email }}</div>
         {% else %}
              <div> Email: INEXISTENT! <br>
-             <small>Va rugam sa modificati contul si sa introduceti adresa de email. 
-             <br>Acest lucru este important pentru cazul in care ati uitat parola si doriti recuperarea acesteia!</small>
+             <small>Please change your account and enter your email address. 
+             <br>This is important in case you forgot your password and want to recover it!</small>
              </div>
         {% endif %}
        
-        <div>Rol: {{ user.rolesFormat }}</div>
-        <div>Creat la: {{ user.createdAt ? user.createdAt|datero('d F Y | h:i') : '' }}</div>
+        <div>Role: {{ user.rolesFormat }}</div>
+        <div>Created at: {{ user.createdAt ? user.createdAt|datero('d F Y | h:i') : '' }}</div>
         <div>Status: {{ user.getExpiresAtDays.status }}</div>
         <div>{{ user.getExpiresAtDays.days }}</div>
 
     </div>
-    <label for="checkbox-target-user">Modificare cont</label>
+    <label for="checkbox-target-user">Change account</label>
     <input id='checkbox-target-user' type='checkbox' class='checkbox-target' data-target='hide-user-form'>
 
     {# {{ form_row(form.dateStartAt) }} #}
@@ -45,7 +45,9 @@
             <button class="btn">{{ button_label|default('Save') }}</button>
         {{ form_end(formPass) }}
     </div>
-    {% if superadminCheck(app.user) or adminCheck(app.user) %}
-           <a href="{{ path('settings') }}">Lista utilizatori</a>
-    {% endif %}
+    <div>
+        {% if superadminCheck(app.user) or adminCheck(app.user) %}
+            <a href="{{ path('settings') }}">User list</a>
+        {% endif %}
+    </div>
 {% endblock %}

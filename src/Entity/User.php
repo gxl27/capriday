@@ -284,7 +284,7 @@ class User implements UserInterface
         }
        
         $days = $expiresAt->diff($now);
-        $response = ['status' => self::CODE[1], 'days' => "$days->d zile ramase"];
+        $response = ['status' => self::CODE[1], 'days' => "$days->d days remmaning"];
 
         return $response;
     }

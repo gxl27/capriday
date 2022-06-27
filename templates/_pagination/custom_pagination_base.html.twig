@@ -78,11 +78,11 @@
                         <span>{{ (current - 1) * numItemsPerPage + 1 }}-{{ (current - 1) * numItemsPerPage + currentItemCount }}</span>
 
                     {% endif %}
-                    <span>din </span><span><b>{{ totalCount }}</b></span>
+                    <span>of </span><span><b>{{ totalCount }}</b></span>
                 {% endif %}
                 {% if type == 1 %}
            
-                <span>{{ current }} din {{ last }}</span>
+                <span>{{ current }} of {{ last }}</span>
                 {% endif %}
             </li>
             {% if next is defined %}

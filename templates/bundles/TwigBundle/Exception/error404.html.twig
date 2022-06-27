@@ -1,14 +1,14 @@
 {# templates/bundles/TwigBundle/Exception/error404.html.twig #}
 {% extends 'container.html.twig' %}
-{% block title %}Pagina nu a fost gasita!{% endblock %}
+{% block title %}Page not found{% endblock %}
 {% block container %}
-    <h1>Pagina nu a fost gasita! (cod eroare 404)</h1>
+    <h1>Page not found (code error 404)</h1>
 
     <p>
     {% if app.user.roles.0 == "ROLE_SUPERADMIN" or app.user.roles.0 == "ROLE_ADMIN" %}
-        <a href="{{ path('admin') }}"> Inapoi la panel</a>.
+        <a href="{{ path('admin') }}"> back to panel</a>.
     {% else %}
-       <a href="{{ path('home') }}"> Inapoi la site</a>.
+       <a href="{{ path('home') }}"> back to site</a>.
     {% endif %}
     </p>
 {% endblock %}

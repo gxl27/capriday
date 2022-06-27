@@ -21,21 +21,21 @@ class PhotoType extends AbstractType
     {
         $builder
             ->add('level', IntegerType::class, [
-                'label' => 'Nivel',
+                'label' => 'Level',
                 'required' => false,
                 'constraints' => [new PositiveOrZero()],
             ])
             ->add('longitude', TextType::class, [
-                'label' => 'Longitudine',
+                'label' => 'Longitude',
                 'required' => false,
             ])
             ->add('latitude', TextType::class, [
-                'label' => 'Latitudine',
+                'label' => 'Latitude',
                 'required' => false,
             ])
             ->add('dateAt', DateType::class, [
                 'widget' => 'single_text',
-                'label' => "Data",
+                'label' => "Date",
                 'attr' => [ 
                             'class' => 'form-control dateinput',
                             'name' => "event_date",

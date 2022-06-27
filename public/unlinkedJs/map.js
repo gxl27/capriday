@@ -11,14 +11,14 @@ function generateMap(){
     
     // document.getElementById('s-map').innerHTML = "<div id='map' style='width: 100%; height: 100%;z-index:1;'></div>";
 
-    var map = L.map('map').setView([44.17069, 28.57692], 13);
+    var map = L.map('map').setView([44.427549, 26.1255168], 12);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-
-    L.marker([44.17069, 28.57692]).addTo(map)
-        .bindPopup('<b>ANCC Caprirom </b><br>I.C. Bratianu, nr 248, Constanta')
+ 
+    L.marker([44.427549, 26.1255168]).addTo(map)
+        .bindPopup('<b>Capriday </b>')
         .openPopup();
     
 }

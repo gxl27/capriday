@@ -1,16 +1,16 @@
 {% extends 'container.html.twig' %}
 
-{% block title %}Anunturi{% endblock %}
+{% block title %}Announces{% endblock %}
 
 {% block container %}
+
+    <h1>Announces list</h1>
     <div class="flex-end">
         <div class="pagination-bar">
             {{ knp_pagination_render(postsKnp,  '/_pagination/custom_pagination_pages.html.twig') }}
         </div>
     </div>
-    <h1>Anunturi lista</h1>
-
-    <table class="table">
+    <table class="table table-admin">
         <thead>
             <tr>
                 <th>Crt</th>
@@ -19,7 +19,7 @@
                 <th>CreatedAt</th>
                 <th>Status</th>
                 <th>CreatedBy</th>
-                <th>Fisiere</th>
+                <th>Files</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -42,7 +42,7 @@
                 {% if post.postfiles.values %}
                     {% for pf in post.postfiles %}
                          <a href="{{ path('uploads_entities', {'entity':'postfiles', 'doc': pf.document}) }}">
-                        {# {% dump(pf.extension) %} #}
+
                         <span>{{ pf.name }}</span></a>
                     {% endfor %}
               

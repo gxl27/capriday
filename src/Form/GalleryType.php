@@ -19,21 +19,21 @@ class GalleryType extends AbstractType
     {
         $builder
         ->add('name', TextType::class, [
-            'label' => 'Numele albumului'
+            'label' => 'Album name'
         ])
         ->add('description', TextareaType::class, [
-            'label' => 'Descriere'
+            'label' => 'Description'
         ])
         ->add('status', ChoiceType::class, [
             'choices' => $this->typeChoices(),
             
-            'label' => 'Prioritate',
+            'label' => 'Priority',
             'attr' => ['class' => 'form-control',
             
           ]
         ])
         ->add('level', IntegerType::class, [
-            'label' => 'Nivel',
+            'label' => 'Level',
             'required' => false,
             'constraints' => [new PositiveOrZero()],
         ])

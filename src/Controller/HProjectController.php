@@ -14,7 +14,7 @@ class HProjectController extends BaseHomeController
      */
     public function projects(ProjectRepository $projectRepository, Request $request): Response
     {
-        dump($this->paginator);
+
 
         $projectsKnp = $this->paginator->paginate(
             $projectRepository->findAllActiveQuery(),

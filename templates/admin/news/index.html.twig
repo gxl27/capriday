@@ -1,16 +1,17 @@
 {% extends 'container.html.twig' %}
 
-{% block title %}Stiri si noutati{% endblock %}
+{% block title %}News{% endblock %}
 
 {% block container %}
+
+    <h1>News list</h1>
     <div class="flex-end">
         <div class="pagination-bar">
             {{ knp_pagination_render(newsKnp,  '/_pagination/custom_pagination_pages.html.twig') }}
         </div>
     </div>
-    <h1>Stiri si noutati lista</h1>
-
-    <table class="table">
+    
+    <table class="table table-admin">
         <thead>
             <tr>
                 <th>Crt</th>

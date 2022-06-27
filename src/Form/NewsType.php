@@ -16,7 +16,7 @@ class NewsType extends AbstractType
     {
         $builder
         ->add('name', TextType::class, [
-            'label' => 'Titlul'
+            'label' => 'Title'
         ])
         ->add('description', TextareaType::class, [
             'label' => false
@@ -24,7 +24,7 @@ class NewsType extends AbstractType
         ->add('status', ChoiceType::class, [
             'choices' => $this->typeChoices(),
             
-            'label' => 'Prioritate',
+            'label' => 'Priority',
             'attr' => ['class' => 'form-control',
             
           ]
@@ -33,7 +33,7 @@ class NewsType extends AbstractType
         ->add('type', ChoiceType::class, [
             'choices' => $this->typeChoices2(),
             
-            'label' => 'Tipul linkului',
+            'label' => 'Media type',
             'attr' => ['class' => 'form-control',
             
           ]

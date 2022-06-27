@@ -1,6 +1,6 @@
 {% extends 'container.html.twig' %}
 
-{% block title %}Stiri si noutati{% endblock %}
+{% block title %}News{% endblock %}
 
 {% block container %}
     <div class="flex-end">
@@ -8,59 +8,67 @@
             {{ knp_pagination_render(newsKnp, '/_pagination/custom_pagination_pages.html.twig') }}
         </div>
     </div>
+    <h1>News</h1>
     {# Important posts #}
     {% if newsKnp.currentPageNumber == 1 %}
-        <div class="important">
-        {% for new in newsI %}
-            <div>{{ new.name }}</div>
-            <div>{{ new.description }}</div>
-            {% if new.type == 0 %}
-            <div>
-            <a href="{{ new.link }}">Link: {{ new.link }}</a>
-            </div>
-            {% endif %}
+        <div class='post-holder'>
+            {% for new in newsI %}
+                <div class="post-item post-important">
+                    <div class='post-title'><div>{{ new.name }}</div><div>{{ new.createdAt|date("d M Y") }}</div></div>
+                    <div class='post-description'>{{ new.description }}</div>
+                    <div class='news-media'>
+                        {% if new.type == 0 %}
+                        <div>
+                        <a href="{{ new.link }}">Link: {{ new.link }}</a>
+                        </div>
+                        {% endif %}
 
-            {% if new.type == 1 %}
-            <div>
-                {{ new.link|raw }}
-            </div>
-            {% endif %}
+                        {% if new.type == 1 %}
+                        <div>
+                            {{ new.link|raw }}
+                        </div>
+                        {% endif %}
 
-            {% if new.type == 2 %}
-            <div>
-                <img src="{{ new.link }}">
-            </div>
-            {% endif %}
-
-        {% endfor %}
+                        {% if new.type == 2 %}
+                        <div>
+                            <img src="{{ new.link }}">
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     {% endif %}
-    
-    <div class="normal">
-    {% for new in newsKnp %}
-        <div>{{(newsKnp.currentPageNumber - 1) * newsKnp.getItemNumberPerPage + loop.index }}</div>
-        <div>{{ new.name }}</div>
-        <div>{{ new.description }}</div>
-        {% if new.type == 0 %}
-        <div>
-             <a href="{{ new.link }}">Link: {{ new.link }}</a>
-        </div>
-        {% endif %}
 
-        {% if new.type == 1 %}
-        <div>
-            {{ new.link|raw }}
-        </div>
-        {% endif %}
+    <div class='post-holder'>
+        {% for new in newsKnp %}
+            <div class="post-item post-normal">
+                <div class='post-title'><div  style='font-size:1.05em'><b># {{(newsKnp.currentPageNumber - 1) * newsKnp.getItemNumberPerPage + loop.index }} {{ new.name }}</b></div><div>{{ new.createdAt|date('d M Y') }}</div></div>
+                <div class='post-description'>{{ new.description }}</div>
+                <div class='news-media'>
+                    {% if new.type == 0 %}
+                    <div>
+                    <a href="{{ new.link }}">Link: {{ new.link }}</a>
+                    </div>
+                    {% endif %}
 
-         {% if new.type == 2 %}
-        <div>
-            <img src="{{ new.link }}">
-        </div>
-         {% endif %}
-    {% endfor %}
+                    {% if new.type == 1 %}
+                    <div>
+                        {{ new.link|raw }}
+                    </div>
+                    {% endif %}
+
+                    {% if new.type == 2 %}
+                    <div>
+                        <img src="{{ new.link }}">
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
     </div>
-    <div class="flex-center">
+
+    <div class="flex-center"  style='margin-top:45px'>
         <div class="pagination-bar">
             {{ knp_pagination_render(newsKnp, '/_pagination/custom_pagination_pages.html.twig') }}
         </div>

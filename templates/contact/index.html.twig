@@ -16,25 +16,25 @@
 </section>
 
 <section class='container'>
-<h1>Contacteaza-ne</h1>
+<h1>Contact us!</h1>
     <div class="contact-content">
         <div class='contact-details'>
-            <h5>ANCC - "CAPRIROM"</h5>
+            <h5>Capriday</h5>
             <div>
-                <span><img src="/img/location-gray.svg" alt='location'>Constanta, str. I.C. Bratianu nr. 248</span>
+                <span><img src="/img/location-gray.svg" alt='location'>Bucharest, str. I.C. Bratianu nr. 48</span>
             </div>
             <div>
-                <span><img src="/img/phone-gray.svg" alt='phone'>Mobil: <a href='tel:0727869984'>0727869984</a></span>
+                <span><img src="/img/phone-gray.svg" alt='phone'>Mobil: <a href='tel:0739869984'>0739869984</a></span>
             </div>
             <div>
-                <span><img src="/img/fax-gray.svg" alt='fax'>Tel./Fax.: <a href='tel:0372873135'>0372873135</a></span>
+                <span><img src="/img/fax-gray.svg" alt='fax'>Tel./Fax.: <a href='tel:0739869984'>0739869984</a></span>
             </div>
             <div>
-                <span><img src="/img/email-gray.svg" alt='email'>Email:caprirom@yahoo.com</span>
+                <span><img src="/img/email-gray.svg" alt='email'><a href='mailto:capriday@gmail.com'>Email:capriday@gmail.com </a></span>
             </div>
         </div>
         <div class='contact-form'>
-            <h5> Trimite un mesaj</h5>
+            <h5> Send a message</h5>
               {{ form_start(formContactmsg) }}
             <div class='w-100'>
                 {{ form_row(formContactmsg.name) }}
@@ -49,11 +49,9 @@
             </div>
        
             {{ form_row(formContactmsg.subject) }}
-                  <button class='btn-primary'>Trimite</button>
+            <button class='btn-primary' style='color:white'>Send</button>
            
-            
             {# {{ form_widget(formContactmsg) }} #}
-      
             {{ form_end(formContactmsg) }}
         </div>
     </div>

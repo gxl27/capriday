@@ -26,7 +26,7 @@ class UserChangePasswordType extends AbstractType
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => false,
                 'mapped' => false,
-                'first_options'  => ['label' => 'Parola',
+                'first_options'  => ['label' => 'New password',
                                     'constraints' => [
                                         new NotBlank([
                                             'message' => 'Please enter a password',
@@ -39,7 +39,7 @@ class UserChangePasswordType extends AbstractType
                                         ]),
                                     ],
                                 ],
-                'second_options' => ['label' => 'Repeta parola'],
+                'second_options' => ['label' => 'Re-type password'],
                 
             ]);
             // ->add('plainPassword', PasswordType::class, [

@@ -115,7 +115,7 @@ class SettingsController extends BaseAdminController
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
-            dump($user->getPassword());
+
             $message = "Modificari ale utilizatorului cu succes";
             $this->addFlash('success', $message);
          

@@ -26,15 +26,14 @@
 
         }
         #main-content{
-            background-color:rgba(250, 250, 250, 1);
+            background-color:rgba(255, 255, 255, 1);
             max-width:600px;
-            width:100%;
-            padding:4% 2%;
+            padding:25px 15px;
             display:flex;
             flex-direction:column;
             justify-content:center;
             align-items:center;
-            transform:translateY(-2em);
+            transform:translateY(-15px);
         
         }
 
@@ -55,12 +54,13 @@
             flex-direction:column;
             flex:1;
             flex-basis:90%;
-            padding:2% 4%;
-            font-size: clamp(1.140rem, calc( 1rem + 1.200vw ), 1.500rem);
+            padding:25px 15px;
+            /* font-size: clamp(1.140rem, calc( 1rem + 1.200vw ), 1.500rem); */
         }
 
         input, #checkboxrememberme {
-            padding:2%;
+            padding:5px;
+        
             font-size:1em;
             text-align:center;
             text-transform:uppercase;
@@ -73,7 +73,7 @@
         }
 
         #remember_me{
-            transform: scale(1.5);
+            transform: scale(1.3);
             margin-left:.5em;
         
         }
@@ -83,7 +83,7 @@
             font-size:.55em;
             letter-spacing:.05em;
             text-transform:uppercase;
-        color:RGB(241,34,37);
+            color:RGB(241,34,37);
         }
 
         label {
@@ -95,34 +95,36 @@
         }
 
         button {
-            max-width: 200px;
+    
             border-radius: 5px;
-            padding: .2em 1.3em;
-
+            padding: 7px 17px;
+            width:100%;
             margin: 3px;
-            align-self:center;
+            /* align-self:right; */
             color:white;
             background-color: RGB(241,34,37);
-            font-size:inherit;
+            font-size:.9em;
+            cursor:pointer;
             text-transform:uppercase;
-            box-shadow: 0 0 3px 0 grey;
+            box-shadow: 0 0 2px 0 grey;
+            border:none;
         }
 
         img {
-            max-width: 300px;
+            max-width: 200px;
             width:100%;
         }
 
         @media screen and (min-width: 768px) {
             #main {
                 max-width:100vw;
-                background-image: url("img/rg.jpg");
+                background-image: url("img/rg.png");
                 background-repeat:none;
                 background-size:cover;
             }
             #main-content{
-                box-shadow:0 0 15px 0 grey;
-                border-radius:3%;
+                box-shadow:0 0 3px 0 rgba(155, 155, 155, .8);
+                border-radius:7px;
                 background-color:rgba(250, 250, 250, 0.93);
                 
             }
