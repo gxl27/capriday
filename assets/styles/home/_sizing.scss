@@ -270,6 +270,20 @@ iframe {
   // font-size: .9em;
   opacity: .9;
 
+  b {
+    background-color: rgba(255, 0, 0, 0.473);
+    padding:5px 7px;
+    color: white;
+    border-radius: 5px;
+    font-size: .7em;
+    transition:all .3s ease-in-out;
+    align-self: flex-end;
+    width: auto;
+  }
+  b:hover {
+    background-color: rgba(255, 0, 0, 0.986);
+  }
+
 }
 
 .text-expand-button:hover {

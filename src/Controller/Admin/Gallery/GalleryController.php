@@ -46,7 +46,7 @@ class GalleryController extends BaseAdminController
             $entityManager->persist($gallery);
             $entityManager->flush();
 
-            $message = "Proiect adaugat cu succes";
+            $message = "Album added successfully!";
             $this->addFlash('success', $message);
 
             return $this->redirectToRoute('gallery_index');
@@ -90,14 +90,14 @@ class GalleryController extends BaseAdminController
                 $entityManager->persist($gallery);
                 $entityManager->flush();
                
-                $message = "Fotografie adaugata cu success";
+                $message = "Photo successfully added!";
                 $this->addFlash('success', $message);
 
                 return $this->redirect($request->headers->get('referer'));
             }
           
             else {
-                $message = "Tipul fisierului nu este acceptat!";
+                $message = "File type not supported!";
                 $this->addFlash('alert', $message);
             }
         }

@@ -48,7 +48,7 @@ class UploadsController extends AbstractController
             return $response;
         }
 
-        $message = "Fisierul nu exista!";
+        $message = "File does not exist!";
         $this->addFlash('alert', $message);
 
         return $this->redirect($request->headers->get('referer'));
@@ -72,14 +72,14 @@ class UploadsController extends AbstractController
                 $entityManager->remove($id);
                 $entityManager->flush();
 
-                $message = "Fisierul sters cu succes!";
+                $message = "File successfully deleted!";
                 $this->addFlash('success', $message);
 
                 return $this->redirect($request->headers->get('referer'));
                 
             }
         }
-        $message = "Fisierul nu exista!";
+        $message = "File does not exist!";
         $this->addFlash('alert', $message);
 
         return $this->redirect($request->headers->get('referer'));

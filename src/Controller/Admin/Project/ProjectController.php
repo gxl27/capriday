@@ -50,7 +50,7 @@ class ProjectController extends BaseAdminController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($project);
             
-            $message = "Proiect adaugat cu succes";
+            $message = "Project successfully added";
             $this->addFlash('success', $message);
          
             $entityManager->flush();
@@ -96,7 +96,7 @@ class ProjectController extends BaseAdminController
                 $entityManager->persist($project);
                 $entityManager->flush();
 
-                $message = "Fisier adaugat cu success";
+                $message = "File successfully added";
                 $this->addFlash('success', $message);
 
                 return $this->redirect($request->headers->get('referer'));
@@ -106,7 +106,7 @@ class ProjectController extends BaseAdminController
             }
           
             else {
-                $message = "Tipul fisierului nu este acceptat!";
+                $message = "File type not supported!";
                 $this->addFlash('alert', $message);
                 return $this->redirect($request->headers->get('referer'));
             }

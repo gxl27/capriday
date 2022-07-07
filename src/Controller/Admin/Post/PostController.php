@@ -45,7 +45,7 @@ class PostController extends BaseAdminController
         if ($form->isSubmitted() && $form->isValid()) {
             $post->setCreatedBy($this->getUser()->getUsername());
             $entityManager = $this->getDoctrine()->getManager();
-            $message = "Anunt adaugat cu succes";
+            $message = "Ad successfully added!";
             $this->addFlash('success', $message);
 
             $entityManager->persist($post);
@@ -93,7 +93,7 @@ class PostController extends BaseAdminController
                 $entityManager->persist($post);
                 $entityManager->flush();
 
-                $message = "Fisier adaugat cu success";
+                $message = "File added successfully!";
                 $this->addFlash('success', $message);
 
                 return $this->redirect($request->headers->get('referer'));
@@ -101,7 +101,7 @@ class PostController extends BaseAdminController
             }
           
             else {
-                $message = "Tipul fisierului nu este acceptat!";
+                $message = "File type not supported!";
                 $this->addFlash('alert', $message);
                 
                 return $this->redirect($request->headers->get('referer'));

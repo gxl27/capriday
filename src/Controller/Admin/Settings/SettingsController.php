@@ -63,7 +63,7 @@ class SettingsController extends BaseAdminController
     {
         //redirect if the request it's for another user
         if($user->getId() != $this->getUser()->getId()){
-            $message = "Acces neautorizat";
+            $message = "Unauthorized access";
             $this->addFlash('alert', $message);
 
             return $this->redirectToRoute('admin');
@@ -90,7 +90,7 @@ class SettingsController extends BaseAdminController
                     $user->setDocument($filename);
                 }
                 else {
-                    $message = "Tipul pozei nu este acceptat!";
+                    $message = "Picture type not accepted!";
                     $this->addFlash('alert', $message);
                 }
             }
@@ -99,7 +99,7 @@ class SettingsController extends BaseAdminController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             
-            $message = "Modificari ale utilizatorului cu succes";
+            $message = "Successful user changes!";
             $this->addFlash('success', $message);
          
             $entityManager->flush();
@@ -116,7 +116,7 @@ class SettingsController extends BaseAdminController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
 
-            $message = "Modificari ale utilizatorului cu succes";
+            $message = "Successful user changes!";
             $this->addFlash('success', $message);
          
             $entityManager->flush();
